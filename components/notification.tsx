@@ -3,18 +3,15 @@ import EachNotification from "../components/eachNotification"
 import { XIcon } from "@heroicons/react/outline";
 
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
-import { MyContext } from "../utils/JWTAuth";
 
-const Notification = ({ notshow, setnotshow }) => {
-  const { rootState, logoutUser } = useContext(MyContext);
-  const { isAuth, theUser, showLogin } = rootState;
+export default function Notification ({ notshow, setnotshow })  {
+
   const router = useRouter();
  
   const statenotchange = useCallback(() => {
     setnotshow(false);
   }, [setnotshow]);
-  if (isAuth)
+ 
     return (
       <>
         <div
@@ -32,7 +29,7 @@ const Notification = ({ notshow, setnotshow }) => {
         </div>
       </>
     );
-  else return "";
+  
 };
 
-export default Notification;
+ Notification;

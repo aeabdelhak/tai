@@ -33,13 +33,13 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
         </div>
         {isAuth ? (
           <div className="flex justify-center space-x-3 items-center">
-          <div
-            className=" "
+          <div  onClick={() => router.push("/upload")}
+            className=" cursor-pointer "
           >
           <UploadIcon className="w-5 h-5 border-1" />
           </div>
           <div
-            className=" "
+            className=" cursor-pointer "
             onClick={statenotchange}
           >
           <BellIcon className="w-5 h-5 border-1" />
@@ -61,9 +61,9 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
           </div>
         ) : (
           <div className="flex space-x-4">
-            <h1 className="cursor-pointer  p-1 rounded-full transition ease-in-out duration-1000">
+            <h1  onClick={() => router.push("/Login")} className="cursor-pointer  p-1 rounded-full transition ease-in-out duration-1000">
               <LoginIcon
-                onClick={() => router.push("/Login")}
+               
                 className="w-5 h-5 border-1 "
               />
             </h1>

@@ -21,7 +21,7 @@ const Profile = ({ active, setActive }) => {
   const stateprofilechange = useCallback(() => {
     setActive(false);
   }, [setActive]);
-  if (isAuth)
+  
     return (
       <>
         <div
@@ -46,7 +46,7 @@ const Profile = ({ active, setActive }) => {
           <h1>{theUser.name}</h1>
           <h1>{theUser.email}</h1>
 
-          <div className="navlink">
+          <div onClick={()=>router.push("/channel")} className="navlink">
             <CollectionIcon className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>Your Channels</h1>
           </div>
@@ -57,7 +57,7 @@ const Profile = ({ active, setActive }) => {
         </div>
       </>
     );
-  else return "";
+
 };
 
 export default Profile;

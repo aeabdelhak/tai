@@ -2,43 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-    .active .icon {
-      @apply text-green-600;
-    }
-    .active h1  {
-        @apply font-normal;
-      }
-    .active   {
-        @apply md:border-r-2  border-t-2 border-r-0 md:border-t-0  bg-gray-100 ;
-      }
-      .green{
-        @apply border-green-500 text-green-600;
-      }
-      .red{
-        @apply border-red-500 text-red-600;
-      }
-      .blue{
-        @apply border-blue-500 text-blue-600;
-      }
-      
-      .navlink{
-        @apply flex w-full items-center h-12 hover:bg-gray-200 justify-start px-10 cursor-pointer;
-      }
+  .active .icon {
+    @apply text-green-600;
   }
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
-body{
-    font-family:'Noto Sans JP', sans-serif !important;
-    overflow-x: hidden;
-    background-color:#f0f0f0
+  .active h1 {
+    @apply font-normal;
+  }
+  .active {
+    @apply md:border-r-2  border-t-2 border-r-0 md:border-t-0  bg-gray-100;
+  }
+  .green {
+    @apply border-green-500 text-green-600;
+  }
+  .red {
+    @apply border-red-500 text-red-600;
+  }
+  .blue {
+    @apply border-blue-500 text-blue-600;
+  }
+
+  .navlink {
+    @apply flex w-full items-center h-12 hover:bg-gray-200 justify-start px-10 cursor-pointer;
+  }
+  .input {
+    @apply p-2 focus:outline-none border-gray-200 border w-full rounded-lg;
+  }
+  .chtitle {
+    @apply bg-gray-900 bg-opacity-50 backdrop-blur-lg text-white p-1 text-center my-1 rounded-2xl px-3;
+  }
+  .grid-costum {
+    @apply grid;
+    grid-template-columns: 40px 1fr 40px;
+  }
 }
-.grid-costum{
-@apply grid;
-grid-template-columns: 40px 1fr 40px;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
+body {
+  font-family: "Noto Sans JP", sans-serif !important;
+  overflow-x: hidden;
+  background-color: #fcfcfc;
 }
-.cH{
+
+.cH {
   max-height: 600px;
 }
-.flx{
+.flx {
   flex: 0 0 100%;
-
 }
