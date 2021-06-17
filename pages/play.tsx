@@ -4,7 +4,7 @@ import VideoInfos from "../components/VideInfos";
 import Comment from "../components/Comment";
 import { useState } from "react";
 import Description from "../components/Description";
-import Items from "../components/Items";
+import Thumbnails from "../components/thumbnails";
 
 import Categories from "../components/Categories";
 const Play = ({ data }) => {
@@ -26,7 +26,7 @@ const Play = ({ data }) => {
             </div>
             <div className=" overflow-y-auto w-full max-w-2xl bg-gray-200">
               {data.map((dt) => (
-                <Items key={dt.id} data={dt} />
+                <Thumbnails key={dt.id} data={dt} />
               ))}
             </div>
           </div>
