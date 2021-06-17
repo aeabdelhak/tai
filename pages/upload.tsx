@@ -5,26 +5,58 @@ import { useState } from "react";
 import FileUplad from "../components/fileUplad";
 import ChannelSelect from "../components/ChannelSelect";
 import { MyContext } from "../utils/JWTAuth";
-
+import Circle from "react-circle";
 import VideoInfos from "../components/videoInfos";
 import axios from "axios";
 import { GetStaticProps } from "next";
-const upload = ({data}) => {
-  console.log(data)
+import router from "next/router";
+import {
+  BellIcon,
+  PhotographIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/outline";
+const upload = ({ channels }) => {
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState;
+
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
-  const [progresse, setProgress] = useState(0);
   const [progressen, setProgressn] = useState(0);
- const { rootState, logoutUser } = useContext(MyContext);
-  const { isAuth, theUser, showLogin } = rootState;
+  const [file, setFile] = useState();
+  const [title, setTitle] = useState();
+  const [desc, setdesc] = useState();
+  const [state, setstate] = useState();
+  const [filename, setFilename] = useState<string>();
+  const [id, setid] = useState("");
+  const [click, setClik] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
- 
-  const [file, setFile] = useState();
-  const [filename, setFilename] = useState<string>();
 
+  const submit = () => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("desc", desc);
+    formData.append("state", state);
+    formData.append("thmb", thmb);
+    formData.append("id", id);
+    axios
+      .post("http://vspace.rf.gd/upload.php", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.data === "success") {
+          router.push("/play");
+        }
+        console.log(response.data);
+      });
+  };
+  useEffect(() => {
+    console.log(click);
+  }, [click]);
   function getExtension(filename) {
     const file = String(filename);
 
@@ -50,9 +82,10 @@ const upload = ({data}) => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("username", theUser.username);
+      formData.append("key", key);
       scrollNext();
       axios
-        .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
+        .post("http://vspace.rf.gd/upload.php", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -60,56 +93,76 @@ const upload = ({data}) => {
             const { loaded, total } = progressEvent;
             let percent = Math.fround((loaded * 100) / total);
             let percentn = Math.floor((loaded * 100) / total);
-            setProgress(percent);
             setProgressn(percentn);
             setShow(true);
           },
         })
-        .then((response) => console.log(response));
+        .then((response) => setid(response.data.id));
     }
   }, [file]);
 
   useEffect(() => {
-    document.getElementById("progress").style.width = progresse + "%";
-    document.getElementById("perc").style.left = progresse + "%";
-  }, [progresse]);
-  useEffect(() => {
-    scrollNext()
+    scrollNext();
   }, [key]);
 
   return (
     <div className="pt-16 pb-10    h-screen w-full">
+      <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
+        <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
+        <Circle size={80} progress={progressen} />
+      </div>
       <div className="p-2 w-full  ">
         <h1 className="text-center">uplaod a new video</h1>
-        <div className="w-full  ">
-          <h1
-            id="perc"
-            className="text-xs justify-self-end relative duration-300 transition-all"
+      </div>{" "}
+      <div className="w-full  flex justify-end text-right p-3">
+        {id!=="" && (
+          <button
+            className="p-2 px-4  bg-blue-600 space-x-2 text-white flex hover:rounded-full duration-600 transition  "
+            onClick={submit}
           >
-            {show && progressen + "%"}
-          </h1>
-
-          <div
-            className="h-1 rounded-full  duration-300 transition-all  animate-pulse bg-green-900"
-            id="progress"
-          ></div>
-        </div>
-      </div>
+            <h1>save</h1>
+            <ChevronRightIcon className="w-6 " />
+          </button>
+        )}
+      </div>{" "}
       <div className=" overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
-          <ChannelSelect id={setKey} />
-          <FileUplad setFile={setFile} filename={setFilename} />
-          <VideoInfos thmb={thmb} setthumb={setthumb} />
+          <ChannelSelect id={setKey} data={channels} />
+          {channels !== "no channel" && (
+            <FileUplad setFile={setFile} filename={setFilename} />
+          )}
+          {channels !== "no channel" && (
+            <VideoInfos
+              clicked={click}
+              click={setClik}
+              thmb={thmb}
+              setthumb={setthumb}
+              settitle={setTitle}
+              setdesc={setdesc}
+              setstate={setstate}
+            />
+          )}
         </div>
       </div>
     </div>
   );
-
 };
 
 export default upload;
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(
+    `http://vspace.rf.gd/getChannels.php?user=somene`
+  );
+  const channels = await res.json();
+  if (!channels) {
+    return {
+      notFound: true,
+    };
+  }
 
-
-
-
-  
+  return {
+    props: {
+      channels,
+    }, // will be passed to the page component as props
+  };
+};

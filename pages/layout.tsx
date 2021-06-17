@@ -13,10 +13,13 @@ const layout = () => {
     const { isAuth, theUser, showLogin } = rootState;
     const [active, setActive] = useState(false);
     const [notShow, setNotShow] = useState(false);
+
     return (
         <div>
-            {router.pathname!==("/upload") &&
-                    <Sidebar />}
+            {router.pathname!==("/upload"||"/createChannel" ) &&
+                <Sidebar />
+            }
+                    
         <Navbar active={active} setActive={setActive} notshow={notShow} setnotshow={setNotShow}/>
         {
             isAuth && <Profile active={active} setActive={setActive} />

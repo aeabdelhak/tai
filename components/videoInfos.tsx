@@ -6,29 +6,48 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 
-const VideoInfos = ({ thmb, setthumb }) => {
+const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) => {
   const hiddenFileInput = React.useRef(null);
   const thumbnail = React.useRef(null);
+  const [prev,setprev]=useState("");
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
   const[ischecked,Check]=useState("public");
   const thumb = useCallback(
     (event) => {
-      setthumb(URL.createObjectURL(event.target.files[0]));
+      setthumb(event.target.files[0]);
+      setprev(URL.createObjectURL(event.target.files[0]))
     },
     [setthumb]
-  );
+  )
+  const state = useCallback(
+    (event) => {
+      setstate(event);
+    },
+    [setstate]
+  )
+  const title = useCallback(
+    (event) => {
+      settitle(event.target.value);
+    },
+    [settitle]
+  )
+  const desc = useCallback(
+    (event) => {
+      setdesc(event.target.value);
+    },
+    [setdesc]
+  )
+  const submit=()=>{
+    ()=>useCallback(()=>click(!clicked),[click])
+    console.log(clicked)
+  }
 
   return (
     <div className="relative bg-gray-300 mb-4 h-full flx">
       <div className="  h-auto w-full  max-w-7xl mx-auto  ">
-        <div className="w-full h-16  flex justify-end text-right p-3">
-          <button className="p-2 px-4  bg-blue-600 space-x-2 text-white flex hover:rounded-full duration-600 transition  ">
-            <h1>next</h1>
-            <ChevronRightIcon className="w-6 " />
-          </button>
-        </div>{" "}
+
         <div className="grid h-full bg-white  rounded-2xl overflow-hidden lg:grid-cols-3">
           <div className=" col-span-2 w-full p-1">
             <div className="  p-2 mb-1">
@@ -37,6 +56,7 @@ const VideoInfos = ({ thmb, setthumb }) => {
                 type="text"
                 placeholder="title"
                 className="bg-gray-200 input"
+                onChange={title}
               />
             </div>
             <div className="  p-2 mb-1">
@@ -44,6 +64,8 @@ const VideoInfos = ({ thmb, setthumb }) => {
               <textarea rows={6}
                 placeholder="descritiopn"
                 className="bg-gray-200 input "
+                onChange={desc}
+
               >
                 
               </textarea>
@@ -99,16 +121,16 @@ const VideoInfos = ({ thmb, setthumb }) => {
                 ref={thumbnail}
                 onChange={thumb}
               />
-              {thmb && <img src={thmb} />}
+              {thmb && <img src={prev} />}
             </div>
             <hr />
             <h1 className="text-center p-3">set this video :</h1>
-            <label htmlFor="public" onClick={()=>Check("public")} className={ischecked==="public" ?"navlink bg-gray-500 text-white hover:bg-gray-600": "navlink "}>
+            <label htmlFor="public" onClick={()=>{Check("public"); state("1")}}  className={ischecked==="public" ?"navlink bg-gray-500 text-white hover:bg-gray-600": "navlink "}>
               <input type="radio" name="state" id="public" value="1"className="hidden" />
               public{" "}
             </label>
             <br />
-            <label htmlFor="private" onClick={()=>Check("private")}  className={ischecked==="private" ?"navlink bg-gray-500 text-white hover:bg-gray-600": "navlink "} >
+            <label htmlFor="private" onClick={()=>{Check("private"); state("0")}}  className={ischecked==="private" ?"navlink bg-gray-500 text-white hover:bg-gray-600": "navlink "} >
               <input type="radio" name="state" id="private" value="0"  className="hidden "/>
               private{" "}
             </label>
