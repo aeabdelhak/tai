@@ -8,49 +8,27 @@ import Items from "../components/Items";
 
 import Categories from "../components/Categories";
 const Play = ({ data }) => {
-
   const [isActive, setActive] = useState("description");
 
   console.log(data);
   return (
-    <div className="pt-16 md:ml-32    grid w-full   pb-10 ">
-      <div className=" lg:flex ">
-        <div className=" max-w-7xl w-full">
-          <VideoPlayer url={"http://68cf311f8d5c.ngrok.io/api/2.mp4"} />
-          <VideoInfos />
-        </div>
-        <div className="w-full h-full  max-w-3xl">
-          <div className="grid grid-cols-2">
-            <div
-              className={isActive==="description" ? "navlink justify-center red":"navlink justify-center"}
-              onClick={() => {
-                setActive("description");
-              }}
-            >
-              {" "}
-              description
+    <div className="grid w-full pb-10 ">
+      <div className="  w-full">
+        <div className="   w-full   ">
+          <div className="flex  max-h-screen h-full pt-16 md:ml-32       ">
+            <div>
+              <VideoPlayer
+                url={"https://www.youtube.com/watch?v=SM-BT9cijI4"}
+              />
+              <VideoInfos />
             </div>
-            <div
-              className={isActive!=="description" ? "navlink justify-center red":"navlink justify-center"}
-              onClick={() => {
-                setActive("comments");
-              }}
-            >
-              comments
+            <div className=" overflow-y-auto w-full bg-gray-200">
+              {data.map((dt) => (
+                <Items key={dt.id} data={dt} />
+              ))}
             </div>
           </div>
-            {isActive==="description" ? <Description />:   <Comment />}
-            
-         
         </div>
-      </div>
-
-      <div className="flex overflow-x-auto w-full bg-gray-600">
-      {data.map((dt) => (
-  
-
-  <Items key={dt.id} data={dt} />
-))}
 
       </div>
     </div>

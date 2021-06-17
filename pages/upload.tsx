@@ -37,9 +37,6 @@ if (isAuth){
    times++
 }
 }
- do {
-   
- } while (times<=2);
 get()
 
   const [key, setKey] = useState();
@@ -75,7 +72,6 @@ get()
         if (response.data === "success") {
           router.push("/play");
         }
-        console.log(response.data);
       });
   };
 
