@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
+import { Bell,Upload ,Search,LogIn,UserPlus } from 'react-feather';
 
 function Navbar({ active, setActive ,notshow ,setnotshow}) {
   const stateprofilechange = useCallback(() => {
@@ -28,7 +29,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
             className="w-full p-1  outline-none bg-transparent"
           />
           <button className="p-1">
-            <SearchIcon className="w-5 h-5   " />
+            <Search stroke-width={1} className="w-5 h-5   " />
           </button>
         </div>
         {isAuth ? (
@@ -36,13 +37,13 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
           <div  onClick={() => router.push("/upload")}
             className=" cursor-pointer "
           >
-          <UploadIcon className="w-5 h-5 border-1" />
+          <Upload stroke-width={1} className="w-5 h-5 border-1" />
           </div>
           <div
             className=" cursor-pointer "
             onClick={statenotchange}
           >
-          <BellIcon className="w-5 h-5 border-1" />
+          <Bell stroke-width={1} className="w-5 h-5  border-1" />
           </div>
          
 
@@ -62,8 +63,8 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
         ) : (
           <div className="flex space-x-4">
             <h1  onClick={() => router.push("/Login")} className="cursor-pointer  p-1 rounded-full transition ease-in-out duration-1000">
-              <LoginIcon
-               
+              <LogIn
+               stroke-width={1} 
                 className="w-5 h-5 border-1 "
               />
             </h1>
@@ -71,7 +72,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
               onClick={() => router.push("/Signup")}
               className="cursor-pointer p-1 rounded-full "
             >
-              <UserAddIcon className="w-5 h-5 border-1" />
+              <UserPlus stroke-width={1} className="w-5 h-5 stroke-1 border-1" />
             </h1>
           </div>
         )}

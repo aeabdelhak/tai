@@ -19,8 +19,9 @@ export default function Upload (){
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
 
-  let ListData:any[]=[];
+  let times=0;
  
+  const[data,setdata]=useState<any>();
 
 const get= async()=>{
 
@@ -33,14 +34,14 @@ if (isAuth){
   });
    const dt = await res.json();
    setdata(dt);
+   times++
 }
 }
- 
-get()
-useEffect(()=>{
+ do {
    
-},[ListData])
-const[data,setdata]=useState<any>();
+ } while (times<=2);
+get()
+
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
   const [progressen, setProgressn] = useState(0);
