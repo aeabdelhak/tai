@@ -15,10 +15,32 @@ import {
   PhotographIcon,
   ChevronRightIcon,
 } from "@heroicons/react/outline";
-const upload = ({ channels }) => {
+export default function Upload (){
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
 
+  let ListData:any[]=[];
+ 
+
+const get= async()=>{
+
+if (isAuth){
+
+
+  const token = theUser.username;
+  const res = await fetch(`https://aeabdelhak.herokuapp.com/getChannels.php?user=${token}`, {
+    headers: { Authorization: token },
+  });
+   const dt = await res.json();
+   setdata(dt);
+}
+}
+ 
+get()
+useEffect(()=>{
+   
+},[ListData])
+const[data,setdata]=useState<any>();
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
   const [progressen, setProgressn] = useState(0);
@@ -35,6 +57,7 @@ const upload = ({ channels }) => {
   }, [emblaApi]);
 
   const submit = () => {
+    console.log(thmb)
     const formData = new FormData();
     formData.append("title", title);
     formData.append("desc", desc);
@@ -42,7 +65,7 @@ const upload = ({ channels }) => {
     formData.append("thmb", thmb);
     formData.append("id", id);
     axios
-      .post("http://vspace.rf.gd/upload.php", formData, {
+      .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -54,9 +77,7 @@ const upload = ({ channels }) => {
         console.log(response.data);
       });
   };
-  useEffect(() => {
-    console.log(click);
-  }, [click]);
+
   function getExtension(filename) {
     const file = String(filename);
 
@@ -77,6 +98,7 @@ const upload = ({ channels }) => {
 
   const [show, setShow] = useState(false);
   useEffect(() => {
+  if(isAuth){
     const video = isVideo(filename);
     if (video) {
       const formData = new FormData();
@@ -85,7 +107,7 @@ const upload = ({ channels }) => {
       formData.append("key", key);
       scrollNext();
       axios
-        .post("http://vspace.rf.gd/upload.php", formData, {
+        .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -98,18 +120,19 @@ const upload = ({ channels }) => {
           },
         })
         .then((response) => setid(response.data.id));
-    }
+    }}
   }, [file]);
 
   useEffect(() => {
     scrollNext();
   }, [key]);
-
+console.log(key)
   return (
     <div className="pt-16 pb-10    h-screen w-full">
       <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
         <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
-        <Circle size={80} progress={progressen} />
+      {progressen<=100 &&  <Circle size={80} progress={progressen} />}
+    <h1 className={progressen<=100? "text-center text-5xl sr-only transition-all duration-500 ":"text-center text-5xl not-sr-only transition-all duration-500"}>done</h1>
       </div>
       <div className="p-2 w-full  ">
         <h1 className="text-center">uplaod a new video</h1>
@@ -127,11 +150,11 @@ const upload = ({ channels }) => {
       </div>{" "}
       <div className=" overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
-          <ChannelSelect id={setKey} data={channels} />
-          {channels !== "no channel" && (
+         <ChannelSelect id={setKey} data={data} />
+      {data && (
             <FileUplad setFile={setFile} filename={setFilename} />
           )}
-          {channels !== "no channel" && (
+          {data  && (
             <VideoInfos
               clicked={click}
               click={setClik}
@@ -148,10 +171,10 @@ const upload = ({ channels }) => {
   );
 };
 
-export default upload;
-export const getStaticProps: GetStaticProps = async () => {
+
+/* export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
-    `http://vspace.rf.gd/getChannels.php?user=somene`
+    `https://aeabdelhak.herokuapp.com/getChannels.php?user=somene`
   );
   const channels = await res.json();
   if (!channels) {
@@ -165,4 +188,6 @@ export const getStaticProps: GetStaticProps = async () => {
       channels,
     }, // will be passed to the page component as props
   };
-};
+}; */
+
+

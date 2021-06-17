@@ -9,6 +9,7 @@ const ChannelSelect = ({ id ,data}) => {
 
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
+  const [slct,isslct]=useState();
 const router =useRouter()
 
   
@@ -16,30 +17,23 @@ const router =useRouter()
 
 
 
-
  
 
-  const select = useCallback(
-    (e) => {
-      id(e.target.key);
-    },
-    [id]
-  );
+
 if (data!=="no channel")
 
 
   return (
     <div className="relative h-full flx">
       <div className=" bg-gray-300 h-full w-full items-center flex justify-center space-x-2">
-        {
+        {data &&
           data.map(dt=>(
 
           
-            <div className="" onClick={useCallback((e) => {id(dt.id);},[id])}>
-          <EachChnnale data={dt} key={dt.id}  />
+            <div className="" >
+          <EachChnnale data={dt} key={dt.id} id={id} />
         </div>
-          )
-          )
+          ))
         }
         
         
