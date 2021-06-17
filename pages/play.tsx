@@ -12,17 +12,19 @@ const Play = ({ data }) => {
 
   console.log(data);
   return (
-    <div className="grid w-full pb-10 ">
+    <div className="grid w-full pb-10 lg:pb-0 ">
       <div className="  w-full">
         <div className="   w-full   ">
-          <div className="flex  max-h-screen h-full pt-16 md:ml-32       ">
-            <div>
+          <div className="flex max-h-screen h-full pt-16 justyfy-between md:ml-32  w-screen     ">
+            <div className="h-full w-full overflow-y-auto grid max-h-full ">
               <VideoPlayer
-                url={"https://www.youtube.com/watch?v=SM-BT9cijI4"}
+                url={"https://media.w3.org/2010/05/sintel/trailer_hd.mp4"}
               />
               <VideoInfos />
+<hr />
+              <Description/>
             </div>
-            <div className=" overflow-y-auto w-full bg-gray-200">
+            <div className=" overflow-y-auto w-full max-w-2xl bg-gray-200">
               {data.map((dt) => (
                 <Items key={dt.id} data={dt} />
               ))}

@@ -23,15 +23,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
     <div className="w-full  z-50 fixed top-0 ">
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div>logo</div>
-        <div className="max-w-2xl w-full flex items-center bg-gray-50 px-2 rounded-full ">
-          <input
-            placeholder="Search"
-            className="w-full p-1  outline-none bg-transparent"
-          />
-          <button className="p-1">
-            <Search stroke-width={1} className="w-5 h-5   " />
-          </button>
-        </div>
+  
         {isAuth ? (
           <div className="flex justify-center space-x-3 items-center">
           <div  onClick={() => router.push("/upload")}

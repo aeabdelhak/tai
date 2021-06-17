@@ -7,6 +7,7 @@ import { MyContext } from "../utils/JWTAuth";
 
 import Sidebar from "../components/sidebar";
 import { useRouter } from "next/router";
+import SearchBar from "../components/SearchBar";
 const layout = () => {
     const router=useRouter();
     const { rootState, logoutUser } = useContext(MyContext);
@@ -16,11 +17,11 @@ const layout = () => {
 
     return (
         <div>
-            {router.pathname!==("/upload"||"/createChannel" ) &&
-                <Sidebar />
-            }
+        
                     
         <Navbar active={active} setActive={setActive} notshow={notShow} setnotshow={setNotShow}/>
+        <SearchBar/>
+        <Sidebar/>
         {
             isAuth && <Profile active={active} setActive={setActive} />
         
