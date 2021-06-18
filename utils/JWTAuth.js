@@ -18,6 +18,7 @@ class MyContextProvider extends Component{
         showLogin:true,
         isAuth:false,
         theUser:null,
+        channels:null
     }
     
     // Toggle between Login & Signup page
@@ -62,6 +63,18 @@ class MyContextProvider extends Component{
         });
         return login.data;
     }
+    //get Channels
+    Getchannels = async () => {
+        const loginToken = localStorage.getItem('loginToken');
+        
+        const data = await Axios.get('getChannels.php?user='+loginToken);
+        
+        this.setState({
+            ...this.state,
+        channels:false
+        });
+        return data.data;
+    }
 
     // Checking user logged in or not
     isLoggedIn = async () => {
@@ -97,7 +110,8 @@ class MyContextProvider extends Component{
             isLoggedIn:this.isLoggedIn,
             registerUser:this.registerUser,
             loginUser:this.loginUser,
-            logoutUser:this.logoutUser
+            logoutUser:this.logoutUser,
+            getchannels:this.Getchannels
         }
         return(
             <MyContext.Provider value={contextValue}>

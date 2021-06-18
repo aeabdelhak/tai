@@ -1,16 +1,17 @@
 import {GetStaticProps} from 'next';
 import Content from '../components/Content'
 import React, {useContext} from 'react'
-
+import SearchBar from '../components/SearchBar';
 export default function Home({data}) {
  
 
   
       return(
-        <>     
+        <div className="grid">   
+        <SearchBar/>  
            <Content data={data} />
              
-        </>
+        </div>
 
         
       

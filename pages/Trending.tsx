@@ -1,12 +1,15 @@
 
 import Content from '../components/Content'
 import React, {useState} from "react"
-
+import SearchBar from '../components/SearchBar'
  function Trending({data}) {
 
   return (
-
-<Content data={data} />
+    <div className="grid">   
+    <SearchBar/>  
+       <Content data={data} />
+         
+    </div>
 
 
 

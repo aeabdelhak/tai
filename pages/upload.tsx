@@ -16,10 +16,10 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/outline";
 export default function Upload (){
-  const { rootState, logoutUser } = useContext(MyContext);
-  const { isAuth, theUser, showLogin } = rootState;
+  const { rootState, logoutUser ,getchannels} = useContext(MyContext);
+  const { isAuth, theUser, showLogin ,channels} = rootState;
 
-  let times=0;
+  console.log(channels)
  
   const[data,setdata]=useState<any>();
 
@@ -34,7 +34,7 @@ if (isAuth){
   });
    const dt = await res.json();
    setdata(dt);
-   times++
+  
 }
 }
 get()
@@ -55,13 +55,14 @@ get()
   }, [emblaApi]);
 
   const submit = () => {
-    console.log(thmb)
+    
     const formData = new FormData();
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("state", state);
     formData.append("thmb", thmb);
     formData.append("id", id);
+    
     axios
       .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
         headers: {
@@ -123,8 +124,9 @@ get()
   useEffect(() => {
     scrollNext();
   }, [key]);
-console.log(key)
+
   return (
+    
     <div className="pt-16 pb-10    h-screen w-full">
       <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
         <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
