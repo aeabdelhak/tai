@@ -11,7 +11,7 @@ router.push("/play")
 
       <div onClick={play}  className="w-full md:w-64  p-2  cursor-pointer ">
         <div className=" md:h-36 md:w-64 z-0 h-full   ">
-          <Image src="https://picsum.photos/1920/1280" width={1920} height={1080} layout="responsive" />
+          <Image src={data.download_url} width={1920} height={1080} layout="responsive" />
         </div>
         <div>
           <h1 className="text-xs text-gray-400 ">time ago</h1>

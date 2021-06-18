@@ -61,7 +61,7 @@ export default function Login() {
     successMsg = state.successMsg;
   }
 if (isAuth){
-  router.back();
+  router.push("/");
 
 }
 else{
