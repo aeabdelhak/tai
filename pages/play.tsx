@@ -15,16 +15,17 @@ const Play = ({ data }) => {
     <div className="grid w-full pb-10 lg:pb-0 ">
       <div className="  w-full">
         <div className="   w-full   ">
-          <div className="flex max-h-screen h-full pt-16 justyfy-between md:ml-32  w-screen     ">
-            <div className="h-full w-full overflow-y-auto grid max-h-full ">
+          <div className="flex max-h-screen h-full  justyfy-between md:ml-32  w-screen     ">
+            <div className="h-full space-y-3 pt-16 w-full overflow-y-auto grid max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
               <VideoPlayer
                 url={"https://media.w3.org/2010/05/sintel/trailer_hd.mp4"}
               />
               <VideoInfos />
 <hr />
               <Description/>
+              <Comment/>
             </div>
-            <div className=" overflow-y-auto w-full max-w-2xl bg-gray-200">
+            <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black  w-full pt-16 max-w-2xl bg-gray-200">
               {data.map((dt) => (
                 <Thumbnails key={dt.id} data={dt} />
               ))}

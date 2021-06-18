@@ -10,7 +10,7 @@ const Comment = () => {
     <div className="w-full h-full px-2  ">
 {isAuth && <AddComment/>}
         
- <div className="overflow-y-auto cH ">
+ <div className="overflow-y-auto cH  scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
           <EachComment/>
       <EachComment/>
       <EachComment/>
