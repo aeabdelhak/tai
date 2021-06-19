@@ -33,7 +33,7 @@ const createChannel = () => {
       setcre(false);
     };
     return (
-      <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen overflow-hidden">
+      <div className="pt-16  h-screen w-screen overflow-hidden">
         {isCreating && <Loading />}
 
         <div className="">

@@ -3,7 +3,7 @@ import { Search } from 'react-feather';
 
 const SearchBar = () => {
     return (
-        <div className="w-full pt-16 grid " >
+        <div className="w-full  grid " >
         <div className="max-w-2xl mx-auto w-full flex items-center bg-gray-50 px-2 rounded-full border-gray-300 border" >
         <input
           placeholder="Search"

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { MyContext } from "../utils/JWTAuth";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import { Bell,User ,Key,LogIn,UserPlus } from 'react-feather';
 
 const axios = require("axios");
 export default function Login() {
@@ -67,7 +68,7 @@ if (isAuth){
 else{
    return (
     <div className="h-screen fixed z-40 w-screen bg-white pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
-      <div className="w-full px-10 py-2 flex justify-start">
+      <div className="w-full px-10 py-2 flex justify-start ">
         <ChevronDoubleLeftIcon
           className="w-6 cursor-pointer"
           onClick={() => router.back()}
@@ -78,27 +79,27 @@ else{
         <h1 className="my-2">LOG IN</h1>
         {errorMsg}
         {successMsg}
-        <form onSubmit={submitForm} method="post" >
-          <div className=" py-3 text-left">
-            <h1 className="text-xs">Username: </h1>
+        <form onSubmit={submitForm} method="post" className="space-y-4" >
+          <div className=" text-left flex items-center space-x-2 bg-gray-200 rounded-md">
+            <User strokeWidth={1} className="text-xs mx-3"/>
             <input
               type="text"
-              placeholder="username"
+              placeholder="Username/Email"
               name="username"
               value={state.userInfo.username}
               onChange={onChangeValue}
-              className="w-full  border-b focus:outline-none p-2"
+              className="w-full  border-none focus:ring-0 focus:outline-none rounded-lg p-2"
             />
           </div>
-          <div className=" py-3 text-left">
-            <h1 className="text-xs">Password: </h1>
+          <div className=" text-left flex items-center space-x-2 bg-gray-200 rounded-md">
+            <Key strokeWidth={1} className="text-xs mx-3"/>
             <input
               type="password"
               name="password"
               value={state.userInfo.password}
               onChange={onChangeValue}
-              placeholder="password"
-              className="w-full  border-b focus:outline-none p-2"
+              placeholder="Password"
+              className="w-full  border-none focus:ring-0 focus:outline-none rounded-lg p-2"
             />
           </div>
           <div className=" py-3 select-none text-left">

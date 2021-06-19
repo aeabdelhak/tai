@@ -4,6 +4,9 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    linearGradientColors: theme => theme('colors'),
+    radialGradientColors: theme => theme('colors'),
+    conicGradientColors: theme => theme('colors'),
   },
   variants: {
     extend: {},
@@ -13,6 +16,7 @@ module.exports = {
      require('@tailwindcss/aspect-ratio'),
      require('@tailwindcss/forms'),
      require('tailwind-scrollbar'),
+     require('tailwindcss-gradients'),
 
 
   ],

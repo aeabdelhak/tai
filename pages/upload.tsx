@@ -9,35 +9,36 @@ import Circle from "react-circle";
 import VideoInfos from "../components/videoInfos";
 import axios from "axios";
 import { GetStaticProps } from "next";
+import Image from "next/image";
+import Select from "react-select";
+
 import router from "next/router";
 import {
   BellIcon,
   PhotographIcon,
   ChevronRightIcon,
 } from "@heroicons/react/outline";
-export default function Upload (){
-  const { rootState, logoutUser ,getchannels} = useContext(MyContext);
-  const { isAuth, theUser, showLogin ,channels} = rootState;
-
-  console.log(channels)
- 
-  const[data,setdata]=useState<any>();
-
-const get= async()=>{
-
-if (isAuth){
+export default function Upload() {
+  const { rootState, logoutUser, getchannels } = useContext(MyContext);
+  const { isAuth, theUser, showLogin, channels } = rootState;
 
 
-  const token = theUser.username;
-  const res = await fetch(`https://aeabdelhak.herokuapp.com/getChannels.php?user=${token}`, {
-    headers: { Authorization: token },
-  });
-   const dt = await res.json();
-   setdata(dt);
-  
-}
-}
-get()
+  const [data, setdata] = useState<any>();
+
+  const get = async () => {
+    if (isAuth) {
+      const token = theUser.username;
+      const res = await fetch(
+        `https://aeabdelhak.herokuapp.com/getChannels.php?user=${token}`,
+        {
+          headers: { Authorization: token },
+        }
+      );
+      const dt = await res.json();
+      setdata(dt);
+    }
+  };
+  get();
 
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
@@ -54,15 +55,18 @@ get()
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  const channel = (event) => {
+    setKey(event.target.value);
+  };
+
   const submit = () => {
-    
     const formData = new FormData();
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("state", state);
     formData.append("thmb", thmb);
     formData.append("id", id);
-    
+
     axios
       .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
         headers: {
@@ -96,48 +100,53 @@ get()
 
   const [show, setShow] = useState(false);
   useEffect(() => {
-  if(isAuth){
-    const video = isVideo(filename);
-    if (video) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("username", theUser.username);
-      formData.append("key", key);
-      scrollNext();
-      axios
-        .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const { loaded, total } = progressEvent;
-            let percent = Math.fround((loaded * 100) / total);
-            let percentn = Math.floor((loaded * 100) / total);
-            setProgressn(percentn);
-            setShow(true);
-          },
-        })
-        .then((response) => setid(response.data.id));
-    }}
+    if (isAuth) {
+      const video = isVideo(filename);
+      if (video) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("username", theUser.username);
+        formData.append("key", key);
+        scrollNext();
+        axios
+          .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            onUploadProgress: (progressEvent) => {
+              const { loaded, total } = progressEvent;
+              let percent = Math.fround((loaded * 100) / total);
+              let percentn = Math.floor((loaded * 100) / total);
+              setProgressn(percentn);
+              setShow(true);
+            },
+          })
+          .then((response) => setid(response.data.id));
+      }
+    }
   }, [file]);
 
-  useEffect(() => {
-    scrollNext();
-  }, [key]);
 
   return (
-    
     <div className="pt-16 pb-10    h-screen w-full">
       <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
         <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
-      {progressen<=100 &&  <Circle size={80} progress={progressen} />}
-    <h1 className={progressen<=100? "text-center text-5xl sr-only transition-all duration-500 ":"text-center text-5xl not-sr-only transition-all duration-500"}>done</h1>
+        {progressen !== 100 && <Circle size={80} progress={progressen} />}
+        <h1
+          className={
+            progressen == 100
+              ? "text-center text-2xl not-sr-only transition-all duration-500 "
+              : "text-center text-2xl sr-only transition-all duration-500"
+          }
+        >
+          done
+        </h1>
       </div>
-      <div className="p-2 w-full  ">
+      <div className="p-2  ">
         <h1 className="text-center">uplaod a new video</h1>
       </div>{" "}
-      <div className="w-full  flex justify-end text-right p-3">
-        {id!=="" && (
+      <div className="w-full max-w-7xl mx-auto px-10  flex justify-end text-right p-3">
+        {id !== "" && (
           <button
             className="p-2 px-4  bg-blue-600 space-x-2 text-white flex hover:rounded-full duration-600 transition  "
             onClick={submit}
@@ -147,29 +156,64 @@ get()
           </button>
         )}
       </div>{" "}
-      <div className=" overflow-hidden h-full" ref={emblaRef}>
-        <div className="flex h-full">
-         <ChannelSelect id={setKey} data={data} />
-      {data && (
-            <FileUplad setFile={setFile} filename={setFilename} />
-          )}
-          {data  && (
-            <VideoInfos
-              clicked={click}
-              click={setClik}
-              thmb={thmb}
-              setthumb={setthumb}
-              settitle={setTitle}
-              setdesc={setdesc}
-              setstate={setstate}
-            />
+
+      {data!=="no channel"?
+
+     
+      <div className="mt-8 bg-white rounded-lg shadow max-w-7xl mx-auto">
+
+      
+        <div className=" h-auto w-full  max-w-7xl mx-auto flex p-4" >
+          <div className="flex w-full items-center space-x-2">
+            <div className="rounded-full overflow-hidden relative h-7 w-7  ">
+              <Image src="https://picsum.photos/200/200" layout="fill" />
+            </div>
+            <select
+              className="w-full border-none ring-0 appearance-none outline-none"
+              onChange={channel}
+            >
+              <option>Select the Channel</option>
+              {data &&
+                data.map((dt) => <option value={dt.id}>{dt.name}</option>)}
+            </select>
+          </div>
+
+          {data && (
+            <FileUplad chId={key} setFile={setFile} filename={setFilename} />
           )}
         </div>
-      </div>
-    </div>
-  );
-};
 
+        {data && (
+          <VideoInfos
+            clicked={click}
+            click={setClik}
+            thmb={thmb}
+            setthumb={setthumb}
+            settitle={setTitle}
+            setdesc={setdesc}
+            setstate={setstate}
+          />
+        )}
+      </div>
+      :
+      <div className=" bg-gray-300 h-full w-full items-center flex justify-center space-x-2">
+      <div className="space-y-4">
+         <h1 className="text-6xl">
+    you haven‘t created a channel yet      </h1>
+    <h1 className="text-xl">
+     please! create one to uplad new video
+    </h1>
+      <button className="p-2 px-3 text-red-700 bg-red-200 uppercase " onClick={()=>router.push("/createChannel")}>
+        create your channel
+      </button>
+      </div>
+   
+ 
+    </div>
+       }
+</div>
+  );
+}
 
 /* export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
@@ -188,5 +232,3 @@ get()
     }, // will be passed to the page component as props
   };
 }; */
-
-

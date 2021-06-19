@@ -45,7 +45,7 @@ const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) 
   }
 
   return (
-    <div className="relative bg-gray-300 mb-4 h-full flx">
+ 
       <div className="  h-auto w-full  max-w-7xl mx-auto  ">
 
         <div className="grid h-full bg-white  rounded-2xl overflow-hidden lg:grid-cols-3">
@@ -137,7 +137,7 @@ const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) 
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 

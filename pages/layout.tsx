@@ -22,9 +22,9 @@ const layout = () => {
         <Navbar active={active} setActive={setActive} notshow={notShow} setnotshow={setNotShow}/>
 
 
-       {router.pathname!=="/upload" &&
+      
        
-        <Sidebar/>}
+
         {
             isAuth && <Profile active={active} setActive={setActive} />
         

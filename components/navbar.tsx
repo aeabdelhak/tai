@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import { Bell,Upload ,Search,LogIn,UserPlus } from 'react-feather';
+import SearchBar from "./SearchBar";
 
 function Navbar({ active, setActive ,notshow ,setnotshow}) {
   const stateprofilechange = useCallback(() => {
@@ -23,8 +24,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
     <div className="w-full  z-50 fixed top-0 ">
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div>logo</div>
-  
-        {isAuth ? (
+  <SearchBar/>        {isAuth ? (
           <div className="flex justify-center space-x-3 items-center">
           <div  onClick={() => router.push("/upload")}
             className=" cursor-pointer "
