@@ -25,7 +25,7 @@ const createChannel = () => {
       formData.append("name", name);
       formData.append("desc", desc);
       formData.append("username", theUser.username);
-      axios.post("http://vspace.rf.gd/channel.php", formData, {
+      axios.post("https://aeabdelhak.herokuapp.com/channel.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -34,7 +34,11 @@ const createChannel = () => {
     };
     return (
       <div className="pt-16  h-screen w-screen overflow-hidden">
-        {isCreating && <Loading />}
+        {isCreating && 
+        <div className="">
+         wait a momenet .Creating !
+        </div>
+        }
 
         <div className="">
           <div className="h-96 relative bg-gray-600 w-full overflow-hidden grid place-items-center">
