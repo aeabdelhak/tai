@@ -148,7 +148,7 @@ export default function Upload() {
 
       <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
         <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
-        {progressen !== 100 && <Circle size={80} progress={progressen} />}
+        {progressen  }
         <h1
           className={
             progressen == 100
