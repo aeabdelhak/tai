@@ -5,7 +5,7 @@ import Categories from "../components/Categories";
 const channel = ({ data }) => {
     console.log(data);
   if(data.channel!==null)
-  return (
+  return ( 
     <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen overflow-hidden">
       <div className="h-96 relative bg-gray-700 w-full overflow-hidden grid place-items-center">
         <Image

@@ -12,6 +12,7 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import Select from "react-select";
 import { WaveTopBottomLoading } from 'react-loadingg';
+import { toast, ToastContainer } from 'react-nextjs-toast'
 
 import router from "next/router";
 import {
@@ -55,7 +56,6 @@ export default function Upload() {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-
   const channel = (event) => {
     setKey(event.target.value);
   };
@@ -63,6 +63,7 @@ export default function Upload() {
   const submit = () => {
     accessing(true)
     const formData = new FormData();
+    formData.append("username",theUser.username)
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("state", state);
@@ -70,15 +71,21 @@ export default function Upload() {
     formData.append("id", id);
 
     axios
-      .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
+      .post("http://9d6667fd72dd.ngrok.io/api/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
         accessing(false)
-        if (response.data === "success") {
-          router.push("/play");
+        if (response.data.success) {
+          router.push("/play?v="+id);
+        }
+        else {
+          toast.notify(response.data, {
+            duration: 5,
+            type: "error"
+          })
         }
       });
   };
@@ -110,9 +117,8 @@ export default function Upload() {
         formData.append("file", file);
         formData.append("username", theUser.username);
         formData.append("key", key);
-        scrollNext();
         axios
-          .post("https://aeabdelhak.herokuapp.com/upload.php", formData, {
+          .post("http://9d6667fd72dd.ngrok.io/api/upload.php", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -132,7 +138,6 @@ export default function Upload() {
 
   return (
     <div className="pt-16 pb-10    h-screen w-full">
-      
       {acces &&
 <div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
 
@@ -184,7 +189,7 @@ export default function Upload() {
               className="w-full border-none ring-0 appearance-none outline-none"
               onChange={channel}
             >
-              <option>Select the Channel</option>
+              <option value="0">Select the Channel</option>
               {data &&
                 data.map((dt) => <option value={dt.id}>{dt.name}</option>)}
             </select>

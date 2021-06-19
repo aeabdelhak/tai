@@ -8,15 +8,15 @@ import Thumbnails from "../components/thumbnails";
 import axios from "axios"
 import Categories from "../components/Categories";
 import Sidebar from "../components/sidebar";
-const Play = ({ data }) => {
+const Play = ({ data ,videos}) => {
   const [isActive, setActive] = useState("description");
   const [comments,setComments]=useState();
-
- async function cmnt (){
-   const data =await axios.get("https://testimonialapi.toolcarton.com/api")
+  async function cmnt (){
+   const data =await axios.get("http://9d6667fd72dd.ngrok.io/api/getVideo.php?getC=v&&id="+videos.idVideo)
    setComments( data.data)
  }
- cmnt()
+ cmnt() 
+ 
   return (
     <div className="grid w-full pb-10 lg:pb-0 ">
       <Sidebar/>
@@ -25,12 +25,12 @@ const Play = ({ data }) => {
           <div className="flex max-h-screen h-full  justyfy-between md:ml-32  w-screen     ">
             <div className="h-full space-y-3 pt-16 w-full overflow-y-auto grid max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
               <VideoPlayer
-                url={"https://media.w3.org/2010/05/sintel/trailer_hd.mp4"}
+                url={"http://9d6667fd72dd.ngrok.io/api/"+videos.source}
               />
-              <VideoInfos />
+              <VideoInfos data={videos}  />
 <hr />
               <Description/>
-              <Comment comments={comments}/>
+              <Comment comments={comments} id={videos.idVideo}/> 
             </div>
             <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black  w-full pt-16 max-w-2xl bg-gray-200">
               {
@@ -48,8 +48,12 @@ const Play = ({ data }) => {
 };
 
 export default Play;
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
+
+export async function getServerSideProps(ctx) {
+const video=ctx.query.v;
+const req=await fetch("http://9d6667fd72dd.ngrok.io/api/getVideo.php?getV=v&&id="+video);
+const videos=await req.json()
+const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
   const data = await res.json();
   if (!data) {
     return {
@@ -59,7 +63,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data,
-    }, // will be passed to the page component as props
+      data,videos
+    }, 
   };
-};
+
+}
+
+
+

@@ -17,7 +17,11 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
   const router = useRouter();
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
- 
+  let user:any=""
+ if(isAuth){
+    user= theUser.name.split(' ').map(i => i.charAt(0))
+ }
+console.log(user)
 
 
   return (
@@ -51,10 +55,14 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
             <h1 className="cursor-pointer hidden md:block">
               {theUser.username}
             </h1>
-            <h1 className="cursor-pointer rounded-full h-10 w-10 relative overflow-hidden bg-gray-200">
-                 <Image src={theUser.avatar}  layout="responsive" height={30} width={30}/>
-               
-            </h1>
+            <div className="cursor-pointer rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
+
+                
+                 <Image src={theUser.avatar}  layout="responsive" height={30} width={30} />
+                 <h1 className="text-xs absolute top-1/2 z-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  {user.map((e)=>e)}
+                  </h1> 
+            </div>
           </div>
           </div>
         ) : (
