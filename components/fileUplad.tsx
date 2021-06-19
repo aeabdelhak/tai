@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { BellIcon, UploadIcon, SearchIcon } from "@heroicons/react/outline";
-import { toast, ToastContainer } from 'react-nextjs-toast'
  
 const fileUplad = ({setFile ,chId , filename}) => {
   const hiddenFileInput = React.useRef(null);
@@ -10,10 +9,7 @@ const fileUplad = ({setFile ,chId , filename}) => {
     }
 else
 {
-  toast.notify('you have not selected a channel yet ', {
-    duration: 5,
-    type: "error"
-  })
+  ""
 }
   };
   const filetoUpload=(useCallback((event)=>{setFile(event.target.files[0])
@@ -25,7 +21,6 @@ else
     return (
       
           <div className=" mx-6 whitespace-nowrap items-center flex justify-center">
-      <ToastContainer  />
 
             <input
               type="file"
