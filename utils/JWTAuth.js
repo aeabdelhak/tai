@@ -64,16 +64,16 @@ class MyContextProvider extends Component{
         return login.data;
     }
     //get Channels
-    Getchannels = async () => {
+    getchannels = async () => {
         const loginToken = localStorage.getItem('loginToken');
         
         const data = await Axios.get('getChannels.php?user='+loginToken);
         
         this.setState({
             ...this.state,
-        channels:false
+        channels:data
         });
-        return data.data;
+        return data;
     }
 
     // Checking user logged in or not
@@ -111,7 +111,7 @@ class MyContextProvider extends Component{
             registerUser:this.registerUser,
             loginUser:this.loginUser,
             logoutUser:this.logoutUser,
-            getchannels:this.Getchannels
+            getchannels:this.getchannels
         }
         return(
             <MyContext.Provider value={contextValue}>

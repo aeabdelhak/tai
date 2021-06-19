@@ -4,9 +4,7 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
-    linearGradientColors: theme => theme('colors'),
-    radialGradientColors: theme => theme('colors'),
-    conicGradientColors: theme => theme('colors'),
+ 
   },
   variants: {
     extend: {},

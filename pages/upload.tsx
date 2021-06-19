@@ -11,6 +11,7 @@ import axios from "axios";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Select from "react-select";
+import { WaveTopBottomLoading } from 'react-loadingg';
 
 import router from "next/router";
 import {
@@ -39,14 +40,14 @@ export default function Upload() {
     }
   };
   get();
-
+  const[acces,accessing]=useState(false)
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
   const [progressen, setProgressn] = useState(0);
   const [file, setFile] = useState();
   const [title, setTitle] = useState();
   const [desc, setdesc] = useState();
-  const [state, setstate] = useState();
+  const [state, setstate] = useState("1");
   const [filename, setFilename] = useState<string>();
   const [id, setid] = useState("");
   const [click, setClik] = useState(false);
@@ -60,6 +61,7 @@ export default function Upload() {
   };
 
   const submit = () => {
+    accessing(true)
     const formData = new FormData();
     formData.append("title", title);
     formData.append("desc", desc);
@@ -74,6 +76,7 @@ export default function Upload() {
         },
       })
       .then((response) => {
+        accessing(false)
         if (response.data === "success") {
           router.push("/play");
         }
@@ -129,6 +132,15 @@ export default function Upload() {
 
   return (
     <div className="pt-16 pb-10    h-screen w-full">
+      
+      {acces &&
+<div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
+
+       <WaveTopBottomLoading/>
+
+     </div>
+}
+
       <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
         <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
         {progressen !== 100 && <Circle size={80} progress={progressen} />}

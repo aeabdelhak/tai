@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useCallback, useContext, useEffect } from "react";
 import Loading from "../components/loading";
 import { MyContext } from "../utils/JWTAuth";
+import { WaveTopBottomLoading } from 'react-loadingg';
 
 const createChannel = () => {
   const router = useRouter();
@@ -34,11 +35,13 @@ const createChannel = () => {
     };
     return (
       <div className="pt-16  h-screen w-screen overflow-hidden">
-        {isCreating && 
-        <div className="">
-         wait a momenet .Creating !
-        </div>
-        }
+    {isCreating &&
+<div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
+
+       <WaveTopBottomLoading/>
+
+     </div>
+    } 
 
         <div className="">
           <div className="h-96 relative bg-gray-600 w-full overflow-hidden grid place-items-center">

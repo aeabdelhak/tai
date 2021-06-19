@@ -24,7 +24,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
     <div className="w-full  z-50 fixed top-0 ">
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer " onClick={()=>router.push("/")}>
-          <img src="1.svg" alt="" className="w-8" />
+          <img src="1.svg" alt="" className="w-6 h-6" />
           <h1>Vspace</h1>
         </div>
   <SearchBar/>        

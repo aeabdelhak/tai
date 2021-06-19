@@ -8,7 +8,7 @@ export default function Home({data}) {
 
   
       return(
-        <div className="grid">   
+        <div className="grid pt-16">   
         <Sidebar/>  
            <Content data={data} />
              

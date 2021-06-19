@@ -5,14 +5,21 @@ import Comment from "../components/Comment";
 import { useState } from "react";
 import Description from "../components/Description";
 import Thumbnails from "../components/thumbnails";
-
+import axios from "axios"
 import Categories from "../components/Categories";
+import Sidebar from "../components/sidebar";
 const Play = ({ data }) => {
   const [isActive, setActive] = useState("description");
+  const [comments,setComments]=useState();
 
-  console.log(data);
+ async function cmnt (){
+   const data =await axios.get("https://testimonialapi.toolcarton.com/api")
+   setComments( data.data)
+ }
+ cmnt()
   return (
     <div className="grid w-full pb-10 lg:pb-0 ">
+      <Sidebar/>
       <div className="  w-full">
         <div className="   w-full   ">
           <div className="flex max-h-screen h-full  justyfy-between md:ml-32  w-screen     ">
@@ -23,10 +30,12 @@ const Play = ({ data }) => {
               <VideoInfos />
 <hr />
               <Description/>
-              <Comment/>
+              <Comment comments={comments}/>
             </div>
             <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black  w-full pt-16 max-w-2xl bg-gray-200">
-              {data.map((dt) => (
+              {
+              
+              data.map((dt) => (
                 <Thumbnails key={dt.id} data={dt} />
               ))}
             </div>

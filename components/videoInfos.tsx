@@ -131,7 +131,7 @@ const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) 
             </label>
             <br />
             <label htmlFor="private" onClick={()=>{Check("private"); state("0")}}  className={ischecked==="private" ?"navlink bg-gray-500 text-white hover:bg-gray-600": "navlink "} >
-              <input type="radio" name="state" id="private" value="0"  className="hidden "/>
+              <input type="radio"  name="state" id="private" value="0"  className="hidden "/>
               private{" "}
             </label>
           </div>
