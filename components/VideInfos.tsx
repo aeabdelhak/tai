@@ -2,7 +2,6 @@ import axios from "axios"
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import { useState } from "react";
-import { WaveTopBottomLoading } from 'react-loadingg';
 
 export default function VideoInfos({data}) {
   const [Subs,setsubs]=useState<string>();
@@ -60,10 +59,7 @@ check()
         </div>
         </div>
         <button onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto bg-red-100 text-red-700 focus:outline-none focus:bg-red-200">
-          {loading && <div className="w-full h-full grid place-items-center">
-          <WaveTopBottomLoading/>
-          </div>
-          }
+       
           
             {Subs}
 
