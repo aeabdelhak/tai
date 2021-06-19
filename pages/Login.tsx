@@ -3,9 +3,11 @@ import { MyContext } from "../utils/JWTAuth";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import { Bell,User ,Key,LogIn,UserPlus } from 'react-feather';
+import { WaveTopBottomLoading } from 'react-loadingg';
 
 const axios = require("axios");
 export default function Login() {
+  const[acces,accessing]=useState(false)
   const router = useRouter()
   const { toggleNav, loginUser, isLoggedIn } = useContext(MyContext);
   const { rootState, logoutUser } = useContext(MyContext);
@@ -35,8 +37,9 @@ export default function Login() {
   // On Submit Login From
   const submitForm = async (event) => {
  event.preventDefault();
+ accessing(true)
     const data = await loginUser(state.userInfo);
-    console.log(data)
+    accessing(false)
     if (data.success && data.token) {
       setState({
         ...initialState,
@@ -47,7 +50,7 @@ export default function Login() {
       setState({
         ...state,
         successMsg: "",
-        errorMsg: data.message,
+        errorMsg: data,
       });
     }
   };
@@ -67,7 +70,15 @@ if (isAuth){
 }
 else{
    return (
-    <div className="h-screen fixed z-40 w-screen bg-white pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
+    <div className="h-screen fixed z-40 w-screen bg-gray-200  pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
+    
+    {acces &&
+<div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
+
+       <WaveTopBottomLoading/>
+
+     </div>
+    } 
       <div className="w-full px-10 py-2 flex justify-start ">
         <ChevronDoubleLeftIcon
           className="w-6 cursor-pointer"
@@ -75,7 +86,11 @@ else{
         />
       </div>
       <div className=" max-w-xl w-full mx-auto">
-        <h1 className="p-16 text-6xl uppercase">logo</h1>
+    
+    <img src="1.svg" alt="" className="p-16 w-64 h-64 mx-auto" />
+
+      <div className="max-w-md mx-auto shadow-lg bg-white p-3 rounded-lg">
+
         <h1 className="my-2">LOG IN</h1>
         {errorMsg}
         {successMsg}
@@ -116,6 +131,8 @@ else{
             />
           </div>
         </form>
+      </div>
+
       </div>
     </div>
   );
