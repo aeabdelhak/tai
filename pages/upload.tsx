@@ -22,10 +22,10 @@ import {
 export default function Upload() {
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
-
-
   const [data, setdata] = useState<any>();
-
+if(!isAuth){
+  router.push("/");
+}
   const get = async () => {
     if (isAuth) {
       const token = theUser.username;
