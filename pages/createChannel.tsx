@@ -26,11 +26,12 @@ const createChannel = () => {
       formData.append("name", name);
       formData.append("desc", desc);
       formData.append("username", theUser.username);
-      axios.post("https://aeabdelhak.herokuapp.com/channel.php", formData, {
+      axios.post("http://ff2c283ec086.ngrok.io/api/channel.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }).then(res=>{if(res.data.success) router.push("/channel/?c="+res.data.idChannel) });
+      }).then(res=>{console.log(res);
+        if(res.data.success) router.push("/channel/?c="+res.data.idChannel) });
       setcre(false);
     };
     return (

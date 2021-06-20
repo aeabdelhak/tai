@@ -14,9 +14,26 @@ import { MyContext } from "../utils/JWTAuth";
 import { XIcon } from "@heroicons/react/outline";
 
 const Profile = ({ active, setActive }) => {
+  const [data, setdata] = useState<any>();
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const router = useRouter();
+  let channels:any=[]
+  const get = async () => {
+    if (isAuth) {
+      const token = theUser.username;
+      const res = await fetch(`http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
+        {
+          headers: { Authorization: token },
+        }
+      );
+      const dt = await res.json();
+      setdata(dt);
+    }
+    
+  };
+  get();
+
  
   const stateprofilechange = useCallback(() => {
     setActive(false);
@@ -46,10 +63,19 @@ const Profile = ({ active, setActive }) => {
           <h1>{theUser.name}</h1>
           <h1>{theUser.email}</h1>
 
-          <div onClick={()=>router.push("/channel")} className="navlink">
+          <div className=" flex items-center px-10 py-2 ">
             <CollectionIcon className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>Your Channels</h1>
           </div>
+          
+          {data && data.map((dt) => (
+     <div onClick={()=>router.push("/channel?c="+dt.idChannel)} className="navlink text-sm pl-20 py-2">
+            <h1>{dt.nameChannel}</h1>
+          </div>
+
+  
+))}
+          
           <div onClick={logoutUser} className="navlink">
             <LogoutIcon  className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>log Out</h1>

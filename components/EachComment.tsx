@@ -4,7 +4,7 @@ const EachComment = ({comment}) => {
       <div className="flex space-x-2 items-center w-full p-2 ">
        <div className="w-8 h-8 relative grid place-items-center overflow-hidden rounded-full bg-gray-200">
 
-  <img src={"http://9d6667fd72dd.ngrok.io/api/"+comment.avatar} alt=""  width={60} height={60}/>       
+  <img src={"http://ff2c283ec086.ngrok.io/api/"+comment.avatar} alt=""  width={60} height={60}/>       
        </div>
 
         <div className="w-full">

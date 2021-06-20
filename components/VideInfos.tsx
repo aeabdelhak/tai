@@ -4,6 +4,7 @@ import React, { useCallback, useContext } from "react";
 import { useState } from "react";
 
 export default function VideoInfos({data}) {
+  const baseadd="http://ff2c283ec086.ngrok.io"
   const [Subs,setsubs]=useState<string>();
   const [loading,isLoading]=useState(false)
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
@@ -14,7 +15,7 @@ const subscribe=(event)=>{
   formData.append("toggle","ok")
 formData.append("idChannel",data.idChannel)
 formData.append("username",theUser.username)
-axios.post("http://9d6667fd72dd.ngrok.io/api/subscribe.php",formData,{
+axios.post(baseadd+"/api/subscribe.php",formData,{
   headers: {
     "Content-Type": "multipart/form-data",
   }
@@ -24,10 +25,13 @@ axios.post("http://9d6667fd72dd.ngrok.io/api/subscribe.php",formData,{
 }
 async function check(){
   const formData=new FormData()
+  if(isAuth){
+
+  
   formData.append("check","")
   formData.append("idChannel",data.idChannel)
   formData.append("username",theUser.username)
-  axios.post("http://9d6667fd72dd.ngrok.io/api/subscribe.php",formData,{
+  axios.post(baseadd+"/api/subscribe.php",formData,{
     headers: {
       "Content-Type": "multipart/form-data",
     }
@@ -42,9 +46,9 @@ async function check(){
     }
     )
   
-}
+}}
 check()
-
+if(data)
   return (
     <div className="p-2  ">
       <h1 className="text-xs text-gray-500">{data.when}</h1>
@@ -66,5 +70,12 @@ check()
         </button>
       </div>
     </div>
-  );
+  )
+  else {
+    return(
+      <div>
+        <h1> there s  nothing to see here</h1>
+      </div>
+    )
+   }
 }

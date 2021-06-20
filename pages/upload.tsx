@@ -13,7 +13,6 @@ import Image from "next/image";
 import Select from "react-select";
 import { WaveTopBottomLoading } from 'react-loadingg';
 import { toast, ToastContainer } from 'react-nextjs-toast'
-
 import router from "next/router";
 import {
   BellIcon,
@@ -31,7 +30,7 @@ export default function Upload() {
     if (isAuth) {
       const token = theUser.username;
       const res = await fetch(
-        `https://aeabdelhak.herokuapp.com/getChannels.php?user=${token}`,
+        `http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
         {
           headers: { Authorization: token },
         }
@@ -39,7 +38,9 @@ export default function Upload() {
       const dt = await res.json();
       setdata(dt);
     }
+    
   };
+  
   get();
   const[acces,accessing]=useState(false)
   const [key, setKey] = useState();
@@ -71,7 +72,7 @@ export default function Upload() {
     formData.append("id", id);
 
     axios
-      .post("http://9d6667fd72dd.ngrok.io/api/upload.php", formData, {
+      .post("http://ff2c283ec086.ngrok.io/api/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -118,7 +119,7 @@ export default function Upload() {
         formData.append("username", theUser.username);
         formData.append("key", key);
         axios
-          .post("http://9d6667fd72dd.ngrok.io/api/upload.php", formData, {
+          .post("http://ff2c283ec086.ngrok.io/api/upload.php", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -191,7 +192,7 @@ export default function Upload() {
             >
               <option value="0">Select the Channel</option>
               {data &&
-                data.map((dt) => <option value={dt.id}>{dt.name}</option>)}
+                data.map((dt) => <option value={dt.idChannel}>{dt.nameChannel}</option>)}
             </select>
           </div>
 
@@ -232,20 +233,3 @@ export default function Upload() {
   );
 }
 
-/* export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(
-    `https://aeabdelhak.herokuapp.com/getChannels.php?user=somene`
-  );
-  const channels = await res.json();
-  if (!channels) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      channels,
-    }, // will be passed to the page component as props
-  };
-}; */

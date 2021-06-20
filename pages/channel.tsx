@@ -1,6 +1,8 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Categories from "../components/Categories";
+import NotFound from "../components/NotFound";
+import Thumb from "../components/thumb";
 
 const channel = ({ data }) => {
     console.log(data);
@@ -25,22 +27,25 @@ const channel = ({ data }) => {
         </div>
       </div>
       <div>
-          {!data.video  ?
+          {!data.videos  ?
           <div className="text-3xl text-gray-600 ">
               <h1>this channel havent dropped any content yet</h1>
 
           </div>
           :
-          ""
-          }
+          data.videos.map((dt) => (
+  
+
+            <Thumb key={dt.id} data={dt} />
+          ))}
+          
+          
       </div>
     </div>
   );
   else
   return (
-      <div className="h-screen w-screen grid place-items-center  text-7xl">
-          the page your looking for does not exist !
-      </div>
+     <NotFound/>
   )
 };
 
@@ -48,11 +53,10 @@ export default channel;
 export async function getServerSideProps(context) {
   const id = context.query.c;
   const res = await fetch(
-    `https://aeabdelhak.herokuapp.com/channel.php?c=${id}`
+    `http://ff2c283ec086.ngrok.io/api/channel.php?c=${id}`
   );
   const cInfos = await res.json();
 
-  console.log(cInfos);
   return {
     props: {
       data: cInfos,

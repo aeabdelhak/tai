@@ -10,7 +10,7 @@ const SearchBar = () => {
           className="w-full p-2 px-3   outline-none bg-transparent"
         />
         <button className="p-1">
-          <Search stroke-width={1} className="w-5 h-5   " />
+          <Search strokeWidth={1} className="w-5 h-5   " />
         </button>
       </div>
       </div>

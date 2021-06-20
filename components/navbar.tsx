@@ -21,7 +21,6 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
  if(isAuth){
     user= theUser.name.split(' ').map(i => i.charAt(0))
  }
-console.log(user)
 
 
   return (
@@ -38,13 +37,13 @@ console.log(user)
           <div  onClick={() => router.push("/upload")}
             className=" cursor-pointer "
           >
-          <Upload stroke-width={1} className="w-5 h-5 border-1" />
+          <Upload strokeWidth={1} className="w-5 h-5 border-1" />
           </div>
           <div
             className=" cursor-pointer "
             onClick={statenotchange}
           >
-          <Bell stroke-width={1} className="w-5 h-5  border-1" />
+          <Bell strokeWidth={1} className="w-5 h-5  border-1" />
           </div>
          
 
@@ -69,7 +68,7 @@ console.log(user)
           <div className="flex space-x-4">
             <h1  onClick={() => router.push("/Login")} className="cursor-pointer  p-1 rounded-full transition ease-in-out duration-1000">
               <LogIn
-               stroke-width={1} 
+               strokeWidth={1} 
                 className="w-5 h-5 border-1 "
               />
             </h1>
@@ -77,7 +76,7 @@ console.log(user)
               onClick={() => router.push("/Signup")}
               className="cursor-pointer p-1 rounded-full "
             >
-              <UserPlus stroke-width={1} className="w-5 h-5 stroke-1 border-1" />
+              <UserPlus strokeWidth={1} className="w-5 h-5 stroke-1 border-1" />
             </h1>
           </div>
         )}
