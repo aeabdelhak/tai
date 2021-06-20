@@ -46,6 +46,8 @@ export default function Login() {
       });
       localStorage.setItem("loginToken", data.token);
       await isLoggedIn();
+      router.push("/");
+
     } else {
       setState({
         ...state,
@@ -64,10 +66,7 @@ export default function Login() {
   if (state.successMsg) {
     successMsg = state.successMsg;
   }
-if (isAuth){
-  router.push("/");
 
-}
 else{
    return (
     <div className="h-screen fixed z-40 w-screen bg-gray-200  pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
