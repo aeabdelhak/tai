@@ -3,12 +3,14 @@ import Image from "next/image";
 import Categories from "../components/Categories";
 import NotFound from "../components/NotFound";
 import Thumb from "../components/thumb";
-
+import ChannelSidebar from "../components/channelSidebar"
 const channel = ({ data }) => {
     console.log(data);
   if(data.channel!==null)
   return ( 
-    <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen overflow-hidden">
+    <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen ">
+    <ChannelSidebar/>
+
       <div className="h-96 relative bg-gray-700 w-full overflow-hidden grid place-items-center">
         <Image
           src="https://picsum.photos/1920/1080"
