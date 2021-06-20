@@ -23,11 +23,9 @@ export default function Upload() {
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
   const [data, setdata] = useState<any>();
-if(!isAuth){
-  router.push("/");
-}
+
   const get = async () => {
-    if (isAuth) {
+    
       const token = theUser.username;
       const res = await fetch(
         `http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
@@ -37,11 +35,28 @@ if(!isAuth){
       );
       const dt = await res.json();
       setdata(dt);
-    }
+    
     
   };
-  
-  get();
+  function getExtension(filename) {
+    const file = String(filename);
+
+    var parts = file.split(".");
+    return parts[parts.length - 1];
+  }
+  function isVideo(filename) {
+    var ext = getExtension(filename);
+    switch (ext.toLowerCase()) {
+      case "m4v":
+      case "avi":
+      case "mpg":
+      case "mp4":
+        // etc
+        return true;
+    }
+  }
+ 
+
   const[acces,accessing]=useState(false)
   const [key, setKey] = useState();
   const [thmb, setthumb] = useState();
@@ -54,14 +69,33 @@ if(!isAuth){
   const [id, setid] = useState("");
   const [click, setClik] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel();
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-  const channel = (event) => {
-    setKey(event.target.value);
-  };
-
-  const submit = () => {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (isAuth) {
+      const video = isVideo(filename);
+      if (video) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("username", theUser.username);
+        formData.append("key", key);
+        axios
+          .post("http://ff2c283ec086.ngrok.io/api/upload.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            onUploadProgress: (progressEvent) => {
+              const { loaded, total } = progressEvent;
+              let percent = Math.fround((loaded * 100) / total);
+              let percentn = Math.floor((loaded * 100) / total);
+              setProgressn(percentn);
+              setShow(true);
+            },
+          })
+          .then((response) => setid(response.data.id));
+      }
+    }
+  }, [file]);
+     const submit = () => {
     accessing(true)
     const formData = new FormData();
     formData.append("username",theUser.username)
@@ -89,52 +123,12 @@ if(!isAuth){
           })
         }
       });
+  };  
+  const channel = (event) => {
+    setKey(event.target.value);
   };
-
-  function getExtension(filename) {
-    const file = String(filename);
-
-    var parts = file.split(".");
-    return parts[parts.length - 1];
-  }
-  function isVideo(filename) {
-    var ext = getExtension(filename);
-    switch (ext.toLowerCase()) {
-      case "m4v":
-      case "avi":
-      case "mpg":
-      case "mp4":
-        // etc
-        return true;
-    }
-  }
-
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    if (isAuth) {
-      const video = isVideo(filename);
-      if (video) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("username", theUser.username);
-        formData.append("key", key);
-        axios
-          .post("http://ff2c283ec086.ngrok.io/api/upload.php", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            onUploadProgress: (progressEvent) => {
-              const { loaded, total } = progressEvent;
-              let percent = Math.fround((loaded * 100) / total);
-              let percentn = Math.floor((loaded * 100) / total);
-              setProgressn(percentn);
-              setShow(true);
-            },
-          })
-          .then((response) => setid(response.data.id));
-      }
-    }
-  }, [file]);
+ if (isAuth) {
+      get();
 
 
   return (
@@ -232,4 +226,13 @@ if(!isAuth){
 </div>
   );
 }
-
+else {
+  return(
+  <div className="w-screen h-screen grid place-content-center">
+<h1 className="text-4xl">
+  you re not allowed to uplad content
+</h1>
+  </div>
+)
+}
+}
