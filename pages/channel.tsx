@@ -2,35 +2,27 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import Categories from "../components/Categories";
 import NotFound from "../components/NotFound";
-import Thumb from "../components/thumb";
+import ThumbForEdit from "../components/ThumbForEdit";
 import ChannelSidebar from "../components/channelSidebar"
-const channel = ({ data }) => {
-    console.log(data);
-  if(data.channel!==null)
-  return ( 
-    <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen ">
-    <ChannelSidebar/>
+import { useContext } from "react";
+import { MyContext } from "../utils/JWTAuth";
 
-      <div className="h-96 relative bg-gray-700 w-full overflow-hidden grid place-items-center">
-        <Image
-          src="https://picsum.photos/1920/1080"
-          layout="fill"
-          className="z-0 absolute"
-        />
-        <div className="z-10 grid place-items-center ">
-          <div className="h-32 w-32 rounded-full relative overflow-hidden shadow-xl bg-white">
-            <Image src="https://picsum.photos/200/200" layout="fill" />
-          </div>
-          <h1 className="chtitle">{data.channel.nameChannel}</h1>
-          <div className="flex space-x-1">
-            <h1 className="chtitle text-xs">120 videos </h1>
-            <h1 className="chtitle text-xs">1m subscribers </h1>
-          </div>
-        </div>
-      </div>
+const channel = ({ data }) => {
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState; 
+    if(!isAuth || theUser.username!==data.channel.username)return <NotFound/>
+    else{
+
+   
+  if(data.channel!==null )
+  return ( 
+    <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen  ">
+    <ChannelSidebar data={data.channel}/>
+
+
       <div>
           {!data.videos  ?
-          <div className="text-3xl text-gray-600 ">
+          <div className="text-3xl text-gray-800 font-thin h-full w-full place-items-center ">
               <h1>this channel havent dropped any content yet</h1>
 
           </div>
@@ -38,7 +30,7 @@ const channel = ({ data }) => {
           data.videos.map((dt) => (
   
 
-            <Thumb key={dt.id} data={dt} />
+            <ThumbForEdit key={dt.id} data={dt} />
           ))}
           
           
@@ -49,6 +41,7 @@ const channel = ({ data }) => {
   return (
      <NotFound/>
   )
+} 
 };
 
 export default channel;

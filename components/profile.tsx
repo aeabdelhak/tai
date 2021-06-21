@@ -44,8 +44,8 @@ const Profile = ({ active, setActive }) => {
         <div
           className={
             active
-              ? "fixed z-30 h-screen w-80  bg-gradient-to-t  from-gray-700 to-green-600 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
-              : "fixed z-30 h-screen w-80  bg-gradient-to-t  from-gray-700 to-green-600 transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
+              ? "fixed z-30 h-screen w-80  bg-gray-200 elevation-4 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
+              : "fixed z-30 h-screen w-80  bg-gray-200 transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
           }
         >
           <XIcon className="w-5 mx-auto xl:mx-0 xl:mr-4" onClick={stateprofilechange}/>
@@ -69,7 +69,7 @@ const Profile = ({ active, setActive }) => {
           </div>
           
           {data && data.map((dt) => (
-     <div onClick={()=>router.push("/channel?c="+dt.idChannel)} className="navlink text-sm pl-20 py-2">
+     <div onClick={()=>router.push("/dashboard?c="+dt.idChannel)} className="navlink text-sm pl-20 py-2">
             <h1>{dt.nameChannel}</h1>
           </div>
 

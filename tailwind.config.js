@@ -15,7 +15,13 @@ module.exports = {
      require('@tailwindcss/forms'),
      require('tailwind-scrollbar'),
      require('tailwindcss-gradients'),
+     require('tailwindcss-elevation')(
+      [],
+      {
+        color: '77,192,181',
+        opacityBoost: '0.23'
+      }
 
-
+      )
   ],
 }

@@ -87,6 +87,8 @@ export default function Upload() {
               const { loaded, total } = progressEvent;
               let percent = Math.fround((loaded * 100) / total);
               let percentn = Math.floor((loaded * 100) / total);
+              
+              document.getElementById("prg").style.height = percentn+"%";
               setProgressn(percentn);
               setShow(true);
             },
@@ -141,13 +143,17 @@ export default function Upload() {
      </div>
 }
 
-      <div className="fixed bottom-5 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
-        <div className="fixed bottom-5 z-0 right-5 w-20 h-20 grid place-items-center bg-white rounded-full animate-ping"></div>
-        {progressen  }
+      <div className="fixed overflow-hidden bottom-5 border-blue-500 border-2 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
+<div className="absolute z-0 flex items-end h-full w-full">
+<div className="w-full bg-blue-500" id="prg"></div>
+</div>
+       <h1 className={progressen < 50 ?"text-gray-600 z-10 " :"text-white z-10" }>
+         {progressen < 100 && progressen }
+         </h1> 
         <h1
           className={
-            progressen == 100
-              ? "text-center text-2xl not-sr-only transition-all duration-500 "
+            progressen == 100 
+              ? "text-center z-10 text-2xl not-sr-only transition-all duration-500 "
               : "text-center text-2xl sr-only transition-all duration-500"
           }
         >

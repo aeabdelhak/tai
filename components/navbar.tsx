@@ -8,6 +8,11 @@ import { Bell,Upload ,Search,LogIn,UserPlus } from 'react-feather';
 import SearchBar from "./SearchBar";
 
 function Navbar({ active, setActive ,notshow ,setnotshow}) {
+   const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState; 
+  
+
+
   const stateprofilechange = useCallback(() => {
     setActive(true);
   }, [setActive]);
@@ -15,8 +20,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
     setnotshow(true);
   }, [setnotshow]);
   const router = useRouter();
-  const { rootState, logoutUser } = useContext(MyContext);
-  const { isAuth, theUser, showLogin } = rootState;
+
   let user:any=""
  if(isAuth){
     user= theUser.name.split(' ').map(i => i.charAt(0))
@@ -24,7 +28,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
 
 
   return (
-    <div className="w-full  z-50 fixed top-0 ">
+    <div className="w-full  z-40 fixed top-0 ">
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer " onClick={()=>router.push("/")}>
           <img src="1.svg" alt="" className="w-6 h-6" />
