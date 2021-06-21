@@ -16,7 +16,8 @@ import {
   PhotographIcon,
   ChevronRightIcon,
 } from "@heroicons/react/outline";
-export default function Upload() {
+export default function Upload({categories}) {
+  console.log(categories)
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
   const [data, setdata] = useState<any>();
@@ -234,3 +235,34 @@ else {
 )
 }
 }
+export async function getServerSideProps(ctx) {
+  const video = ctx.query.v;
+
+ 
+ 
+const req2 = await fetch("http://ff2c283ec086.ngrok.io/api/categories.php");
+const categories = await req2.json();
+
+
+  if (!categories) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      categories,
+ 
+      
+    },
+  };
+}
+
+
+
+
+
+
+
+

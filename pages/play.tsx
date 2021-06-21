@@ -1,3 +1,4 @@
+
 import { GetStaticProps } from "next";
 import VideoPlayer from "../components/videoPlayer";
 import VideoInfos from "../components/VideInfos";
@@ -58,10 +59,10 @@ export default Play;
 export async function getServerSideProps(ctx) {
   const video = ctx.query.v;
 
-  const req = await fetch(
-    "http://ff2c283ec086.ngrok.io/api/getVideo.php?getV=v&&id=" + video
-  );
-  const videos = await req.json();
+  const req1 = await fetch("http://ff2c283ec086.ngrok.io/api/getVideo.php?getV=v&&id=" + video);
+  const videos = await req1.json();
+ 
+
   const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
   const data = await res.json();
   if (!data) {
@@ -74,6 +75,7 @@ export async function getServerSideProps(ctx) {
     props: {
       data,
       videos,
+      
     },
   };
 }

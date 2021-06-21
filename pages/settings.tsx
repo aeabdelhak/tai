@@ -44,6 +44,20 @@ const settings = ({ data }) => {
               </div>
             </div>
           </div>
+          <div className="rounded-lg bg-white elevation-3 p-2 my-2 w-full">
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <h1 className="italic font-light">
+                 active/desactive your channel?
+                </h1>
+              </div>
+              <div className="flex items-center space-x-2">
+                <button className="px-3 py-2 text-red-600 hover:bg-red-200 focus:outline-none">
+                  <h1> desactive</h1>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
