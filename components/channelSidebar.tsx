@@ -23,12 +23,13 @@ const channelSidebar = ({data}) => {
     :
     "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed left-0 bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
       <div className="  grid grid-flow-col md:grid-flow-row w-full  ">
-  <div className="flex items-center pl-10 py-2 space-y-4">
+  <div className="navlink my-2">
   <div className="  h-12 w-12 rounded-full elevation-3">
   {/* <Image src={data.avatar} layout="fill" />  */}
 
   </div>
-  {data.nameChannel}
+  <h1 className= "hidden xl:block">{data.nameChannel}</h1>
+  
   </div>
         
         <Link href={"/dashboard?c="+data.idChannel}>
