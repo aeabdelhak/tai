@@ -40,8 +40,9 @@ const Sidebar = () => {
             trending
           </h1>
         </div>
-        {isAuth ?   (
+        {isAuth &&   (
           <div
+          onClick={() => router.push("/subscriptions")}
             className={
               router.pathname == "/subscriptions"
                 ? "navlink active blue"
@@ -51,9 +52,7 @@ const Sidebar = () => {
             <HeartIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
             <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>subscriptions</h1>
           </div>
-        ) : (
-          ""
-        )}
+        ) }
       </div>
       <hr />
       <div className="place-self-end w-full ">

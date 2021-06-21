@@ -17,7 +17,6 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/outline";
 export default function Upload({categories}) {
-  console.log(categories)
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
   const [data, setdata] = useState<any>();
@@ -68,6 +67,7 @@ export default function Upload({categories}) {
   const [click, setClik] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const [show, setShow] = useState(false);
+  const [category, setcategory] = useState<string>();
   useEffect(() => {
     if (isAuth) {
       const video = isVideo(filename);
@@ -102,6 +102,7 @@ export default function Upload({categories}) {
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("state", state);
+    formData.append("category", category);
     formData.append("thmb", thmb);
     formData.append("id", id);
 
@@ -112,6 +113,7 @@ export default function Upload({categories}) {
         },
       })
       .then((response) => {
+        console.log(response)
         accessing(false)
         if (response.data.success) {
           router.push("/play?v="+id);
@@ -195,7 +197,9 @@ export default function Upload({categories}) {
         </div>
 
         {data && (
-          <VideoInfos
+          <VideoInfos 
+          categories={categories}
+          setcategory={setcategory}
             clicked={click}
             click={setClik}
             thmb={thmb}

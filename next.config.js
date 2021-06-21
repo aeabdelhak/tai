@@ -1,6 +1,6 @@
 module.exports = {
     images: {
-      domains: ['picsum.photos','aeabdelhak.herokuapp.com'],
+      domains: ['picsum.photos','aeabdelhak.herokuapp.com','ff2c283ec086.ngrok.io'],
     },
 
   

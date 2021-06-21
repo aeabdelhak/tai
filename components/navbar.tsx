@@ -6,7 +6,10 @@ import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import { Bell,Upload ,Search,LogIn,UserPlus } from 'react-feather';
 import SearchBar from "./SearchBar";
-
+import {AiOutlineLogin} from "@react-icons/all-files/ai/AiOutlineLogin"
+import {AiOutlineUserAdd} from "@react-icons/all-files/ai/AiOutlineUserAdd"
+import {AiOutlineCloudUpload} from "@react-icons/all-files/ai/AiOutlineCloudUpload"
+import {VscBell} from "@react-icons/all-files/vsc/VscBell"
 function Navbar({ active, setActive ,notshow ,setnotshow}) {
    const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
@@ -41,13 +44,13 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
           <div  onClick={() => router.push("/upload")}
             className=" cursor-pointer "
           >
-          <Upload strokeWidth={1} className="w-5 h-5 border-1" />
+          <AiOutlineCloudUpload strokeWidth={1} className="w-5 h-5 border-1" />
           </div>
           <div
             className=" cursor-pointer "
             onClick={statenotchange}
           >
-          <Bell strokeWidth={1} className="w-5 h-5  border-1" />
+          <VscBell strokeWidth={1} className="w-5 h-5  border-1" />
           </div>
          
 
@@ -71,7 +74,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
         ) : (
           <div className="flex space-x-4">
             <h1  onClick={() => router.push("/Login")} className="cursor-pointer  p-1 rounded-full transition ease-in-out duration-1000">
-              <LogIn
+              <AiOutlineLogin
                strokeWidth={1} 
                 className="w-5 h-5 border-1 "
               />
@@ -80,7 +83,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
               onClick={() => router.push("/Signup")}
               className="cursor-pointer p-1 rounded-full "
             >
-              <UserPlus strokeWidth={1} className="w-5 h-5 stroke-1 border-1" />
+              <AiOutlineUserAdd strokeWidth={1} className="w-5 h-5 stroke-1 border-1" />
             </h1>
           </div>
         )}

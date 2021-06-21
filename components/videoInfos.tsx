@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 
-const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) => {
+const VideoInfos = ({setcategory,categories,clicked,click, thmb, setthumb,settitle,setdesc,setstate }) => {
   const hiddenFileInput = React.useRef(null);
   const thumbnail = React.useRef(null);
   const [prev,setprev]=useState("");
@@ -43,7 +43,12 @@ const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) 
     ()=>useCallback(()=>click(!clicked),[click])
     console.log(clicked)
   }
-
+const category= useCallback(
+  (event) => {
+    setcategory(event.target.value);
+  },
+  [setcategory]
+)
   return (
  
       <div className="  h-auto w-full  max-w-7xl mx-auto  ">
@@ -72,28 +77,12 @@ const VideoInfos = ({clicked,click, thmb, setthumb,settitle,setdesc,setstate }) 
             </div>
             <div className="  p-2 mb-1">
             <h1 className=" text-sm text-gray-600">category: </h1>
-            <select name="" id="" className="p-2  input">
-              <option value="">
-                soprt
-              </option>
-              <option value="">
-                gamin
-              </option>
-              <option value="">
-                religious
-              </option>
-              <option value="">
-                music
-              </option>
-              <option value="">
-                arts
-              </option>
-              <option value="">
-                business
-              </option>
-              <option value="">
-                sciences
-              </option>
+            <select name="" id="" className="p-2  input" onChange={category}>
+             <option value="0">select the category </option>
+
+          {categories.map((e)=>(
+             <option value={e.category}>{e.category} </option>
+           ))} 
             </select>
             </div>
           </div>

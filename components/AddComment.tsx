@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
+import Image from 'next/image'
 
 const AddComment = ({id}) => {
   const { rootState, logoutUser } = useContext(MyContext);
@@ -32,8 +33,13 @@ event.preventDefault();
      
       <div className="flex space-x-2 items-center w-full p-2 ">
        
-        <div className="w-8 h-8 rounded-full bg-gray-200">
-{/* <Image src /> */}
+        <div className="w-8 h-8 rounded-full relative overflow-hidden bg-gray-200">
+<Image
+ 
+  layout="fill"
+  src={theUser.avatar}
+  alt=""
+/>
         </div>
         <input
           type="text"
@@ -43,7 +49,7 @@ event.preventDefault();
           value={comment}
         />
       </div>
-      <button className=" px-3 py-2 flex items-center space-x-2 w-auto whitespace-nowrap justify-center bg-green-100 text-green-600 hover:font-bold hover:bg-green-200" onClick={submit}>
+      <button className=" px-3 py-2 flex items-center space-x-2 w-auto whitespace-nowrap justify-center  text-green-600 hover:font-bold " onClick={submit}>
         <h1>add Comment</h1>
         <AnnotationIcon className="w-5" />
       </button>

@@ -35,7 +35,7 @@ const Play = ({ data, videos }) => {
                 />
                 <VideoInfos data={videos} />
                 <hr />
-                <Description />
+                <Description data={videos.descr} />
                 <Comment comments={comments} id={videos.idVideo} />
               </div>
               <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black  w-full pt-16 max-w-2xl bg-gray-200">
