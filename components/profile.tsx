@@ -32,7 +32,10 @@ const Profile = ({ active, setActive }) => {
     }
     
   };
-  get();
+  setTimeout(()=>{
+    get();
+
+  },500)
 
  
   const stateprofilechange = useCallback(() => {
