@@ -2,7 +2,7 @@ import {
   HomeIcon,
   HeartIcon,
   PresentationChartBarIcon,
-  FireIcon,
+  ViewGridIcon,
   CogIcon,
 } from "@heroicons/react/outline";
 import {MyContext} from '../utils/JWTAuth'
@@ -48,39 +48,29 @@ const channelSidebar = ({data}) => {
           }
           onClick={() => router.push("/channel?c="+data.idChannel)}
         >
-          <FireIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
+          <ViewGridIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
           <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>
-            Channels
+            Content
           </h1>
         </div>
         {isAuth ?   (
           <div
             className={
-              router.pathname == "/subscriptions"
+              router.pathname == "/settings"
                 ? "navlink active blue"
                 : "navlink"
             }
+            onClick={() => router.push("/settings?c="+data.idChannel)}
           >
-            <HeartIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
-            <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>subscriptions</h1>
+            <CogIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
+            <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>settings</h1>
           </div>
         ) : (
           ""
         )}
       </div>
       <hr />
-      <div className="place-self-end w-full ">
-      {isAuth ?  (
-        <div
-          className={
-            router.pathname == "/profile" ? "navlink active" : "navlink"
-          }
-        >
-          <CogIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
-          <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>profile</h1>
-        </div>
-      ):("")}
-      </div>
+
     </div>
   )
 else return <>
