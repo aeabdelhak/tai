@@ -2790,7 +2790,7 @@ react-is@16.13.1, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-loadingg@^1.7.1:
+react-loadingg@^1.7.1, react-loadingg@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/react-loadingg/-/react-loadingg-1.7.2.tgz#2fe943eee0495bb3679c2b72f54ccceec75f456d"
   integrity sha512-sy2HI7ZacW1t/ChosR7CZa2FJS1uAInLNl7wgO7e9Pseak4FdPKqZYIjl1H3G+tBQ+S9pa/8CKXdGQxVrW2CBQ==
