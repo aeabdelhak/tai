@@ -5,14 +5,11 @@ import { useState } from "react";
 import FileUplad from "../components/fileUplad";
 import ChannelSelect from "../components/ChannelSelect";
 import { MyContext } from "../utils/JWTAuth";
-import Circle from "react-circle";
 import VideoInfos from "../components/videoInfos";
 import axios from "axios";
 import { GetStaticProps } from "next";
 import Image from "next/image";
-import Select from "react-select";
 import { WaveTopBottomLoading } from 'react-loadingg';
-import { toast, ToastContainer } from 'react-nextjs-toast'
 import router from "next/router";
 import {
   BellIcon,
@@ -118,12 +115,7 @@ export default function Upload() {
         if (response.data.success) {
           router.push("/play?v="+id);
         }
-        else {
-          toast.notify(response.data, {
-            duration: 5,
-            type: "error"
-          })
-        }
+    
       });
   };  
   const channel = (event) => {
