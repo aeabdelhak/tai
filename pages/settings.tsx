@@ -38,7 +38,7 @@ const settings = ({ data }) => {
                 </h1>
               </div>
               <div className="flex items-center space-x-2">
-                <button className="px-3 py-2 text-red-600 hover:bg-blue-200 focus:outline-none">
+                <button className="px-3 py-2 text-red-600 hover:bg-red-200 focus:outline-none">
                   <h1> delete</h1>
                 </button>
               </div>
