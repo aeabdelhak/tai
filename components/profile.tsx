@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../utils/JWTAuth";
 import { XIcon } from "@heroicons/react/outline";
+import axios from "axios";
 
 const Profile = ({ active, setActive }) => {
   const [data, setdata] = useState<any>();
@@ -19,23 +20,22 @@ const Profile = ({ active, setActive }) => {
   const { isAuth, theUser, showLogin } = rootState;
   const router = useRouter();
   let channels:any=[]
-  const get = async () => {
+  
     if (isAuth) {
       const token = theUser.username;
-      const res = await fetch(`http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
+      axios.get(`http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
         {
           headers: { Authorization: token },
         }
-      );
-      const dt = await res.json();
-      setdata(dt);
+      ).then(res =>{setdata(res.data)
+      console.log(res)
+      })
+      
+      
     }
     
-  };
-  setTimeout(()=>{
-    get();
-
-  },500)
+  
+ 
 
  
   const stateprofilechange = useCallback(() => {
@@ -66,7 +66,7 @@ const Profile = ({ active, setActive }) => {
           <h1>{theUser.name}</h1>
           <h1>{theUser.email}</h1>
 
-          <div className=" flex items-center px-10 py-2 ">
+          <div className=" flex items-center px-10 py-2 " >
             <CollectionIcon className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>Your Channels</h1>
           </div>
