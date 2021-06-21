@@ -14,9 +14,9 @@ const Sidebar = () => {
     const {isAuth,theUser,showLogin} = rootState;
   return (
     <div className={router.pathname == "/play" ? 
-    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-thin fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
+    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
     :
-    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-thin fixed bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
+    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
       <div className="  grid grid-flow-col md:grid-flow-row w-full  ">
         <Link href="/">
           <div
