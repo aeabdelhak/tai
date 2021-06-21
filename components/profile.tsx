@@ -21,7 +21,8 @@ const Profile = ({ active, setActive }) => {
   const router = useRouter();
   let channels:any=[]
   
-    if (isAuth) {
+  const get =()=>{
+     
       const token = theUser.username;
       axios.get(`http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
         {
@@ -32,7 +33,9 @@ const Profile = ({ active, setActive }) => {
       })
       
       
-    }
+    
+  }
+   
     
   
  
@@ -47,8 +50,8 @@ const Profile = ({ active, setActive }) => {
         <div
           className={
             active
-              ? "fixed z-30 h-screen w-80  bg-gray-200 elevation-4 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
-              : "fixed z-30 h-screen w-80  bg-gray-200 transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
+              ? "fixed z-30 h-screen w-80  bg-white  elevation-4 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
+              : "fixed z-30 h-screen w-80  bg-white  transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
           }
         >
           <XIcon className="w-5 mx-auto xl:mx-0 xl:mr-4" onClick={stateprofilechange}/>
@@ -66,7 +69,7 @@ const Profile = ({ active, setActive }) => {
           <h1>{theUser.name}</h1>
           <h1>{theUser.email}</h1>
 
-          <div className=" flex items-center px-10 py-2 " >
+          <div className=" flex items-center px-10 py-2 " onClick={get} >
             <CollectionIcon className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>Your Channels</h1>
           </div>
