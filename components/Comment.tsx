@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { StickyBallLoading } from 'react-loadingg';
   
-const Comment = ({id}) => {
+const Comment = ({id,isActive}) => {
   const [comments, setComments] = useState<any>();
   const [loading, setLoading] = useState(false);
 console.log(loading)
@@ -21,9 +21,8 @@ console.log(loading)
   cmnt();
 
   return (
-    <div className="w-full h-full px-2  ">
+    <div className={isActive  ? "lg:w-full lg:h-full px-2 pt-16 lg:pt-0 z-20 fixed right-0 lg:static  overflow-y-auto top-0 bg-white h-screen w-screen  lg:not-sr-only ":"w-full h-full px-2 sr-only  lg:not-sr-only "}>
 {isAuth && <AddComment id={id} setLoading={setLoading} />}
- 
  <div className="scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
 {loading && <div className="text-center h-16 relative">
 <StickyBallLoading/>

@@ -3,9 +3,19 @@ import { useRouter } from 'next/router'
 import { StickyBallLoading } from 'react-loadingg';
 import { useState } from "react";
 import ChannelSidebar from "../components/channelSidebar";
-
+import { MyContext } from "../utils/JWTAuth";
+import React, { useCallback, useContext } from "react";
+import NotFound from "../components/NotFound";
 const settings = ({ data }) => {
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState; 
+
+
+
+
+
   const [del, showdel] = useState(false);
+  const [active, setactive] = useState(true);
 
   const router = useRouter()
   const [name, setname] = useState<string>()
@@ -31,13 +41,50 @@ const settings = ({ data }) => {
         
      })
   }
+axios.get("https://db336d2d3fd5.ngrok.io/api/settings.php?id="+data.idChannel)
+.then(resu=>{
+  console.log(resu)
+  if (resu.data===true)
+  setactive(true)
+  else
+  setactive(false)
+
+})
+const avtivation=()=>{
+  const formdata=new FormData
+    formdata.append("id",data.idChannel)
+    formdata.append("activation","")
+    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
+    setactive(!active)
+
+}
+
   const delshow=()=>{showdel(true)}
   const showedit=()=>seteditname(true)
+  const deletec=()=>{
+    const formdata=new FormData
+    formdata.append("id",data.idChannel)
+    formdata.append("deletec","")
+    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
+    .then(res => {
+      if (res.data.success)
+      setTimeout(() => {
+        
+        setLoading(false)
+        router.push("/") 
+      }, 500);
+     
+      
+   })
+  }
 const hide=()=>{
   setcancel(false)
   seteditname(false)
   showdel(false)
 }
+if(data){
+if(!isAuth ||theUser.username!==data.username )return <NotFound/>
+else
   return (
     <>
       <ChannelSidebar data={data} />
@@ -47,7 +94,7 @@ const hide=()=>{
         <h1>delete this channel!</h1>
 
        <div className="flex w-full justify-evenly gap-2">
-         <button className="bg-white px-3 py-2 elevation-2 w-full text-green-500">yes</button>
+         <button onClick={deletec} className="bg-white px-3 py-2 elevation-2 w-full text-green-500">yes</button>
          <button  onClick={hide} className="bg-white px-3 py-2 elevation-2 w-full text-red-500">cancel</button>
        </div>
      </div>
@@ -81,7 +128,7 @@ const hide=()=>{
       <div className="pt-16  md:ml-28 pb-10 xl:ml-80 w-screen h-screen   ">
 
         <div className="p-20 max-w-7xl">
-          <div className="flex w-full items-center">
+          <div className="lg:flex  w-full items-center">
             <div className="flex w-full items-center space-x-2">
               <h1 className="italic text-sm">id: </h1>
               <h1> {data.idChannel}</h1>
@@ -127,9 +174,14 @@ const hide=()=>{
                 </h1>
               </div>
               <div className="flex items-center space-x-2">
-                <button className="px-3 py-2 text-red-600 hover:bg-red-200 focus:outline-none">
-                  <h1> desactive</h1>
-                </button>
+          {active ?<button onClick={avtivation} className="px-3 py-2 text-red-600 hover:bg-red-200 focus:outline-none">
+                  <h1> desactivate</h1>
+                </button> :
+                <button onClick={avtivation} className="px-3 py-2 text-green-600 hover:bg-green-200 focus:outline-none">
+                <h1> activate</h1>
+              </button>
+
+          }      
               </div>
             </div>
           </div>
@@ -137,7 +189,12 @@ const hide=()=>{
       </div>
     </>
   );
-};
+}
+else return <NotFound/>
+
+}
+
+;
 
 export default settings;
 export async function getServerSideProps(context) {

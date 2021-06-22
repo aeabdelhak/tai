@@ -3,15 +3,42 @@ import { useRouter } from "next/router";
 import { MenuIcon } from "@heroicons/react/solid";
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 import { useState } from "react";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import axios from "axios";
-
+import { MyContext } from "../utils/JWTAuth";
 const ThumbForEdit = ({ data }) => {
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState;
   const [file, setFile] = useState();
   const [title, setTitle] = useState(data.title);
   const [state, setState] = useState(data.state);
+  const [desc, setdsc] = useState(data.description);
+  const [load, loading] = useState(false);
+
   const stat = (e) => setState(e.target.value);
+  const descr = (e) => setdsc(e.target.value);
  
+function submit(){
+  loading(true)
+const formdata=new FormData()
+formdata.append("title",title)
+formdata.append("desc",desc)
+formdata.append("thmb",file)
+formdata.append("state",state)
+formdata.append("id",data.idVideo)
+formdata.append("username",theUser.username)
+axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Content-Type": "multipart/form-data",}})
+.then(res=>
+{  if (res.data.success){
+      setTimeout(() => {
+  loading(false)
+      router.reload()
+      }, 500);
+  }}
+  )
+
+}
+
   const setTit = (e) => {
     setTitle(e.target.value);
   };
@@ -36,6 +63,7 @@ const ThumbForEdit = ({ data }) => {
    const formData =new FormData()
    formData.append("id",data.idVideo)
    formData.append("delete","")
+   
    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php",formData)
    .then(result=>{
      if (result.data.success)
@@ -67,7 +95,7 @@ const ThumbForEdit = ({ data }) => {
             <button className="px-3 py-2 border-red-300 hover:bg-red-200 focus:border-current focus:outline-none  transition-all duration-500 border text-red-600 rounded-lg" onClick={editshow}>
               cancel
             </button>
-            <button className="px-3 py-2 border-blue-300 hover:bg-blue-200 focus:border-current focus:outline-none  transition-all duration-500 border text-blue-600 rounded-lg">
+            <button onClick={submit} className="px-3 py-2 border-blue-300 hover:bg-blue-200 focus:border-current focus:outline-none  transition-all duration-500 border text-blue-600 rounded-lg">
               save
             </button>
           </div>
@@ -81,9 +109,10 @@ const ThumbForEdit = ({ data }) => {
           />
           <label htmlFor="description ">description:</label>{" "}
           <textarea
+            onChange={descr} 
             id="description"
             className="rounded-lg w-full appearance-none border-gray-300"
-            value={data.description}
+            defaultValue={data.description}
           ></textarea>
           <div className="space-y-2 my-2">
             <label className="block">
@@ -127,8 +156,8 @@ const ThumbForEdit = ({ data }) => {
       </div>
       }
 
-      <div className=" md:h-36 md:w-64 z-0 h-full  overflow-hidden ">
-        <img src={"https://db336d2d3fd5.ngrok.io/" + data.miniature} />
+      <div className=" h-32 w-72 z-0   overflow-hidden ">
+        <img src={"https://db336d2d3fd5.ngrok.io/api/" + data.miniature} />
       </div>
       <div className="w-full">
         <div className="flex w-full relative justify-end  ">

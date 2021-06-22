@@ -23,7 +23,7 @@ const channelSidebar = ({data}) => {
     :
     "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed left-0 bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
       <div className="  grid grid-flow-col md:grid-flow-row w-full  ">
-  <div className="navlink my-2">
+  <div className="flex navlink hover:bg-transparent gap-1 cursor-default mb-3">
   <div className="  h-12 w-12 rounded-full elevation-3">
   {/* <Image src={data.avatar} layout="fill" />  */}
 

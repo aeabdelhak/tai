@@ -17,6 +17,7 @@
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@types/jsonwebtoken": "^8.5.1",
+    "@vime/react": "^5.0.31",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "css.gg": "^2.0.0",
@@ -32,12 +33,14 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-feather": "^2.0.9",
+    "react-hover-video-player": "^8.1.2",
     "react-loadingg": "^1.7.2",
     "react-multi-carousel": "^2.6.3",
     "react-player": "^2.9.0",
     "react-redux": "^7.2.4",
     "react-spinners": "^0.11.0",
     "react-toastify": "^7.0.4",
+    "react-video-js-player": "^1.1.1",
     "tailwindcss-elevation": "^1.0.1",
     "tailwindcss-gradients": "^3.0.0",
     "video-react": "^0.14.1"
@@ -52,4 +55,3 @@
     "typescript": "^4.3.2"
   }
 }
- 

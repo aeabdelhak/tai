@@ -6,10 +6,11 @@ import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {NineCellLoading} from "react-loadingg"
 export default function VideoInfos({data}) {
   console.log(data)
   const baseadd="https://db336d2d3fd5.ngrok.io"
-  const [Subs,setsubs]=useState<string>();
+  const [Subs,setsubs]=useState(false);
   const [liks,setlikes]=useState<boolean>(false);
   const [loading,isLoading]=useState(false)
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
@@ -17,7 +18,7 @@ export default function VideoInfos({data}) {
 const subscribe=(event)=>{
   if(isAuth){
 
- 
+    
   isLoading(true)
   const formData=new FormData()
 formData.append("toggle","ok")
@@ -29,13 +30,13 @@ axios.post(baseadd+"/api/subscribe.php",formData,{
   }
 
   })
+  .then(res=>setsubs(!Subs))
   isLoading(false)
   check()
  }else toast("you need to log in ")
 }
 const like=(event)=>{
   if(isAuth){
-
   const formData=new FormData()
 formData.append("toggle","ok")
 formData.append("idVideo",data.idVideo)
@@ -45,7 +46,10 @@ axios.post(baseadd+"/api/like.php",formData,{
     "Content-Type": "multipart/form-data",
   }
 
-  })
+  }).then(res=>
+   setlikes(!liks) 
+  )
+  
  
   checkLike()
 
@@ -94,9 +98,9 @@ async function check(){
     })
     .then((res) =>{
       if(res.data.isIn==="no"){
-        setsubs("subsbcribe");
+        setsubs(false);
       }
-      else setsubs("unsubsbscribe")
+      else setsubs(true)
 
     }
     )
@@ -123,7 +127,7 @@ if(data)
 
 </div>
       <div className="flex justify-between flex-row-reverse items-center ">
-                 <button className="px-6 py-2 focus:outline-none h-6 w-6 " onClick={like}>
+                 <button className={liks ? "px-6 py-2 text-pink-800 focus:outline-none h-6 w-6 ":"px-6 py-2 focus:outline-none h-6 w-6 " } onClick={like}>
       {!isAuth ?<AiOutlineHeart/> : liks ? <AiFillHeart/> :<AiOutlineHeart/> }
         
         </button>
@@ -139,12 +143,12 @@ if(data)
           <h1 className="text-xs">{data.subscribers} subscribers</h1>
         </div>
         </div>
-        <button onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto  text-red-700 focus:outline-none ">
+        <div onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto  text-red-700 focus:outline-none cursor-pointer ">
        
        
-            { !isAuth? "subscribe": Subs}
+            { !isAuth? "follow":loading ? <NineCellLoading/> : Subs ? "unfollow":"follow"}
 
-        </button>
+        </div>
       </div>
     </div>
   )
