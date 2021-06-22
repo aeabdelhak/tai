@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 const EachComment = ({comment}) => {
+
   return (
     <div className=" my-2 bg-white shadow-md">
       <div className="flex space-x-2 items-center w-full p-2 ">
