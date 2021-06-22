@@ -4,9 +4,9 @@ import { MenuIcon } from "@heroicons/react/solid";
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import React, { useCallback } from "react";
+import axios from "axios";
 
 const ThumbForEdit = ({ data }) => {
-  console.log(data)
   const [file, setFile] = useState();
   const [title, setTitle] = useState(data.title);
   const [state, setState] = useState(data.state);
@@ -25,19 +25,37 @@ const ThumbForEdit = ({ data }) => {
   const router = useRouter();
   const [show, setshow] = useState(false);
   const [edit, showedit] = useState(false);
+  const [del, showdel] = useState(false);
  const editshow=()=>{
   showedit(!edit)
   }
+ const delshow=()=>{
+  showdel(!del)
+  }
+  const delite=()=>{
+   const formData =new FormData()
+   formData.append("id",data.idVideo)
+   formData.append("delete","")
+   axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php",formData)
+   .then(result=>{
+     if (result.data.success)
+     router.reload()
+   })
+   
+  }
   return (
     <div className="w-full p-2 pr-4  flex space-x-3   elevation-2 mb-2 max-w-7xl mx-auto">
-      <div className="grid place-items-center bg-black fixed h-screen w-screen duration-500 ease-out  bg-opacity-50 top-0 z-30 right-0 overflow-x-auto ">
-      <div className="max-w-lg w-full p-2 rounded-lg bg-white elevation-2">
-        <h1>delete this video!</h1>
-        <div className="flex w-full justify-evenly">
-          
+    {del &&    <div className="grid place-items-center bg-black bg-opacity-5 fixed h-screen w-screen duration-500 ease-out   top-0 z-30 right-0 overflow-x-auto ">
+     
+      <div className="max-w-lg w-full p-2 rounded-lg bg-white elevation-2 space-y-4 ">
+         <h1>delete this video!</h1>
+
+        <div className="flex w-full justify-evenly gap-2">
+          <button onClick={delite}  className="bg-white px-3 py-2 elevation-2 w-full text-green-500">yes</button>
+          <button onClick={delshow} className="bg-white px-3 py-2 elevation-2 w-full text-red-500">cancel</button>
         </div>
       </div>
-      </div>
+      </div>}
 
       {edit &&
       <div className="grid place-items-center bg-black fixed h-screen w-screen duration-500 ease-out  bg-opacity-50 top-0 z-30 right-0 overflow-x-auto ">
@@ -136,7 +154,7 @@ const ThumbForEdit = ({ data }) => {
             <h1 className="px-3 py-1 border text-sm hover:bg-gray-200 cursor-pointer capitalize" onClick={editshow}>
               edit
             </h1>
-            <h1 className="px-3 py-1 border text-sm hover:bg-gray-200 cursor-pointer capitalize">
+            <h1 className="px-3 py-1 border text-sm hover:bg-gray-200 cursor-pointer capitalize"onClick={delshow} >
               delete
             </h1>
           </div>
