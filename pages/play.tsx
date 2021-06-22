@@ -16,13 +16,8 @@ const Play = ({ data, videos }) => {
   console.log(videos);
  
     const [isActive, setActive] = useState("description");
-    const [comments, setComments] = useState();
-    async function cmnt() {
-      const data = await axios.get("http://ff2c283ec086.ngrok.io/api/getVideo.php?getC=v&&id=" +videos.idVideo);
-      setComments(data.data);
-    } 
+
     if (videos) {
-    cmnt();
     return (
       <div className="grid w-full pb-10 lg:pb-0 ">
         <Sidebar />
@@ -36,7 +31,7 @@ const Play = ({ data, videos }) => {
                 <VideoInfos data={videos} />
                 <hr />
                 <Description data={videos.descr} />
-                <Comment comments={comments} id={videos.idVideo} />
+                <Comment  id={videos.idVideo} />
               </div>
               <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black  w-full pt-16 max-w-2xl bg-gray-200">
                 {data.map((dt) => (

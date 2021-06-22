@@ -37,6 +37,7 @@
     "react-player": "^2.9.0",
     "react-redux": "^7.2.4",
     "react-spinners": "^0.11.0",
+    "react-toastify": "^7.0.4",
     "tailwindcss-elevation": "^1.0.1",
     "tailwindcss-gradients": "^3.0.0",
     "video-react": "^0.14.1"
