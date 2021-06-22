@@ -27,7 +27,7 @@ export default function Upload({categories}) {
     
       const token = theUser.username;
       const res = await fetch(
-        `http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
+        `https://db336d2d3fd5.ngrok.io/api/getChannels.php?user=${token}`,
         {
           headers: { Authorization: token },
         }
