@@ -69,7 +69,7 @@ export default function Login() {
 
 else{
    return (
-    <div className="h-screen overflow-auto fixed z-40 w-screen bg-gray-200  pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
+    <div className="h-screen overflow-x-auto  w-screen bg-gray-200  pt-16   text-center top-0 p-2">
     
     {acces &&
 <div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
