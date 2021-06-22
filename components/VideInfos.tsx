@@ -2,10 +2,10 @@ import axios from "axios"
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import { useState } from "react";
-import { CircleToBlockLoading } from 'react-loadingg';
 import { AiOutlineHeart } from "@react-icons/all-files/ai/AiOutlineHeart";
 import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function VideoInfos({data}) {
   console.log(data)
   const baseadd="http://ff2c283ec086.ngrok.io"
@@ -15,6 +15,9 @@ export default function VideoInfos({data}) {
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
 const subscribe=(event)=>{
+  if(isAuth){
+
+ 
   isLoading(true)
   const formData=new FormData()
 formData.append("toggle","ok")
@@ -28,7 +31,7 @@ axios.post(baseadd+"/api/subscribe.php",formData,{
   })
   isLoading(false)
   check()
-
+ }else toast("you need to log in ")
 }
 const like=(event)=>{
   if(isAuth){
@@ -46,7 +49,8 @@ axios.post(baseadd+"/api/like.php",formData,{
  
   checkLike()
 
-}}
+}else toast("you need to log in ")
+}
 async function checkLike(){
   const formData=new FormData()
   if(isAuth){
@@ -107,15 +111,25 @@ checkLike()
 
 if(data)
   return (
-    <div className="p-2  ">
-      <h1 className="text-xs text-gray-500">{data.when}</h1>
-      <div className="flex justify-end items-center px-4">
-        <button className="px-x py-2 focus:outline-none h-6 w-6 " onClick={like}>
+    <div className="p-1  ">
+              <ToastContainer />
+<div className="flex justify-between">
+<h1 className="text-xs text-gray-500">{data.when}</h1>
+<div className="flex">
+<h1 className="text-xs text-gray-500 px-2">{data.likes} likes </h1>
+<h1 className="text-xs text-gray-500 px-2">{data.views} views</h1>
+
+</div>
+
+</div>
+      <div className="flex justify-between flex-row-reverse items-center ">
+                 <button className="px-6 py-2 focus:outline-none h-6 w-6 " onClick={like}>
       {!isAuth ?<AiOutlineHeart/> : liks ? <AiFillHeart/> :<AiOutlineHeart/> }
         
         </button>
-      </div><h1>{data.title}</h1>
-      
+ 
+      <h1>{data.title}</h1>
+      </div>
       <div className="flex justify-between my-2">
       <div className="flex items-center ">
 
@@ -128,7 +142,7 @@ if(data)
         <button onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto  text-red-700 focus:outline-none ">
        
        
-            { isAuth? "subscribe": Subs}
+            { !isAuth? "subscribe": Subs}
 
         </button>
       </div>

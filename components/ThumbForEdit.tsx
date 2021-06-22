@@ -29,7 +29,16 @@ const ThumbForEdit = ({ data }) => {
   showedit(!edit)
   }
   return (
-    <div className="w-full p-2  flex space-x-3   elevation-2 mb-2 max-w-7xl mx-auto">
+    <div className="w-full p-2 pr-4  flex space-x-3   elevation-2 mb-2 max-w-7xl mx-auto">
+      <div className="grid place-items-center bg-black fixed h-screen w-screen duration-500 ease-out  bg-opacity-50 top-0 z-30 right-0 overflow-x-auto ">
+      <div className="max-w-lg w-full p-2 rounded-lg bg-white elevation-2">
+        <h1>delete this video!</h1>
+        <div className="flex w-full justify-evenly">
+          
+        </div>
+      </div>
+      </div>
+
       {edit &&
       <div className="grid place-items-center bg-black fixed h-screen w-screen duration-500 ease-out  bg-opacity-50 top-0 z-30 right-0 overflow-x-auto ">
         <div className={edit ?

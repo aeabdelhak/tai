@@ -5,16 +5,20 @@ import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import Image from 'next/image'
 
-const AddComment = ({id}) => {
+const AddComment = ({id ,setLoading}) => {
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const [comment ,setComment]=useState("")
   const formData=new FormData();
+  const set =useCallback((e)=>{
+    setLoading(e)
+  },[setLoading])
   const changeHandle=(e)=>{
     setComment(e.target.value)
   }
   const submit =(event)=>{
 event.preventDefault();
+    set(true)
     formData.append("comment",comment)
     formData.append("idVideo",id)
     formData.append("username",theUser.username)
@@ -24,9 +28,13 @@ event.preventDefault();
       }
 
       })
-      .then(res =>console.log(res))
+      setTimeout(() => {
+      set(false)
+        
+      }, 1000);
     setComment("")
   }
+  
   return (
     <div className="bg-white shadow text-right ">
         <form action="" method="post" onSubmit={submit} className="flex items-center p-2  bg-white shadow-md">

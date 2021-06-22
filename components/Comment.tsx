@@ -4,27 +4,32 @@ import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
-  let commentsall=[];
+import { StickyBallLoading } from 'react-loadingg';
   
 const Comment = ({id}) => {
-
+  const [comments, setComments] = useState<any>();
+  const [loading, setLoading] = useState(false);
+console.log(loading)
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   async function cmnt() {
     const data = await axios.get("http://ff2c283ec086.ngrok.io/api/getVideo.php?getC=v&&id=" +id);
-    commentsall=data.data;
+    setComments(data.data);
+    
+    
   } 
-    cmnt();
+  cmnt();
 
-  
   return (
     <div className="w-full h-full px-2  ">
-{isAuth && <AddComment id={id}/>}
+{isAuth && <AddComment id={id} setLoading={setLoading} />}
  
  <div className="scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
-
-        {commentsall &&
-           commentsall.map((dt) => (
+{loading && <div className="text-center h-16 relative">
+<StickyBallLoading/>
+</div>}
+        {comments &&
+           comments.map((dt) => (
   
 
   <EachComment key={dt.id} comment={dt} />

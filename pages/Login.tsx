@@ -46,7 +46,7 @@ export default function Login() {
       });
       localStorage.setItem("loginToken", data.token);
       await isLoggedIn();
-      router.push("/");
+      router.back();
 
     } else {
       setState({
