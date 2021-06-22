@@ -1,10 +1,56 @@
+import axios from "axios";
+import { useRouter } from 'next/router'
+import { StickyBallLoading } from 'react-loadingg';
+import { useState } from "react";
 import ChannelSidebar from "../components/channelSidebar";
 
 const settings = ({ data }) => {
+  const router = useRouter()
+  const [name, setname] = useState<string>()
+  const [Loading, setLoading] = useState<boolean>(false)
+  const newname = (e) => { setname(e.target.value) }
+  const nameSubmit = () => {
+    setLoading(true)
+    const formdata = new FormData()
+    formdata.append("id", data.idChannel)
+    formdata.append("newname", name)
+    axios.post("http://ff2c283ec086.ngrok.io/api/settings.php", formdata)
+      .then(res => {
+        console.log(res)
+        if (data.data.success)
+          router.reload()
+      })
+      setLoading(false)
+  }
+
   return (
     <>
       <ChannelSidebar data={data} />
+      <div className="h-screen w-screen fixed overflow-auto grid place-items-center bg-white bg-opacity-30 z-20 ">
+       {Loading && <div className="absolute h-full w-full z-10 bg-white ">
+          <StickyBallLoading/>
+
+        </div>
+       } 
+        <div className="p-2 bg-white shadow elevation-2 max-w-md w-full rounded-lg space-y-2 relative">
+          <div className="flex justify-between items-center">
+            <h1>change the name</h1>
+            <button className="px-3 py-2 focus:outline-none text-red-600 ">Cancel</button>
+          </div>
+          <form action="" onSubmit={nameSubmit} >
+
+            <input type="text" defaultValue={data.nameChannel} className="w-full rounded-lg focus:outline-none border-gray-300 focus:ring-0 "
+              onChange={newname} />
+            <div className="flex justify-end w-full">
+              <button onClick={nameSubmit} className="px-3 py-2 focus:outline-none text-green-600 ">save</button>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
       <div className="pt-16  md:ml-28 pb-10 xl:ml-80 w-screen h-screen   ">
+
         <div className="p-20 max-w-7xl">
           <div className="flex w-full items-center">
             <div className="flex w-full items-center space-x-2">
@@ -48,7 +94,7 @@ const settings = ({ data }) => {
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center space-x-2">
                 <h1 className="italic font-light">
-                 active/desactive your channel?
+                  active/desactive your channel?
                 </h1>
               </div>
               <div className="flex items-center space-x-2">
