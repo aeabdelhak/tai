@@ -251,7 +251,7 @@ export async function getServerSideProps(ctx) {
 
  
  
-const req2 = await fetch("hhttps://db336d2d3fd5.ngrok.io/api/categories.php");
+const req2 = await fetch("https://db336d2d3fd5.ngrok.io/api/categories.php");
 const categories = await req2.json();
 
 
