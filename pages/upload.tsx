@@ -11,6 +11,8 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import { WaveTopBottomLoading } from 'react-loadingg';
 import router from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   BellIcon,
   PhotographIcon,
@@ -96,7 +98,11 @@ export default function Upload({categories}) {
     }
   }, [file]);
      const submit = () => {
-    accessing(true)
+       accessing(true)
+       if(category==="0")
+       toast("please select a category ") 
+       else{  
+       
     const formData = new FormData();
     formData.append("username",theUser.username)
     formData.append("title", title);
@@ -114,12 +120,13 @@ export default function Upload({categories}) {
       })
       .then((response) => {
         console.log(response)
-        accessing(false)
+       
         if (response.data.success) {
           router.push("/play?v="+id);
         }
     
-      });
+      });}
+      accessing(false)
   };  
   const channel = (event) => {
     setKey(event.target.value);
