@@ -26,7 +26,7 @@ const Play = ({ data, videos }) => {
             <div className="flex max-h-screen h-full  justyfy-between md:ml-32  w-screen     ">
               <div className="h-full space-y-3 pt-16 w-full overflow-y-auto grid max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
                 <VideoPlayer
-                  url={"http://ff2c283ec086.ngrok.io/api/" + videos.source}
+                  url={"https://db336d2d3fd5.ngrok.io/api/" + videos.source}
                 />
                 <VideoInfos data={videos} />
                 <hr />
@@ -54,7 +54,7 @@ export default Play;
 export async function getServerSideProps(ctx) {
   const video = ctx.query.v;
 
-  const req1 = await fetch("http://ff2c283ec086.ngrok.io/api/getVideo.php?getV=v&&id=" + video);
+  const req1 = await fetch("https://db336d2d3fd5.ngrok.io/api/getVideo.php?getV=v&&id=" + video);
   const videos = await req1.json();
  
 

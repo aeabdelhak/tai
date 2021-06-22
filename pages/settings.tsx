@@ -14,7 +14,7 @@ const settings = ({ data }) => {
     const formdata = new FormData()
     formdata.append("id", data.idChannel)
     formdata.append("newname", name)
-    axios.post("http://ff2c283ec086.ngrok.io/api/settings.php", formdata)
+    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
       .then(res => {
         console.log(res)
         if (data.data.success)
@@ -114,7 +114,7 @@ export default settings;
 export async function getServerSideProps(context) {
   const id = context.query.c;
   const res = await fetch(
-    `http://ff2c283ec086.ngrok.io/api/Dashboard.php?c=${id}`
+    `https://db336d2d3fd5.ngrok.io/api/Dashboard.php?c=${id}`
   );
   const infos = await res.json();
 

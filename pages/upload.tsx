@@ -79,7 +79,7 @@ export default function Upload({categories}) {
         formData.append("username", theUser.username);
         formData.append("key", key);
         axios
-          .post("http://ff2c283ec086.ngrok.io/api/upload.php", formData, {
+          .post("https://db336d2d3fd5.ngrok.io/api/upload.php", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

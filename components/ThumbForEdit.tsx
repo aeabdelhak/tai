@@ -110,7 +110,7 @@ const ThumbForEdit = ({ data }) => {
       }
 
       <div className=" md:h-36 md:w-64 z-0 h-full  overflow-hidden ">
-        <img src={"http://ff2c283ec086.ngrok.io/api/" + data.miniature} />
+        <img src={"https://db336d2d3fd5.ngrok.io/" + data.miniature} />
       </div>
       <div className="w-full">
         <div className="flex w-full relative justify-end  ">

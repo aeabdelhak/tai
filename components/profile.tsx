@@ -24,7 +24,7 @@ const Profile = ({ active, setActive }) => {
   const get =()=>{
      
       const token = theUser.username;
-      axios.get(`http://ff2c283ec086.ngrok.io/api/getChannels.php?user=${token}`,
+      axios.get(`https://db336d2d3fd5.ngrok.io/api/getChannels.php?user=${token}`,
         {
           headers: { Authorization: token },
         }

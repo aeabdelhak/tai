@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function VideoInfos({data}) {
   console.log(data)
-  const baseadd="http://ff2c283ec086.ngrok.io"
+  const baseadd="https://db336d2d3fd5.ngrok.io"
   const [Subs,setsubs]=useState<string>();
   const [liks,setlikes]=useState<boolean>(false);
   const [loading,isLoading]=useState(false)

@@ -40,8 +40,11 @@ else return <NotFound/>
 export default  Dashboard
 export async function getServerSideProps(context) {
   const id = context.query.c;
+  if(id){
+
+
   const res = await fetch(
-    `http://ff2c283ec086.ngrok.io/api/Dashboard.php?c=${id}`
+    `https://db336d2d3fd5.ngrok.io/api/Dashboard.php?c=${id}`
   );
   const infos = await res.json();
 
@@ -50,5 +53,5 @@ export async function getServerSideProps(context) {
       data: infos,
       id:id
     },
-  };
+  };  }
 }

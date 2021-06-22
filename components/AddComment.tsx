@@ -22,7 +22,7 @@ event.preventDefault();
     formData.append("comment",comment)
     formData.append("idVideo",id)
     formData.append("username",theUser.username)
-    axios.post("http://ff2c283ec086.ngrok.io/api/addComment.php",formData,{
+    axios.post("https://db336d2d3fd5.ngrok.io/addComment.php",formData,{
       headers: {
         "Content-Type": "multipart/form-data",
       }

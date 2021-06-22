@@ -4,7 +4,7 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-    baseURL: 'https://db336d2d3fd5.ngrok.io/',
+    baseURL: 'https://db336d2d3fd5.ngrok.io/api/',
 });
 
 class MyContextProvider extends Component{
