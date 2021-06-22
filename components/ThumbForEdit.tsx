@@ -75,7 +75,7 @@ const ThumbForEdit = ({ data }) => {
                 name="state"
                 value="0"
                 className="mr-2"
-                onClick={stat}
+                onClick={stat} 
                 checked
               />
               public
