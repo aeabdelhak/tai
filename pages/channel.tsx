@@ -48,7 +48,7 @@ export default channel;
 export async function getServerSideProps(context) {
   const id = context.query.c;
   const res = await fetch(
-    `http://ff2c283ec086.ngrok.io/api/channel.php?c=${id}`
+    `https://db336d2d3fd5.ngrok.io/api/channel.php?c=${id}`
   );
   const cInfos = await res.json();
 
