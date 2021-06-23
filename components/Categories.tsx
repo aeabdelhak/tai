@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const Categories = ({ data }) => {
+  console.log(data)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -29,19 +30,20 @@ const Categories = ({ data }) => {
  
     
     <>
-      <h1 className="uppercase p-2 z-0">Category</h1>
+      <h1 className="uppercase font-semibold p-2 z-0">{data.category}</h1>
+<div className="flex flex-wrap">
 
-      <Carousel
-        responsive={responsive}
-className="z-0"
 
-      >
-        {data.map((dt) => (
-  
+   {data.videos.map((dt)=>(
+    
+      
 
-          <Items key={dt.id} data={dt} />
-        ))}
-      </Carousel>
+     
+    <Items key={dt.idVideo} data={dt} />
+   
+    ))}
+   
+</div>
     </>
   );
 };
