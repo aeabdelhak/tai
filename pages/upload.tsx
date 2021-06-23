@@ -63,70 +63,54 @@ export default function Upload({categories}) {
   const [file, setFile] = useState();
   const [title, setTitle] = useState();
   const [desc, setdesc] = useState();
-  const [state, setstate] = useState("1");
+  const [state, setstate] = useState("0");
   const [filename, setFilename] = useState<string>();
   const [id, setid] = useState("");
   const [click, setClik] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const [show, setShow] = useState(false);
   const [category, setcategory] = useState<string>();
-  useEffect(() => {
-    if (isAuth) {
-      const video = isVideo(filename);
-      if (video) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("username", theUser.username);
-        formData.append("key", key);
-        axios
-          .post("https://db336d2d3fd5.ngrok.io/api/upload.php", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            onUploadProgress: (progressEvent) => {
-              const { loaded, total } = progressEvent;
-              let percent = Math.fround((loaded * 100) / total);
-              let percentn = Math.floor((loaded * 100) / total);
-              
-              document.getElementById("prg").style.height = percentn+"%";
-              setProgressn(percentn);
-              setShow(true);
-            },
-          })
-          .then((response) => setid(response.data.id));
-      }
-    }
-  }, [file]);
+  
      const submit = () => {
        accessing(true)
        if(category==="0")
        toast("please select a category ") 
        else{  
-       
+    
     const formData = new FormData();
+     
+    formData.append("file", file);
+    formData.append("username", theUser.username);
+    formData.append("key", key);
     formData.append("username",theUser.username)
     formData.append("title", title);
     formData.append("desc", desc);
     formData.append("state", state);
     formData.append("category", category);
     formData.append("thmb", thmb);
-    formData.append("id", id);
 
     axios
       .post("https://db336d2d3fd5.ngrok.io/api/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          let percentn = Math.floor((loaded * 100) / total);
+          
+          document.getElementById("prg").style.height = percentn+"%";
+          setProgressn(percentn);
+          setShow(true);
+        }
       })
       .then((response) => {
-        console.log(response)
-       
+        setid(response.data.id)
         if (response.data.success) {
           router.push("/play?v="+id);
         }
-    
+    accessing(false)
       });}
-      accessing(false)
+      
   };  
   const channel = (event) => {
     setKey(event.target.value);
@@ -138,7 +122,7 @@ export default function Upload({categories}) {
   return (
     <div className="pt-16 pb-10    h-screen w-full">
       {acces &&
-<div className="grid place-items-center h-full w-full fixed top-0 bg-white bg-opacity-30 backdrop-blur-md ">       
+<div className="grid place-items-center h-screen w-sceen fixed top-0 bg-white bg-opacity-30 backdrop-blur-md  z-30">       
 
        <WaveTopBottomLoading/>
 
@@ -166,15 +150,16 @@ export default function Upload({categories}) {
         <h1 className="text-center">uplaod a new video</h1>
       </div>{" "}
       <div className="w-full max-w-7xl mx-auto px-10  flex justify-end text-right p-3">
-        {id !== "" && (
+        
           <button
             className="p-2 px-4  bg-blue-600 space-x-2 text-white flex hover:rounded-full duration-600 transition  "
             onClick={submit}
+
           >
             <h1>save</h1>
             <ChevronRightIcon className="w-6 " />
           </button>
-        )}
+      
       </div>{" "}
 
       {data!=="no channel"?

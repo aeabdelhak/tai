@@ -81,7 +81,7 @@ const category= useCallback(
              <option value="0">select the category </option>
 
           {categories.map((e)=>(
-             <option value={e.category}>{e.category} </option>
+             <option value={e.idCategory}>{e.category} </option>
            ))} 
             </select>
             </div>

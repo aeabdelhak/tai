@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { BellIcon, UploadIcon, SearchIcon } from "@heroicons/react/outline";
- 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const fileUplad = ({setFile ,chId , filename}) => {
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
@@ -9,7 +10,7 @@ const fileUplad = ({setFile ,chId , filename}) => {
     }
 else
 {
-  ""
+  toast("please select the channel")
 }
   };
   const filetoUpload=(useCallback((event)=>{setFile(event.target.files[0])
@@ -21,7 +22,7 @@ else
     return (
       
           <div className=" mx-6 whitespace-nowrap items-center flex justify-center">
-
+<ToastContainer/>
             <input
               type="file"
               name="video"
