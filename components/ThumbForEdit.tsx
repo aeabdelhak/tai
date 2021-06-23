@@ -120,7 +120,7 @@ axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Con
               <input
                 type="radio"
                 name="state"
-                value="0"
+                value="1"
                 className="mr-2"
                 onClick={stat} 
                 checked
@@ -132,7 +132,7 @@ axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Con
               <input
                 type="radio"
                 name="state"
-                value="1"
+                value="0"
                 className="mr-2"
                 onClick={stat}
               />

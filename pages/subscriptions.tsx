@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import Sidebar from "../components/sidebar"
 import { MyContext } from "../utils/JWTAuth";
-import { getServerSideProps } from "./channel copy";
 import Items from "../components/Items";
 
 export default function subscriptions() {

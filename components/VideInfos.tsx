@@ -7,7 +7,10 @@ import { AiFillHeart } from "@react-icons/all-files/ai/AiFillHeart";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {NineCellLoading} from "react-loadingg"
+import { useRouter } from 'next/router'
+
 export default function VideoInfos({data}) {
+  const router=useRouter()
   console.log(data)
   const baseadd="https://db336d2d3fd5.ngrok.io"
   const [Subs,setsubs]=useState(false);
@@ -137,7 +140,7 @@ if(data)
       <div className="flex justify-between my-2">
       <div className="flex items-center ">
 
-        <div className="h-9 w-9 bg-gray-300 rounded-full"></div> 
+        <div onClick={()=>router.push("/channelvue?c="+data.idChannel)}  className="h-9 w-9 bg-gray-300 cursor-pointer rounded-full"></div> 
         <div className=" px-2 ">
           <h1 className="">{data.nameChannel}</h1>
           <h1 className="text-xs">{data.subscribers} subscribers</h1>

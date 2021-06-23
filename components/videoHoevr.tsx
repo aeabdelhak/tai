@@ -3,16 +3,17 @@ import HoverVideoPlayer from 'react-hover-video-player';
 export default function Videohover ({url}) {
   return (
     <HoverVideoPlayer
-      videoSrc={url}
+    
+      videoSrc={[{src:"https://db336d2d3fd5.ngrok.io/api/"+url.source,
+      // The MIME type of this source
+      type: 'video/mp4'}]}
       pausedOverlay={
         <img
-          src="thumbnail-image.jpg"
+          src={"https://db336d2d3fd5.ngrok.io/api/"+url.miniature}
           alt=""
           style={{
    
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
+         
           }}
         />
       }
