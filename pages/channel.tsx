@@ -10,7 +10,7 @@ import { MyContext } from "../utils/JWTAuth";
 const channel = ({ data }) => {
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
-    if(!isAuth || theUser.username!==data.channel.username)return <NotFound/>
+    if(!isAuth || theUser.username!==data.channel.username) return <NotFound/>
     else{
 
    
@@ -30,7 +30,7 @@ const channel = ({ data }) => {
           data.videos.map((dt) => (
   
 
-            <ThumbForEdit key={dt.id} data={dt} />
+            <ThumbForEdit key={dt.id} data={dt} canal={data.channel} />
           ))}
           
           

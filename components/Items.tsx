@@ -3,16 +3,15 @@ import {useRouter} from "next/router"
 import Videohover from "../components/videoHoevr"
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 const Items = ({data }) => {
-  console.log(data)
   const router=useRouter();
   const play =()=>{
 router.push("/play?v="+data.idVideo)
   }
   return (
 
-      <div onClick={play}  className="w-full md:w-64  p-2  cursor-pointer ">
-        <div className="h-36 w-full z-0 overflow-hidden    ">
-          <Videohover url={data}/>
+      <div onClick={play}  className="w-96   p-2  cursor-pointer ">
+        <div className="  z-0 overflow-hidden   item  aspect-w-16 aspect-h-9  ">
+          <Videohover preview={data.source}/>
         {/*   <Image src={"https://db336d2d3fd5.ngrok.io/api/"+data.miniature} width={1920} height={1080} layout="responsive" />  */}
         </div>
         <div>

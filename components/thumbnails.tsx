@@ -10,7 +10,7 @@ const Thumbnails = ({ data }) => {
   return (
     <div
       onClick={play}
-      className="w-full mb-3 rounded-lg group max-w-sm ml-3 mx-auto overflow-hidden h-40 relative p-2  cursor-pointer shaddow-lg grid place-items-end text-white"
+      className=" mb-3 w-96 rounded-lg group  overflow-hidden h-40 relative p-2  cursor-pointer shaddow-lg grid place-items-end text-white"
     >
       <div className=" hover:scale-105 transform w-full absolute top-0  z-0 h-full overflow-hidden   ">
         <Image

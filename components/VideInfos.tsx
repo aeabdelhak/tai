@@ -140,7 +140,10 @@ if(data)
       <div className="flex justify-between my-2">
       <div className="flex items-center ">
 
-        <div onClick={()=>router.push("/channelvue?c="+data.idChannel)}  className="h-9 w-9 bg-gray-300 cursor-pointer rounded-full"></div> 
+        <div onClick={()=>router.push("/channelvue?c="+data.idChannel)}  
+        className="h-9 w-9 bg-gray-300 cursor-pointer relative overflow-hidden rounded-full">
+         <img src={data.avatar} alt="" />
+          </div> 
         <div className=" px-2 ">
           <h1 className="">{data.nameChannel}</h1>
           <h1 className="text-xs">{data.subscribers} subscribers</h1>

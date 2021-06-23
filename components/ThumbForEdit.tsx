@@ -5,8 +5,9 @@ import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import React, { useCallback, useContext } from "react";
 import axios from "axios";
+import {GrFormView} from "react-icons/gr"
 import { MyContext } from "../utils/JWTAuth";
-const ThumbForEdit = ({ data }) => {
+const ThumbForEdit = ({ data ,canal }) => {
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const [file, setFile] = useState();
@@ -14,7 +15,6 @@ const ThumbForEdit = ({ data }) => {
   const [state, setState] = useState(data.state);
   const [desc, setdsc] = useState(data.description);
   const [load, loading] = useState(false);
-
   const stat = (e) => setState(e.target.value);
   const descr = (e) => setdsc(e.target.value);
  
@@ -191,13 +191,15 @@ axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Con
         <h1>{data.title}</h1>
         <div className="flex items-center font-light py-1 ">
           <div className="h-5 w-5 rounded-full bg-black mr-2"></div>
-          <h1>channel Name</h1>
+          <h1>{canal.nameChannel}</h1>
         </div>
         <div className="flex font-light text-xs items-center py-1">
           <ThumbUpIcon className="w-5 mr-2" />
-          <h1>15.5 k</h1>
+          <h1>{data.likes}</h1>
           <ChatAlt2Icon className="w-5 mx-2" />
-          <h1>15.5 k</h1>
+          <h1>{data.comments}</h1>
+          <GrFormView strokeWidth={1} fontSize={30} className="w-5 mx-2" />
+            <h1>{data.views}</h1>
         </div>
       </div>
     </div>

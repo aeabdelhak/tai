@@ -23,12 +23,12 @@ const Play = ({ data, videos }) => {
       <div className="grid w-full pb-10 lg:pb-0 ">
         <Sidebar />
         <div className="  w-full">
-<div onClick={activate} className="lg:hidden fixed bottom-20 right-5 h-16 w-16 items-center text-2xl text-white bg-blue-500 rounded-full z-30 flex justify-center">
+<div onClick={activate} className="lg:hidden fixed bottom-20 right-5 h-16 w-16 items-center text-2xl text-white bg-blue-500 rounded-full z-40 flex justify-center">
 <GoComment />
 </div>
          
-            <div className="lg:flex max-h-screen h-full  justyfy-between md:ml-32  w-screen     ">
-              <div className="h-full space-y-3 pt-16 w-full overflow-y-auto grid max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
+            <div className="flex  lg:flex-row flex-col px-2 pl-2  md:pl-32  w-screen h-scren     ">
+              <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
                 <VideoPlayer
                   url={"https://db336d2d3fd5.ngrok.io/api/" + videos.source}
                 />
@@ -37,7 +37,7 @@ const Play = ({ data, videos }) => {
                 <Description data={videos.descr} />
                 <Comment  id={videos.idVideo}  isActive={isActive} />
               </div>
-              <div className=" overflow-y-auto scrollbar scrollbar-thumb-gray-500 scrollbar-track-black z-0 w-full pt-16 max-w-2xl bg-gray-200">
+              <div className=" h-full space-y-3 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
                 {data.map((dt) => (
                   <Thumbnails key={dt.id} data={dt} />
                 ))}

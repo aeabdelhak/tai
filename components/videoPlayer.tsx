@@ -10,7 +10,7 @@ export default function VideoPlayer({url}){
 
  
     return (
-          <div className="  ">
+          <div className=" aspect-h-9 aspect-w-16  ">
    <div className="   ">
 
 <Player>

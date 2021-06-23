@@ -4,13 +4,11 @@ import React, {useContext} from 'react'
 import SearchBar from '../components/SearchBar';
 import Sidebar from '../components/sidebar';
 export default function Home({data}) {
- 
-
   
       return(
         <div className="grid pt-16">   
         <Sidebar/>  
-           <Content data={data} />
+       <Content data={data} />
              
         </div>
 
@@ -44,7 +42,7 @@ export const getStaticProps:GetStaticProps = async () => {
 
 
 
-  const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`)
+  const res = await fetch(`https://db336d2d3fd5.ngrok.io/api/home.php`)
   const data = await res.json()
   if (!data) {
     return {
@@ -54,7 +52,7 @@ export const getStaticProps:GetStaticProps = async () => {
 
   return {
     props: { 
-     data }, // will be passed to the page component as props
+     data:data }, // will be passed to the page component as props
   }
 
 }

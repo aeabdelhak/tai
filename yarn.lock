@@ -4066,6 +4066,11 @@ react-html5video@^2.5.1:
   resolved "https://registry.yarnpkg.com/react-html5video/-/react-html5video-2.5.1.tgz#bbc4314be1d583cb991a11ca3480e70a3c964caf"
   integrity sha1-u8QxS+HVg8uZGhHKNIDnCjyWTK8=
 
+react-icons@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
+  integrity sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==
+
 react-is@16.13.1, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -4125,6 +4130,11 @@ react-spinners@^0.11.0:
   dependencies:
     "@emotion/react" "^11.1.4"
 
+react-thumbnail-player@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-thumbnail-player/-/react-thumbnail-player-1.2.0.tgz#4e3855c0ab491f588056c628d56534c38d388fdc"
+  integrity sha512-edJ9LGaYbIXrMaYBHA+1TKFrsdNaDAezIIVA9CO/rkvnI7fywCDGonhVQsa/LjR60MRB0s+fWO7ybAHnKdpBgw==
+
 react-toastify@^7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-7.0.4.tgz#7d0b743f2b96f65754264ca6eae31911a82378db"
@@ -4141,6 +4151,11 @@ react-video-js-player@^1.1.1:
     react "^16.6.3"
     video.js "^7.4.1"
     webpack "^4.26.1"
+
+react-video-thumbnail@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-video-thumbnail/-/react-video-thumbnail-0.1.3.tgz#698dc4f4e7bebcb598425929db231a78cbcdbdcd"
+  integrity sha512-ZakEVv9RNFcziAnHHtwod5tf0yMVv4aLZ8/QsCxt1HTnKRHrlylvolPKv1hr63GCwnPu6tgPjUTDKRqfl30lOQ==
 
 react@17.0.2:
   version "17.0.2"

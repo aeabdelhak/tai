@@ -50,7 +50,7 @@ export default function Upload({categories}) {
       case "avi":
       case "mpg":
       case "mp4":
-        // etc
+       
         return true;
     }
   }
@@ -97,8 +97,6 @@ export default function Upload({categories}) {
         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
           let percentn = Math.floor((loaded * 100) / total);
-          
-          document.getElementById("prg").style.height = percentn+"%";
           setProgressn(percentn);
           setShow(true);
         }
@@ -122,30 +120,22 @@ export default function Upload({categories}) {
   return (
     <div className="pt-16 pb-10    h-screen w-full">
       {acces &&
-<div className="grid place-items-center h-screen w-sceen fixed top-0 bg-white bg-opacity-30 backdrop-blur-md  z-30">       
+<div className="grid place-items-center h-screen w-screen fixed top-0 bg-white bg-opacity-30 backdrop-blur-md  z-30">       
+<div className="p-3 w-full rounded elevation-2 bg-white max-w-md ">
+   <WaveTopBottomLoading/>
+   <h1 className="text-5xl font-bold text-gray-800">{progressen < 100 ? progressen : "done"}
+   {id && <div className="flex justify-end ">
+     <button onClick={()=>{router.reload()}} className="px-3 py-2 focus:outline-none text-blue-700">upload new video</button>
+     <button onClick={()=>{router.push("/play?v="+id)}} className="px-3 py-2 focus:outline-none text-green-700">go to video</button>
+     </div>}
+   </h1>
+</div>
 
-       <WaveTopBottomLoading/>
 
      </div>
 }
 
-      <div className="fixed overflow-hidden bottom-5 border-blue-500 border-2 right-5 w-20 h-20 grid place-items-center z-10 bg-white rounded-full ">
-<div className="absolute z-0 flex items-end h-full w-full">
-<div className="w-full bg-blue-500" id="prg"></div>
-</div>
-       <h1 className={progressen < 50 ?"text-gray-600 z-10 " :"text-white z-10" }>
-         {progressen < 100 && progressen }
-         </h1> 
-        <h1
-          className={
-            progressen == 100 
-              ? "text-center z-10 text-2xl not-sr-only transition-all duration-500 "
-              : "text-center text-2xl sr-only transition-all duration-500"
-          }
-        >
-          done
-        </h1>
-      </div>
+
       <div className="p-2  ">
         <h1 className="text-center">uplaod a new video</h1>
       </div>{" "}

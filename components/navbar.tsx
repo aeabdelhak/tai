@@ -35,7 +35,7 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer " onClick={()=>router.push("/")}>
           <img src="1.svg" alt="" className="w-6 h-6 mr-4" />
-          <h1 className="hidden md:block">Vspace</h1>
+          <h1 className="hidden sm:block">Vspace</h1>
         </div>
   <SearchBar/>        
   
@@ -63,11 +63,12 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
             </h1>
             <div className="cursor-pointer rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
 
-                
+               {theUser.avatar!==null ?
                  <Image src={theUser.avatar}  layout="responsive" height={30} width={30} />
+                 :
                  <h1 className="text-xs absolute top-1/2 z-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   {user.map((e)=>e)}
-                  </h1> 
+                  </h1> }
             </div>
           </div>
           </div>

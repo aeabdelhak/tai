@@ -36,7 +36,7 @@ const Profile = ({ active, setActive }) => {
     
   }
    
-    
+  get()
   
  
 
@@ -69,7 +69,7 @@ const Profile = ({ active, setActive }) => {
           <h1>{theUser.name}</h1>
           <h1>{theUser.email}</h1>
 
-          <div className=" flex items-center px-10 py-2 " onClick={get} >
+          <div className=" flex items-center px-10 py-2 "  >
             <CollectionIcon className="w-5  mx-auto xl:mx-0 xl:mr-4 " />
             <h1>Your Channels</h1>
           </div>
