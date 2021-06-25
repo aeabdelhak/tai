@@ -14,7 +14,7 @@ const Sidebar = () => {
     const {isAuth,theUser,showLogin} = rootState;
   return (
     <div className={router.pathname == "/play" ? 
-    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
+    "md:h-screen bottom-0 w-full h-12 flex z-20 md:pt-20 font-light fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
     :
     "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
       <div className="  grid grid-flow-col md:grid-flow-row w-full  ">
@@ -54,19 +54,7 @@ const Sidebar = () => {
           </div>
         ) }
       </div>
-      <hr />
-      <div className="place-self-end w-full ">
-      {isAuth ?  (
-        <div
-          className={
-            router.pathname == "/profile" ? "navlink active" : "navlink"
-          }
-        >
-          <CogIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
-          <h1 className={router.pathname == "/play"  ? "hidden":"hidden xl:block"}>profile</h1>
-        </div>
-      ):("")}
-      </div>
+
     </div>
   );
 };

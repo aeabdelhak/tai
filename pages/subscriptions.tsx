@@ -9,7 +9,7 @@ export default function subscriptions() {
     const [data,setdata]=useState<any>()
 
 const get = async()=>{
-    const datas = await axios.get("https://db336d2d3fd5.ngrok.io/api/subscribtions.php?user="+theUser.username);
+    const datas = await axios.get("http://localhost/api/subscribtions.php?user="+theUser.username);
     setdata(datas.data)
  
 }

@@ -27,7 +27,7 @@ formdata.append("thmb",file)
 formdata.append("state",state)
 formdata.append("id",data.idVideo)
 formdata.append("username",theUser.username)
-axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Content-Type": "multipart/form-data",}})
+axios.post("http://localhost/api/editv.php",formdata,{headers:{"Content-Type": "multipart/form-data",}})
 .then(res=>
 {  if (res.data.success){
       setTimeout(() => {
@@ -64,7 +64,7 @@ axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Con
    formData.append("id",data.idVideo)
    formData.append("delete","")
    
-   axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php",formData)
+   axios.post("http://localhost/api/settings.php",formData)
    .then(result=>{
      if (result.data.success)
      router.reload()
@@ -157,7 +157,7 @@ axios.post("https://db336d2d3fd5.ngrok.io/api/editv.php",formdata,{headers:{"Con
       }
 
       <div className=" h-32 w-72 z-0   overflow-hidden ">
-        <img src={"https://db336d2d3fd5.ngrok.io/api/" + data.miniature} />
+        <img src={"127.0.0.1/api/" + data.miniature} />
       </div>
       <div className="w-full">
         <div className="flex w-full relative justify-end  ">

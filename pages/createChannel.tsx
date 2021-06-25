@@ -26,12 +26,12 @@ const createChannel = () => {
       formData.append("name", name);
       formData.append("desc", desc);
       formData.append("username", theUser.username);
-      axios.post("http://ff2c283ec086.ngrok.io/api/channel.php", formData, {
+      axios.post("http://localhost/api/channel.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       }).then(res=>{console.log(res);
-        if(res.data.success) router.push("/channel/?c="+res.data.idChannel) });
+        if(res.data.success) router.push("/channelvue/?c="+res.data.idChannel) });
       setcre(false);
     };
     return (
@@ -44,21 +44,6 @@ const createChannel = () => {
      </div>
     } 
 
-        <div className="">
-          <div className="h-96 relative bg-gray-600 w-full overflow-hidden grid place-items-center">
-            <Image
-              src="https://picsum.photos/1920/1080"
-              layout="fill"
-              className="z-0 "
-            />
-            <div className=" grid place-items-center z-10 ">
-              <div className="h-32 w-32 rounded-full relative overflow-hidden shadow-xl z-0 bg-white">
-                <Image src="https://picsum.photos/200/200" layout="fill" />
-              </div>
-              <h1 className="chtitle">{name}</h1>
-            </div>
-          </div>{" "}
-        </div>
 
         <div className=" relative grid  mx-auto  p-3 w-full max-w-xl text-center ">
           <form action="" method="post"

@@ -1,12 +1,32 @@
-const EachNotification = ({channelName}) => {
+const EachNotification = ({data}) => {
+    if(data){
+let dat=data.username || data.name
+       let user=dat.split(' ').map(i => i.charAt(0))
+  
+  if(data.cmt)
     return (
-        <div className="w-full py-1  text-sm flex items-center">
-            <div className="h-10 mr-2 w-10 bg-gray-200 rounded-full">
-                {/* image */}
+        <div className="w-full py-1  text-xs italic flex items-center">
+            <div className="h-6 mr-2 w-6 overflow-hidden bg-gray-200 rounded-full">
+                <img src={data.avatar}  width={60} height={60} className="h-full" />
             </div>
-            {channelName} has droped a new video
+           {data.username} commented to your vde
+        </div>
+    );
+    else
+    return (
+        <div className="w-full py-1  text-xs italic flex items-center">
+            <div className="h-6 mr-2 w-6 bg-gray-200 overflow-hidden rounded-full grid place-items-center">
+                {data.avatar ?
+ <img src={data.avatar} alt="" width={60} height={60} className="h-full" />
+ :
+ user.map((e)=>e)
+                
+                }
+               
+            </div>
+           {data.name} uploaded new video
         </div>
     );
 }
-
+  }
 export default EachNotification;

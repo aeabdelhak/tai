@@ -22,7 +22,7 @@ event.preventDefault();
     formData.append("comment",comment)
     formData.append("idVideo",id)
     formData.append("username",theUser.username)
-    axios.post("https://db336d2d3fd5.ngrok.io/api/addComment.php",formData,{
+    axios.post("http://localhost/api/addComment.php",formData,{
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -42,9 +42,10 @@ event.preventDefault();
       <div className="flex space-x-2 items-center w-full p-2 ">
        
         <div className="w-8 h-8 rounded-full relative overflow-hidden bg-gray-200">
-<Image
+<img
  
-  layout="fill"
+  className="h-full"
+
   src={theUser.avatar}
   alt=""
 />

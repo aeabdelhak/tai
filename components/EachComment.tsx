@@ -1,13 +1,17 @@
 import Image from 'next/image'
 
 const EachComment = ({comment}) => {
+  let user=comment.username.split(' ').map(i => i.charAt(0))
 
   return (
     <div className=" my-2 bg-white shadow-md">
       <div className="flex space-x-2 items-center w-full p-2 ">
-       <div className="w-8 h-8 relative grid place-items-center overflow-hidden rounded-full bg-gray-200">
-
- <Image src={comment.avatar} layout="fill"/>   
+       <div className="w-8 h-8 relative grid place-items-center overflow-hidden rounded-full  bg-gray-200">
+{comment.avatar ?
+ <img src={comment.avatar} className="h-full"/>   
+:
+user.map((e)=>e)
+}
        </div>
 
         <div className="w-full">

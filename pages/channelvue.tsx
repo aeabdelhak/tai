@@ -17,7 +17,7 @@ import { NineCellLoading } from "react-loadingg";
 import 'react-toastify/dist/ReactToastify.css';
 
 const channel = ({ data }) => {
-  const baseadd = "https://db336d2d3fd5.ngrok.io";
+  const baseadd = "http://localhost/";
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const [Subs, setsubs] = useState(false);
@@ -235,7 +235,7 @@ export default channel;
 export async function getServerSideProps(context) {
   const id = context.query.c;
   const res = await fetch(
-    `https://db336d2d3fd5.ngrok.io/api/channel.php?c=${id}`
+    `http://localhost/api/channel.php?c=${id}`
   );
   const cInfos = await res.json();
 

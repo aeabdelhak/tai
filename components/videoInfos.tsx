@@ -41,7 +41,6 @@ const VideoInfos = ({setcategory,categories,clicked,click, thmb, setthumb,settit
   )
   const submit=()=>{
     ()=>useCallback(()=>click(!clicked),[click])
-    console.log(clicked)
   }
 const category= useCallback(
   (event) => {

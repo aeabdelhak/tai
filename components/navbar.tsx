@@ -23,15 +23,16 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
     setnotshow(true);
   }, [setnotshow]);
   const router = useRouter();
-
   let user:any=""
  if(isAuth){
+console.log(theUser.avatar)
+
     user= theUser.name.split(' ').map(i => i.charAt(0))
  }
 
 
   return (
-    <div className="w-full  z-40 fixed top-0 ">
+    <div className="w-full  z-50 fixed top-0 ">
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer " onClick={()=>router.push("/")}>
           <img src="1.svg" alt="" className="w-6 h-6 mr-4" />
@@ -61,10 +62,11 @@ function Navbar({ active, setActive ,notshow ,setnotshow}) {
             <h1 className="cursor-pointer hidden md:block">
               {theUser.username}
             </h1>
-            <div className="cursor-pointer rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
+            <div className="cursor-pointer  rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
 
                {theUser.avatar!==null ?
-                 <Image src={theUser.avatar}  layout="responsive" height={30} width={30} />
+  
+  <img src={theUser.avatar} className="h-full"   />
                  :
                  <h1 className="text-xs absolute top-1/2 z-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   {user.map((e)=>e)}

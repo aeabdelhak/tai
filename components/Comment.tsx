@@ -13,7 +13,7 @@ console.log(loading)
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   async function cmnt() {
-    const data = await axios.get("https://db336d2d3fd5.ngrok.io/api/getVideo.php?getC=v&&id=" +id);
+    const data = await axios.get("http://localhost/api/getVideo.php?getC=v&&id=" +id);
     setComments(data.data);
     
     

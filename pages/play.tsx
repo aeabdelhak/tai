@@ -30,15 +30,15 @@ const Play = ({ data, videos }) => {
             <div className="flex  lg:flex-row flex-col px-2 pl-2  md:pl-32  w-screen h-scren     ">
               <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
                 <VideoPlayer
-                  url={"https://db336d2d3fd5.ngrok.io/api/" + videos.source}
+                  url={"http://localhost/api/" + videos.source}
                 />
                 <VideoInfos data={videos} />
                 <hr />
                 <Description data={videos.descr} />
                 <Comment  id={videos.idVideo}  isActive={isActive} />
               </div>
-              <div className=" h-full space-y-3 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
-                {data.map((dt) => (
+              <div className=" h-full gap-2 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
+          {videos.videos.map((dt) => (
                   <Thumbnails key={dt.id} data={dt} />
                 ))}
               </div>
@@ -57,19 +57,14 @@ export default Play;
 
 export async function getServerSideProps(ctx) {
   const video = ctx.query.v;
-  const req1 = await fetch("https://db336d2d3fd5.ngrok.io/api/getVideo.php?getV=v&&id=" + video);
+  const req1 = await fetch("http://localhost/api/getVideo.php?getV=v&&id=" + video);
   const videos = await req1.json();
-  const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
-  const data = await res.json();
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+
+
 
   return {
     props: {
-      data,
+   
       videos,
       
     },

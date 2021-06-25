@@ -9,7 +9,8 @@ console.log(data)
   return (
     <div className="grid pt-16">   
     <Sidebar/>  
-    <div className="flex flex-wrap">
+    <div className="md:ml-28 pb-10 xl:ml-80">
+    <div className="flex  flex-wrap">
 
 
 {data.map((dt)=>(
@@ -22,7 +23,7 @@ console.log(data)
  ))}
 
 </div>
-         
+</div>     
     </div>
 
 
@@ -32,10 +33,10 @@ console.log(data)
 }
 
 
-export const getStaticProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
 
 
-  const res = await fetch(`https://db336d2d3fd5.ngrok.io/api/trending.php`)
+  const res = await fetch(`http://localhost/api/trending.php`)
   const data = await res.json()
   if (!data) {
     return {

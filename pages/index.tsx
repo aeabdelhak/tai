@@ -36,13 +36,13 @@ export default function Home({data}) {
 
 
 
-export const getStaticProps:GetStaticProps = async () => {
+export async function getServerSideProps(ctx) {
 
  
 
 
 
-  const res = await fetch(`https://db336d2d3fd5.ngrok.io/api/home.php`)
+  const res = await fetch(`http://localhost/api/home.php`)
   const data = await res.json()
   if (!data) {
     return {

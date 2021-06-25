@@ -44,7 +44,7 @@ export async function getServerSideProps(context) {
 
 
   const res = await fetch(
-    `https://db336d2d3fd5.ngrok.io/api/Dashboard.php?c=${id}`
+    `http://localhost/api/Dashboard.php?c=${id}`
   );
   const infos = await res.json();
 

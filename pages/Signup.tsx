@@ -3,8 +3,15 @@ import React, { useState, useCallback, useEffect } from "react";
 import Cookie from "js-cookie";
 const axios = require("axios");
 import { useRouter } from "next/router";
-const Signup = () => {
+import { MyContext } from "../utils/JWTAuth";
+import { useContext } from "react";
 
+
+
+const Signup = () => {
+    const { rootState, logoutUser } = useContext(MyContext);
+    const { isAuth, theUser, showLogin } = rootState; 
+    const {toggleNav,registerUser} = useContext(MyContext);
 
 const router=useRouter();
         var [username, setUsername] = useState("");
@@ -14,11 +21,67 @@ const router=useRouter();
         var [name, setName] = useState("");
         var [adresse, setAdresse] = useState("");
         const [user, setUser] = useState();
-        useEffect(() => {
-            Cookie.set("user", user ,{ expires: 365 });
-        }, [user]);
-      
+
+        const initialState = {
+            userInfo:{
+                name:'',
+                email:'',
+                password:'',
+                username:'',
+                adresse:'',
+            },
+            errorMsg:'',
+            successMsg:'',
+        }
+        const [state,setState] = useState(initialState);
+
+
+
         const [logLoad,setLogload]=useState(false)
+
+
+
+
+        const submitForm = async (event) => {
+            event.preventDefault();
+            const data = await registerUser(state.userInfo);
+            
+            if(data.success){
+
+                setState({
+                    ...initialState,
+                    successMsg:data.message,
+                });
+                localStorage.setItem("loginToken", data.success);
+                router.push("/")
+
+            }
+            else{
+                setmessage(data)
+            }
+        }
+    
+    
+        const onChangeValue = (e) => {
+            setState({
+                ...state,
+                userInfo:{
+                    ...state.userInfo,
+                    [e.target.name]:e.target.value
+                }
+            });
+        }
+    
+        let successMsg ;
+        let errorMsg ;
+
+
+
+
+
+
+
+
         return (
             <div
                 className=
@@ -34,18 +97,22 @@ const router=useRouter();
                 }
             
                 <div className=" max-w-xl w-full mx-auto">
-                    <h1 className="p-16 text-6xl uppercase">logo</h1>
+                    <h1 className="p-16 text-center text-4xl w-full uppercase">
+                        <img src="1.svg" alt="" className="mx-auto h-32" />
+                    </h1>
                     <h1 className="my-2">LOG IN</h1>
                     <h1 className="text-sm text-red-500">{message}</h1>
     
                     <hr />
+                    <form onSubmit={submitForm} noValidate>
                     <div className=" py-3 text-left">
                         <h1 className="text-xs">full name: </h1>
                         <input
                             type="text"
-                            name="password"
-                            onChange={(event) => setName(event.target.value)}
-                            placeholder="fullName"
+                            name="name"
+                            value={state.userInfo.name} 
+                            onChange={onChangeValue} 
+                            placeholder="Enter your name"
                             className="w-full  border-b focus:outline-none p-2"
                         />
                     </div>
@@ -53,9 +120,9 @@ const router=useRouter();
                         <h1 className="text-xs">Username: </h1>
                         <input
                             type="text"
-                            placeholder="username"
                             name="username"
-                            onChange={(event) => setUsername(event.target.value)}
+                            value={state.userInfo.username} onChange={onChangeValue} 
+                            placeholder="Enter your username"
                             className="w-full  border-b focus:outline-none p-2"
                         />
                     </div>
@@ -64,8 +131,9 @@ const router=useRouter();
                         <input
                             type="password"
                             name="password"
-                            onChange={(event) => setPassword(event.target.value)}
-                            placeholder="password"
+                            value={state.userInfo.password} 
+                            onChange={onChangeValue} 
+                            placeholder="Enter your password"
                             className="w-full  border-b focus:outline-none p-2"
                         />
                     </div>
@@ -74,8 +142,9 @@ const router=useRouter();
                         <input
                             type="email"
                             name="email"
-                            onChange={(event) => setEmail(event.target.value)}
-                            placeholder="email"
+                            value={state.userInfo.email} 
+                            onChange={onChangeValue}
+                            placeholder="Enter your email"
                             className="w-full  border-b focus:outline-none p-2"
                         />
                     </div>
@@ -84,8 +153,9 @@ const router=useRouter();
                         <input
                             type="adresse"
                             name="adresse"
-                            onChange={(event) => setAdresse(event.target.value)}
-                            placeholder="adresse"
+                            value={state.userInfo.adresse} 
+                            onChange={onChangeValue}
+                            placeholder="Enter your adresse"
                             className="w-full  border-b focus:outline-none p-2"
                         />
                     </div>
@@ -93,48 +163,21 @@ const router=useRouter();
                  
                     <div className="flex items-center py-3">
                         <input
-                            type="button"
-                            onClick={log}
+                            type="submit"
                             value="SIGN UP"
                             className="w-full focus:outline-none  p-2 bg-blue-600 text-white focus:ring"
                         />
                     </div>
+                    </form>
                 </div>
             </div>
     );
-    async function log() {
-        setLogload(true)
-        
-        const res = await axios
-            .post("http://e75113c62b2d.ngrok.io/api/signup.php", {
-                username,
-                password,
-                email,
-                name,
-                adresse
-            })
 
-            .then((response) => {
-                if (response.data.username){
-                    setUser(response.data.username);
-                  let user =response.data;
-                    fetch("/api/login",{
-                        method:"POST",
-                        headers: {
-                            "content-type":"aplication.Json"
-                        },
-                        body:JSON.stringify({user})
-                       
-                    });
-                    router.push("/")
-                }
-                else
-                setmessage(response.data)
 
-                });
-        setLogload(false)
-            
-    }
+ 
+
+
+    
 }
 
 export default Signup;

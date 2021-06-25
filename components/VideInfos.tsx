@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 export default function VideoInfos({data}) {
   const router=useRouter()
   console.log(data)
-  const baseadd="https://db336d2d3fd5.ngrok.io"
+  const baseadd="http://localhost"
   const [Subs,setsubs]=useState(false);
   const [liks,setlikes]=useState<boolean>(false);
   const [loading,isLoading]=useState(false)

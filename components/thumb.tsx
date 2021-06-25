@@ -9,7 +9,7 @@ const Thumb = ({data }) => {
 
       <div onClick={()=>{router.push("/play?v="+data.idVideo)}}  className="w-full md:w-64  p-2  cursor-pointer ">
         <div className=" md:h-36 md:w-64 z-0 h-full  overflow-hidden ">
-        <img src={"https://db336d2d3fd5.ngrok.io/api/"+data.miniature}  /> 
+        <img src={"http://localhost/api/"+data.miniature}  /> 
         </div>
         <div>
           <h1>{data.title}</h1>

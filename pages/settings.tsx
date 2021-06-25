@@ -65,7 +65,7 @@ const avtivation=()=>{
     const formdata=new FormData
     formdata.append("id",data.idChannel)
     formdata.append("deletec","")
-    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
+    axios.post("http://localhost/api/settings.php", formdata)
     .then(res => {
       if (res.data.success)
       setTimeout(() => {
@@ -200,7 +200,7 @@ export default settings;
 export async function getServerSideProps(context) {
   const id = context.query.c;
   const res = await fetch(
-    `https://db336d2d3fd5.ngrok.io/api/Dashboard.php?c=${id}`
+    `http://localhost/api/Dashboard.php?c=${id}`
   );
   const infos = await res.json();
 

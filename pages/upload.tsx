@@ -27,7 +27,7 @@ export default function Upload({categories}) {
     
       const token = theUser.username;
       const res = await fetch(
-        `https://db336d2d3fd5.ngrok.io/api/getChannels.php?user=${token}`,
+        `http://localhost/api/getChannels.php?user=${token}`,
         {
           headers: { Authorization: token },
         }
@@ -90,7 +90,7 @@ export default function Upload({categories}) {
     formData.append("thmb", thmb);
 
     axios
-      .post("https://db336d2d3fd5.ngrok.io/api/upload.php", formData, {
+      .post("http://localhost/api/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -102,9 +102,10 @@ export default function Upload({categories}) {
         }
       })
       .then((response) => {
-        setid(response.data.id)
+        console.log(response.data)
         if (response.data.success) {
-          router.push("/play?v="+id);
+        setid(response.data.id)
+
         }
     accessing(false)
       });}
@@ -113,11 +114,18 @@ export default function Upload({categories}) {
   const channel = (event) => {
     setKey(event.target.value);
   };
+
+function loading() {
+  
+}
+
+  
  if (isAuth) {
       get();
 
 
-  return (
+  return (<>
+
     <div className="pt-16 pb-10    h-screen w-full">
       {acces &&
 <div className="grid place-items-center h-screen w-screen fixed top-0 bg-white bg-opacity-30 backdrop-blur-md  z-30">       
@@ -152,7 +160,7 @@ export default function Upload({categories}) {
       
       </div>{" "}
 
-      {data!=="no channel"?
+      {data ?
 
      
       <div className="mt-8 bg-white rounded-lg shadow max-w-7xl mx-auto">
@@ -209,7 +217,7 @@ export default function Upload({categories}) {
     </div>
        }
 </div>
-  );
+</>  );
 }
 else {
   return(
@@ -226,7 +234,7 @@ export async function getServerSideProps(ctx) {
 
  
  
-const req2 = await fetch("https://db336d2d3fd5.ngrok.io/api/categories.php");
+const req2 = await fetch("http://localhost/api/categories.php");
 const categories = await req2.json();
 
 
