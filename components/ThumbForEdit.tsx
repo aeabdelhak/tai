@@ -157,7 +157,7 @@ axios.post("http://localhost/api/editv.php",formdata,{headers:{"Content-Type": "
       }
 
       <div className=" h-32 w-72 z-0   overflow-hidden ">
-        <img src={"127.0.0.1/api/" + data.miniature} />
+        <img src={ data.miniature} />
       </div>
       <div className="w-full">
         <div className="flex w-full relative justify-end  ">

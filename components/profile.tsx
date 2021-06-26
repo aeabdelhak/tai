@@ -31,17 +31,25 @@ const Profile = ({ active, setActive }) => {
         setdata(res.data);
       });
   };
-
+useEffect(()=>{
   get();
+  
+},[router])
+let user=theUser.name.split(' ').map(i => i.charAt(0))
 
   const stateprofilechange = useCallback(() => {
     setActive(false);
   }, [setActive]);
   const hide = useCallback(() => {
-    setTimeout(() => {
+   
       setActive(false);
       
-    }, 500);
+
+  }, [setActive]);
+  const show = useCallback(() => {
+    
+      setActive(true);
+
   }, [setActive]);
 
   return (
@@ -54,6 +62,7 @@ const Profile = ({ active, setActive }) => {
         }
 
         onMouseLeave={hide}
+        onMouseEnter={show}
       >
         <div>
 
@@ -64,13 +73,17 @@ const Profile = ({ active, setActive }) => {
           />
 
           <div className="grid place-items-center">
-            <div className="cursor-pointer rounded-full w-32 relative overflow-hidden bg-gray-200">
+            <div className="cursor-pointer rounded-full w-24 h-24 my-3 grid place-items-center relative overflow-hidden bg-gray-200">
+              {theUser.avatar ?
+              
+              
               <Image
                 src={theUser.avatar}
-                layout="responsive"
-                height={30}
-                width={30}
+                layout="fill"
+              
               />
+              
+              :user.map((e)=>e)}
             </div>
           </div>
           <h1>{theUser.name}</h1>

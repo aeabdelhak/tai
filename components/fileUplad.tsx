@@ -13,8 +13,31 @@ else
   toast("please select the channel")
 }
   };
-  const filetoUpload=(useCallback((event)=>{setFile(event.target.files[0])
+
+  function getExtension(filename) {
+    const file = String(filename);
+
+    var parts = file.split(".");
+    return parts[parts.length - 1];
+  }
+  function isVideo(filename) {
+    var ext = getExtension(filename);
+    switch (ext.toLowerCase()) {
+      case "m4v":
+      case "avi":
+      case "mpg":
+      case "mp4":
+       
+        return true;
+    }
+  }
+  const filetoUpload=(useCallback((event)=>{
+    if(isVideo(event.target.value)){
+    setFile(event.target.files[0])
     filename(event.target.value)
+  }else 
+  toast.error("type of data not allowed")
+
 },[setFile])) ;
   const file=()=>{
 

@@ -5,6 +5,8 @@ import {
   CogIcon,
   KeyIcon,
 } from "@heroicons/react/outline";
+import Image from 'next/image'
+
 import { UploadIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import router from "next/router";
@@ -25,16 +27,9 @@ export default function profile() {
   let email=""
   let username=""
   let adresse=""
-  if (isAuth){
-     name=theUser.name
-  email=theUser.email
-   username=theUser.username
-     adresse=theUser.adresse
-  }
 
 
-
-  const initialState = {
+  let initialState = {
     
     userInfo: {
       name: name,
@@ -43,6 +38,19 @@ export default function profile() {
       adresse: adresse,
     },
   };
+useEffect(()=>{
+  if(isAuth){
+    
+  
+        state.userInfo.name= theUser.name
+        state.userInfo.email = theUser.email
+        state.userInfo.username= theUser.username
+        state.userInfo.adresse= theUser.adresse
+     
+   
+    }
+},[isAuth])
+
   const [file, setFile] = useState<any>("");
   const [message, setmessage] = useState("");
   const [password, setpassword] = useState("");
@@ -133,7 +141,7 @@ const pass=()=>{
                 <input
                   type="text"
                   name="username"
-                  defaultValue={theUser.username}
+                  defaultValue={state.userInfo.username}
                   onChange={onChangeValue}
                   className="rounded border-gray-300 w-full "
                 />
@@ -143,7 +151,7 @@ const pass=()=>{
                 <input
                   type="text"
                   name="name"
-                  defaultValue={theUser.name}
+                  defaultValue={state.userInfo.name}
                   onChange={onChangeValue}
                   className="rounded border-gray-300 w-full "
                 />
@@ -153,7 +161,7 @@ const pass=()=>{
                 <input
                   type="text"
                   name="adresse"
-                  defaultValue={theUser.adresse}
+                  defaultValue={state.userInfo.adresse}
                   onChange={onChangeValue}
                   className="rounded border-gray-300 w-full "
                 />
@@ -163,7 +171,7 @@ const pass=()=>{
                 <input
                   type="email"
                   name="email"
-                  defaultValue={theUser.email}
+                  defaultValue={state.userInfo.email}
                   onChange={onChangeValue}
                   className="rounded border-gray-300 w-full "
                 />
@@ -219,8 +227,8 @@ const pass=()=>{
           <div className="max-w-2xl bg-white elevation-2 p-2 mx-auto rounded flex flex-col justify-between">
             <div className="">
               {/* showing informatons */}
-              <div className="h-20 w-20 rounded-full overflow-hidden mx-auto bg-gray-100 elevation-2">
-                <img src="https://picsum.photos/200" alt="" />
+              <div className="h-20 relative w-20 rounded-full overflow-hidden mx-auto bg-gray-100 elevation-2">
+                <Image src={theUser.avatar} layout="fill" />
               </div>
               <div className="flex gap-2 items-center justify-evenly flex-wrap p-1 border-b border-gray-600 my-2">
                 <div className="flex gap-1">
@@ -248,24 +256,14 @@ const pass=()=>{
                 </div>
                 <h1 className="text-base italic">edit your password</h1>
               </div>
-              <div className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
-                <div>
-                  <CollectionIcon width={16} strokeWidth={1} />
-                </div>
-                <h1 className="text-base italic">your Channels</h1>
-              </div>
-              <div className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
+       
+              <div onClick={()=>{router.push("createChannel")}} className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
                 <div>
                   <CollectionIcon width={16} strokeWidth={1} />
                 </div>
                 <h1 className="text-base italic">create a Channel</h1>
               </div>
-              <div className="p-2 cursor-pointer  my-2 hover:bg-gray-100 text-red-500 items-center gap-2  bg-white rounded flex ">
-                <div>
-                  <TrashIcon width={16} strokeWidth={1} />
-                </div>
-                <h1 className="text-base italic">delete your Account</h1>
-              </div>
+
             </div>
           </div>
         </div>

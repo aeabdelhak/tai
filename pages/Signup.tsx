@@ -52,8 +52,7 @@ const router=useRouter();
                     ...initialState,
                     successMsg:data.message,
                 });
-                localStorage.setItem("loginToken", data.success);
-                router.push("/")
+                router.push("Login")
 
             }
             else{

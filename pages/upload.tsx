@@ -9,7 +9,7 @@ import VideoInfos from "../components/videoInfos";
 import axios from "axios";
 import { GetStaticProps } from "next";
 import Image from "next/image";
-import { WaveTopBottomLoading } from 'react-loadingg';
+import { ThreeHorseLoading } from 'react-loadingg';
 import router from "next/router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,10 +18,12 @@ import {
   PhotographIcon,
   ChevronRightIcon,
 } from "@heroicons/react/outline";
+import WaitPage from "../components/wait";
 export default function Upload({categories}) {
   const { rootState, logoutUser, getchannels } = useContext(MyContext);
   const { isAuth, theUser, showLogin, channels } = rootState;
   const [data, setdata] = useState<any>();
+  const [wait, setwait] = useState(true);
 
   const get = async () => {
     
@@ -37,23 +39,7 @@ export default function Upload({categories}) {
     
     
   };
-  function getExtension(filename) {
-    const file = String(filename);
 
-    var parts = file.split(".");
-    return parts[parts.length - 1];
-  }
-  function isVideo(filename) {
-    var ext = getExtension(filename);
-    switch (ext.toLowerCase()) {
-      case "m4v":
-      case "avi":
-      case "mpg":
-      case "mp4":
-       
-        return true;
-    }
-  }
  
 
   const[acces,accessing]=useState(false)
@@ -102,12 +88,11 @@ export default function Upload({categories}) {
         }
       })
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data.id)
         if (response.data.success) {
         setid(response.data.id)
 
         }
-    accessing(false)
       });}
       
   };  
@@ -118,21 +103,35 @@ export default function Upload({categories}) {
 function loading() {
   
 }
-
+useEffect(()=>{
+  setwait(true);
+  setTimeout(() => {
+  setwait(false);
+    
+}, 2000);},[isAuth])
+useEffect(()=>{
+  if(isAuth)
+  get() }
+  ,[isAuth])   
   
  if (isAuth) {
-      get();
+
+ 
 
 
   return (<>
 
     <div className="pt-16 pb-10    h-screen w-full">
+      {wait && <WaitPage/>}
       {acces &&
 <div className="grid place-items-center h-screen w-screen fixed top-0 bg-white bg-opacity-30 backdrop-blur-md  z-30">       
 <div className="p-3 w-full rounded elevation-2 bg-white max-w-md ">
-   <WaveTopBottomLoading/>
-   <h1 className="text-5xl font-bold text-gray-800">{progressen < 100 ? progressen : "done"}
-   {id && <div className="flex justify-end ">
+<div style={{width:progressen+"%"}} className=" transition duration-500 ease-in-out h-2 bg-blue-500 rounded-full "></div>
+
+   <h1 className="text-2xl font-bold text-center text-green-800">{progressen < 100 ? <h1 className="">{progressen}</h1> :<h1 className="text-base p-2 text-center ">
+     video has been uploaded successfuly
+     </h1>}
+   {id && <div className="flex justify-end text-sm ">
      <button onClick={()=>{router.reload()}} className="px-3 py-2 focus:outline-none text-blue-700">upload new video</button>
      <button onClick={()=>{router.push("/play?v="+id)}} className="px-3 py-2 focus:outline-none text-green-700">go to video</button>
      </div>}
@@ -202,6 +201,7 @@ function loading() {
       </div>
       :
       <div className=" bg-gray-300 h-full w-full items-center flex justify-center space-x-2">
+        {wait && <WaitPage/>}
       <div className="space-y-4">
          <h1 className="text-6xl">
     you haven‘t created a channel yet      </h1>
@@ -221,7 +221,9 @@ function loading() {
 }
 else {
   return(
+    
   <div className="w-screen h-screen grid place-content-center">
+    {wait && <WaitPage/>}
 <h1 className="text-4xl">
   you re not allowed to uplad content
 </h1>

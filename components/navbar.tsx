@@ -36,7 +36,7 @@ console.log(theUser.avatar)
       <div className="w-full z-50 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer " onClick={()=>router.push("/")}>
           <img src="1.svg" alt="" className="w-6 h-6 mr-4" />
-          <h1 className="hidden sm:block">Vspace</h1>
+          <h1 className="hidden lg:block">Vspace</h1>
         </div>
   <SearchBar/>        
   
@@ -56,17 +56,17 @@ console.log(theUser.avatar)
          
 
           <div
-            className="flex space-x-2 items-center  w-auto overflow-hidden rounded-full p-1 px-3"
+            className="flex space-x-2 items-center  w-auto overflow-hidden rounded-full p-1 px-1"
             onClick={stateprofilechange}
           >
-            <h1 className="cursor-pointer hidden md:block">
+            <h1 className="cursor-pointer hidden lg:block">
               {theUser.username}
             </h1>
-            <div className="cursor-pointer  rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
+            <div className="cursor-pointer   rounded-full grid place-items-center h-10 w-10 relative overflow-hidden bg-gray-200">
 
                {theUser.avatar!==null ?
   
-  <img src={theUser.avatar} className="h-full"   />
+  <Image src={theUser.avatar} layout="fill" className="h-full"   />
                  :
                  <h1 className="text-xs absolute top-1/2 z-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   {user.map((e)=>e)}

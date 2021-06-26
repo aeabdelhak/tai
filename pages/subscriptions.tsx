@@ -13,10 +13,15 @@ const get = async()=>{
     setdata(datas.data)
  
 }
+useEffect(()=>{
+    if(isAuth)
+    get()    
+   },[isAuth])
 console.log(data)
     if (isAuth)
     {
-        get()
+
+       
    
         return (
             <>
@@ -54,6 +59,7 @@ console.log(data)
 import { GetStaticProps } from 'next'
 import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
     const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`)

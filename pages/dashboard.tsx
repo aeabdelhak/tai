@@ -5,12 +5,13 @@ import LastLike from "../components/LastLike";
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
 import NotFound from "../components/NotFound";
+import Subs from "../components/subs";
  const Dashboard=({data,id})=> {
  const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
 if(data){
 
-
+console.log(data)
   if(!isAuth ||theUser.username!==data.username )return <NotFound/>
     else
   return (
@@ -25,8 +26,8 @@ if(data){
           <DashItem number={data.commentsc} what={"comments"} />
 
           <LastComment data={data.comments} />
-          <LastLike />
-          <LastLike />
+          <LastLike data={data.like && data.like} />
+          <Subs data={data.subs && data.subs} />
         </div>
       </div>
     </>

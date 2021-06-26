@@ -7,7 +7,10 @@ module.exports = {
  
   },
   variants: {
-    extend: {},
+    extend: {
+      display:["hover"],
+      zIndex:["hover"]
+    },
   },
   plugins: [
     require('tailwindcss-pseudo-elements'),

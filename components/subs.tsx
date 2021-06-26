@@ -1,24 +1,23 @@
 import router from "next/router";
 import Image from 'next/image'
 
-const LastLike = ({data}) => {
+const Subs = ({data}) => {
 
     return (
         <div className="h-96 bg-white col-span-1 p-2 elevation-2  overflow-hidden  rounded-lg">
-        <h1 >last likes:</h1>
+        <h1 >last subs:</h1>
         <hr/>
         <div
         className="h-full overflow-y-auto pb-4 scrollbar-thin scrollbar-track-gray-300">
             {data && data.map((e)=>(
 
                      <div
-          onClick={() => router.push("/play?v=" + e.idVideo)}
-          className="hover:bg-gray-100 cursor-pointer w-full py-1  text-xs italic flex items-center"
+          className="w-full py-1  text-xs italic flex items-center"
         >
           <div className="h-6 mr-2 relative w-6 overflow-hidden bg-gray-200 rounded-full">
             <Image src={e.avtr} layout="fill" />
           </div>
-          {e.username} liked the video {e.title}
+          {e.username}
         </div>      
             ))}
 
@@ -27,4 +26,4 @@ const LastLike = ({data}) => {
     );
 }
 
-export default LastLike;
+export default Subs;

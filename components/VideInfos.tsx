@@ -11,7 +11,6 @@ import { useRouter } from 'next/router'
 
 export default function VideoInfos({data}) {
   const router=useRouter()
-  console.log(data)
   const baseadd="http://localhost"
   const [Subs,setsubs]=useState(false);
   const [liks,setlikes]=useState<boolean>(false);

@@ -1,37 +1,31 @@
 import Items from "./Items";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import Slider from "react-slick";
 const Categories = ({ data }) => {
-  console.log(data)
   const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 2500 },
-      items: 8,
-      slidesToSlide: 2,
-    },
     desktop: {
-      breakpoint: { max: 2500, min: 1800 },
-      items: 6,
-      slidesToSlide: 3,
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3 // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1800, min: 640 },
-      items: 4,
-      slidesToSlide: 2,
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 640, min: 0 },
+      breakpoint: { max: 464, min: 0 },
       items: 1,
-    },
+      slidesToSlide: 1 // optional, default to 1.
+    }
   };
   return (
  
     
     <>
       <h1 className="uppercase font-semibold p-2 z-0">{data.category}</h1>
-<div className="flex flex-wrap">
+      <Carousel responsive={responsive}>
 
 
    {data.videos.map((dt)=>(
@@ -43,7 +37,7 @@ const Categories = ({ data }) => {
    
     ))}
    
-</div>
+</Carousel>
     </>
   );
 };

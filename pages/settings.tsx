@@ -29,7 +29,7 @@ const settings = ({ data }) => {
     const formdata = new FormData()
     formdata.append("id", data.idChannel)
     formdata.append("newname", name)
-    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
+    axios.post("http://localhost/api/settings.php", formdata)
       .then(res => {
         if (res.data.success)
         setTimeout(() => {
@@ -41,7 +41,7 @@ const settings = ({ data }) => {
         
      })
   }
-axios.get("https://db336d2d3fd5.ngrok.io/api/settings.php?id="+data.idChannel)
+axios.get("http://localhost/api/settings.php?id="+data.idChannel)
 .then(resu=>{
   console.log(resu)
   if (resu.data===true)
@@ -54,7 +54,7 @@ const avtivation=()=>{
   const formdata=new FormData
     formdata.append("id",data.idChannel)
     formdata.append("activation","")
-    axios.post("https://db336d2d3fd5.ngrok.io/api/settings.php", formdata)
+    axios.post("http://localhost/api/settings.php", formdata)
     setactive(!active)
 
 }
