@@ -1,6 +1,6 @@
 import Image from "next/image";
 import router, { useRouter } from "next/router";
-import { MenuIcon } from "@heroicons/react/solid";
+import { EyeIcon, MenuIcon } from "@heroicons/react/outline";
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import React, { useCallback, useContext } from "react";
@@ -11,7 +11,7 @@ const ThumbForEdit = ({ data }) => {
   
 
   return (
-    <div onClick={()=>{router.push("play?v="+data.idVideo)}} className="w-full p-2 pr-4  flex space-x-3  mb-2 max-w-7xl mx-auto">
+    <div onClick={()=>{router.push("play?v="+data.idVideo)}} className="w-full p-2 pr-4 cursor-pointer hover:shadow flex space-x-3  mb-2 max-w-7xl mx-auto">
    
 
       <div className=" h-32 w-72 z-0   overflow-hidden ">
@@ -34,7 +34,7 @@ const ThumbForEdit = ({ data }) => {
           <h1>{data.likes}</h1>
           <ChatAlt2Icon className="w-5 mx-2" />
           <h1>{data.comments}</h1>
-          <GrFormView strokeWidth={1} fontSize={30} className="w-5 mx-2" />
+          <EyeIcon strokeWidth={1} fontSize={30} className="w-5 mx-2 " />
             <h1>{data.views}</h1>
         </div>
       </div>

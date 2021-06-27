@@ -4,19 +4,32 @@ import Categories from "../components/Categories";
 import NotFound from "../components/NotFound";
 import ThumbForEdit from "../components/ThumbForEdit";
 import ChannelSidebar from "../components/channelSidebar"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../utils/JWTAuth";
+import WaitPage from "../components/wait";
 
 const channel = ({ data }) => {
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
+  const [wait, setwait] = useState(true);
+  useEffect(()=>{
+    setwait(true);
+    setTimeout(() => {
+    setwait(false);
+      
+  }, 2000);},[isAuth])
     if(!isAuth || theUser.username!==data.channel.username) return <NotFound/>
     else{
 
    
   if(data.channel!==null )
-  return ( 
-    <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen  ">
+  return ( <>
+  <head>
+    <title>
+    {data.channel.nameChannel}
+    </title>
+  </head>
+    <div className="dark:bg-gray-900 dark:text-gray-100 pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen  overflow-y-auto ">
     <ChannelSidebar data={data.channel}/>
 
 
@@ -36,10 +49,12 @@ const channel = ({ data }) => {
           
       </div>
     </div>
+    </>
   );
   else
-  return (
-     <NotFound/>
+  return (<> {wait && <WaitPage/>}
+    <NotFound/></>
+   
   )
 } 
 };

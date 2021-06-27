@@ -3,6 +3,8 @@ import {useRouter} from "next/router"
 import Videohover from "../components/videoHoevr"
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
 const Items = ({data }) => {
+ let user= data.nameChannel.split(' ').map(i => i.charAt(0))
+  
   const router=useRouter();
   const play =()=>{
 router.push("/play?v="+data.idVideo)
@@ -20,7 +22,12 @@ router.push("/play?v="+data.idVideo)
           <h1 className="text-xs text-gray-400 ">{data.when}</h1>
           <h1>{data.title}</h1>
           <div className="flex items-center font-light py-1 ">
-            <div className="h-5 w-5 rounded-full bg-black mr-2"></div>
+            <div className="h-6 w-6 relative overflow-hidden rounded-full bg-gray-200 mr-2">
+              {data.avatar ? <Image layout="fill" src={data.avatar}/>
+              : user.map((e)=>e)
+              }
+              
+                            </div>
             <h1>{data.nameChannel}</h1>
           </div>
           <div className="flex font-light text-xs items-center py-1">

@@ -8,18 +8,23 @@ import { MyContext } from "../utils/JWTAuth";
 import Sidebar from "../components/sidebar";
 import { useRouter } from "next/router";
 import SearchBar from "../components/SearchBar";
-const layout = () => {
+const layout = ({ismode,mode}) => {
     const router=useRouter();
     const { rootState, logoutUser } = useContext(MyContext);
     const { isAuth, theUser, showLogin } = rootState;
     const [active, setActive] = useState(false);
     const [notShow, setNotShow] = useState(false);
 
-    return (
+    return (<>
+    <head>
+    <link rel="icon" 
+    
+      href="1.svg"/>
+    </head>
         <div>
         
                     
-        <Navbar active={active} setActive={setActive} notshow={notShow} setnotshow={setNotShow}/>
+        <Navbar ismode={ismode} mode={mode} active={active} setActive={setActive} notshow={notShow} setnotshow={setNotShow}/>
 
 
       
@@ -35,6 +40,7 @@ const layout = () => {
         }
          
         </div>
+        </>
     );
 }
 

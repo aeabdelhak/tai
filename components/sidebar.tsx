@@ -13,15 +13,16 @@ const Sidebar = () => {
   const {rootState,logoutUser} = useContext(MyContext);
     const {isAuth,theUser,showLogin} = rootState;
   return (
+
     <div className={router.pathname == "/play" ? 
-    "md:h-screen bottom-0 w-full h-12 flex z-20 md:pt-20 font-light fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
+    "md:h-screen bottom-0 w-full h-12 flex z-20 md:pt-20 font-light  dark:bg-gray-800 dark:text-gray-200 fixed bg-white md:w-auto  md:grid md:place-items-start transition duration-500"
     :
-    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light fixed bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
+    "md:h-screen bottom-0 w-full h-12 flex z-30 md:pt-20 font-light  dark:bg-gray-800 dark:text-gray-200 fixed bg-white md:w-auto  xl:w-80 md:grid md:place-items-start transition duration-500"}>
       <div className="  grid grid-flow-col md:grid-flow-row w-full  ">
         <Link href="/">
           <div
             className={
-              router.pathname == "/" ? "navlink active green" : "navlink "
+              router.pathname == "/" ? "navlink dark:text-gray-200 dark:hover:bg-gray-600 active green" : "navlink "
             }
           >
             <HomeIcon className="w-5  mx-auto xl:mx-0 xl:mr-4" />{" "}
@@ -56,6 +57,7 @@ const Sidebar = () => {
       </div>
 
     </div>
+
   );
 };
 const Link = ({ children, href }) => {

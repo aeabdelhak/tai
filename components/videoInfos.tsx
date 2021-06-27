@@ -50,24 +50,24 @@ const category= useCallback(
 )
   return (
  
-      <div className="  h-auto w-full  max-w-7xl mx-auto  ">
+      <div className="h-auto w-full  max-w-7xl mx-auto  ">
 
-        <div className="grid h-full bg-white  rounded-2xl overflow-hidden lg:grid-cols-3">
+        <div className="grid h-full dark:text-gray-100 dark:bg-gray-800   bg-white  rounded-2xl overflow-hidden lg:grid-cols-3">
           <div className=" col-span-2 w-full p-1">
             <div className="  p-2 mb-1">
               <h1 className=" text-sm text-gray-600">title: </h1>
               <input
                 type="text"
                 placeholder="title"
-                className="bg-gray-200 input"
+                className="bg-gray-200 input dark:text-gray-100 dark:bg-gray-900  "
                 onChange={title}
               />
             </div>
             <div className="  p-2 mb-1">
-              <h1 className=" text-sm text-gray-600">description: </h1>
+              <h1 className=" text-sm  text-gray-600">description: </h1>
               <textarea rows={6}
                 placeholder="descritiopn"
-                className="bg-gray-200 input "
+                className="bg-gray-200 input dark:text-gray-100 dark:bg-gray-900   "
                 onChange={desc}
 
               >
@@ -76,7 +76,7 @@ const category= useCallback(
             </div>
             <div className="  p-2 mb-1">
             <h1 className=" text-sm text-gray-600">category: </h1>
-            <select name="" id="" className="p-2  input" onChange={category}>
+            <select name="" id="" className="p-2 dark:text-gray-100 dark:bg-gray-900   input" onChange={category}>
              <option value="0">select the category </option>
 
           {categories.map((e)=>(

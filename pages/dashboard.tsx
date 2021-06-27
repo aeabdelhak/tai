@@ -3,21 +3,33 @@ import DashItem from "../components/DashItem";
 import LastComment from "../components/LastComment";
 import LastLike from "../components/LastLike";
 import { MyContext } from "../utils/JWTAuth";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import NotFound from "../components/NotFound";
 import Subs from "../components/subs";
+import WaitPage from "../components/wait";
+
  const Dashboard=({data,id})=> {
+ 
  const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
+   const [wait, setwait] = useState(true);
+  useEffect(()=>{
+    setwait(true);
+    setTimeout(() => {
+    setwait(false);
+      
+  }, 2000);},[isAuth])
+
 if(data){
 
-console.log(data)
   if(!isAuth ||theUser.username!==data.username )return <NotFound/>
     else
   return (
     <>
+     
+
       <ChannelSidebar data={data} />
-      <div className="pt-16  md:ml-28 pb-10 xl:ml-80 w-screen h-screen   ">
+      <div className="pt-16  md:ml-28 pb-10 xl:ml-80 w-screen h-screen dark:bg-gray-900  ">
         <div className="grid lg:grid-cols-4 grid-cols-2  gap-4 w-full  px-2 mx-auto">
           <DashItem number={data.views} what={"views"} />
           <DashItem number={data.likes} what={"like"} />
@@ -33,7 +45,10 @@ console.log(data)
     </>
   )
 }
-else return <NotFound/>
+else return<>
+       {wait && <WaitPage/>}
+        <NotFound/>
+</> 
 
   
   

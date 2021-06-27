@@ -7,10 +7,10 @@ export default function search(result) {
   return (
     <>
     <Sidebar/>
-      <div className="md:ml-28 pt-16 pb-10 xl:ml-80 grid">
+      <div className="dark:bg-gray-900 dark:text-gray-200 h-screen scrollbar-thin scrollbar-thumb-gray-500 md:ml-28 pt-16 pb-10 xl:ml-80 grid w-full">
         {result.result ?
           result.result.map((e) => (
-            <div className="w-full p-2 gap-2">
+            <div className="w-full max-w-4xl  p-2 gap-2">
               {e.channel ? (
                 <div onClick={()=>{router.push("/channelvue?c="+e.idChannel)}} className="w-full cursor-pointer gap-2 rounded bg-white elevation-2 p-2 flex justify-start items-center">
                   <div className="h-20 w-20 relative rounded-full overflow-hidden  elevation-2">
@@ -22,7 +22,7 @@ export default function search(result) {
                   </div>
                 </div>
               ) : (
-                <Items data={e} />
+                <Items key={e.idVideo || e.idChannel} data={e} />
 
               )}
             </div>

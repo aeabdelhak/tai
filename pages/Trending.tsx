@@ -4,16 +4,18 @@ import React, {useState} from "react"
 import SearchBar from '../components/SearchBar'
 import Sidebar from '../components/sidebar'
 import Items from '../components/Items'
+import FadeIn from 'react-fade-in';
+
  function Trending({data}) {
-console.log(data)
+
   return (
-    <div className="grid pt-16">   
+    <div className=" dark:bg-gray-900 dark:text-gray-100 grid pt-16">   
     <Sidebar/>  
     <div className="md:ml-28 pb-10 xl:ml-80">
     <div className="flex  flex-wrap">
 
-
-{data.map((dt)=>(
+<FadeIn className="flex flex-wrap">
+{data.now.map((dt)=>(
  
    
 
@@ -21,7 +23,7 @@ console.log(data)
  <Items key={dt.idVideo} data={dt} />
 
  ))}
-
+</FadeIn>
 </div>
 </div>     
     </div>

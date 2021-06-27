@@ -1,25 +1,18 @@
 import router from "next/router";
 import Image from 'next/image'
+import EachLike from "./eachLike";
 
 const LastLike = ({data}) => {
 
     return (
-        <div className="h-96 bg-white col-span-1 p-2 elevation-2  overflow-hidden  rounded-lg">
+        <div className="h-96 dark:bg-gray-800 dark:text-gray-100  bg-white col-span-1 p-2 elevation-2  overflow-hidden  rounded-lg">
         <h1 >last likes:</h1>
         <hr/>
         <div
-        className="h-full overflow-y-auto pb-4 scrollbar-thin scrollbar-track-gray-300">
+        className="h-full overflow-y-auto pb-4 scrollbar-thin dark:scrollbar-track-gray-600  scrollbar-thumb-gray-500">
             {data && data.map((e)=>(
 
-                     <div
-          onClick={() => router.push("/play?v=" + e.idVideo)}
-          className="hover:bg-gray-100 cursor-pointer w-full py-1  text-xs italic flex items-center"
-        >
-          <div className="h-6 mr-2 relative w-6 overflow-hidden bg-gray-200 rounded-full">
-            <Image src={e.avtr} layout="fill" />
-          </div>
-          {e.username} liked the video {e.title}
-        </div>      
+           <EachLike key={data.id} data={e}/>  
             ))}
 
         </div>

@@ -9,9 +9,9 @@ const EachNotification = ({ data }) => {
       return (
         <div
           onClick={() => router.push("/play?v=" + data.idVideo)}
-          className="hover:bg-gray-100 cursor-pointer w-full py-1  text-xs italic flex items-center"
+          className="hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer w-full py-1  text-xs italic flex items-center"
         >
-          <div className="h-6 mr-2 w-6 overflow-hidden bg-gray-200 rounded-full">
+          <div className="h-6 mr-2 w-6 dark:bg-gray-900 overflow-hidden bg-gray-200 rounded-full">
             <img src={data.avatar} width={60} height={60} className="h-full" />
           </div>
           {data.username} commented to your video
@@ -21,9 +21,9 @@ const EachNotification = ({ data }) => {
       return (
         <div
           onClick={() => router.push("/play?v=" + data.idVideo)}
-          className="hover:bg-gray-100 cursor-pointer w-full py-1  text-xs italic flex items-center"
+          className="hover:bg-gray-100  dark:hover:bg-gray-900 cursor-pointer w-full py-1  text-xs italic flex items-center"
         >
-          <div className="h-6 mr-2 w-6 bg-gray-200 overflow-hidden rounded-full grid place-items-center">
+          <div className="h-6 mr-2 w-6 dark:bg-gray-900 bg-gray-200 overflow-hidden rounded-full grid place-items-center">
             {data.avatar ? (
               <img
                 src={data.avatar}

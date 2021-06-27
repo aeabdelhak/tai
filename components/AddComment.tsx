@@ -36,12 +36,12 @@ event.preventDefault();
   }
   
   return (
-    <div className="bg-white shadow text-right ">
-        <form action="" method="post" onSubmit={submit} className="flex items-center p-2  bg-white shadow-md">
+    <div className="bg-white dark:bg-gray-700 dark:text-gray-200 shadow text-right ">
+        <form action="" method="post" onSubmit={submit} className="flex items-center p-2 dark:bg-gray-700 dark:text-gray-200 bg-white shadow-md">
      
       <div className="flex space-x-2 items-center w-full p-2 ">
        
-        <div className="w-8 h-8 rounded-full relative overflow-hidden bg-gray-200">
+        <div className="w-8 dark:bg-gray-800 h-8 rounded-full relative overflow-hidden bg-gray-200">
 <img
  
   className="h-full"
@@ -52,13 +52,13 @@ event.preventDefault();
         </div>
         <input
           type="text"
-          className="p-2 w-full rounded-lg border-gray-300 border  "
+          className="p-2 w-full rounded-lg  dark:bg-gray-800 border-gray-300 border  "
           placeholder="add comment"
           onChange={changeHandle}
           value={comment}
         />
       </div>
-      <button className=" px-3 py-2 flex items-center space-x-2 w-auto whitespace-nowrap justify-center  text-green-600 hover:font-bold " onClick={submit}>
+      <button className=" px-3 dark:text-green-400 py-2 flex items-center space-x-2 w-auto whitespace-nowrap justify-center  text-green-600 hover:font-bold " onClick={submit}>
         <h1>add Comment</h1>
         <AnnotationIcon className="w-5" />
       </button>

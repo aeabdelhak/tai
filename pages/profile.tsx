@@ -111,15 +111,18 @@ const pass=()=>{
   if (isAuth)
     return (
       <>
+      <div className="bg-gray-900">
+
+      
       {showinfo &&
-        <div className="fixed bg-white bg-opacity-20 grid place-items-center ovreflow-y-auto top-0 right-0 h-screen w-screen">
-          <div className="bg-white elevation-2 rounded max-w-xl w-full  p-2">
+        <div className="fixed dark:bg-gray-900 dark:text-gray-100 bg-white bg-opacity-20 grid place-items-center ovreflow-y-auto top-0 right-0 h-screen w-screen">
+          <div className="bg-white dark:text-gray-100 dark:bg-gray-800 elevation-2 rounded max-w-xl w-full  p-2">
                          <div className="flex my-2 items-center justify-between gap-1 flex-wrap ">
                 <h1 className="text-xs italic "> avatar:</h1>
 
                 <button
                   onClick={handleClick}
-                  className="px-3 py-2 focus:outline-none flex gap-1 items-center text-blue-600"
+                  className="px-3 py-2 dark:text-blue-400 focus:outline-none flex gap-1 items-center text-blue-600"
                 >
                   <UploadIcon width={16} /> <h1>upload</h1>
                 </button>
@@ -143,7 +146,7 @@ const pass=()=>{
                   name="username"
                   defaultValue={state.userInfo.username}
                   onChange={onChangeValue}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
               <div className="flex my-2 items-center justify-start gap-1 flex-wrap ">
@@ -153,7 +156,7 @@ const pass=()=>{
                   name="name"
                   defaultValue={state.userInfo.name}
                   onChange={onChangeValue}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
               <div className="flex my-2 items-center justify-start gap-1 flex-wrap ">
@@ -163,7 +166,7 @@ const pass=()=>{
                   name="adresse"
                   defaultValue={state.userInfo.adresse}
                   onChange={onChangeValue}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
               <div className="flex my-2 items-center justify-start gap-1 flex-wrap ">
@@ -173,15 +176,15 @@ const pass=()=>{
                   name="email"
                   defaultValue={state.userInfo.email}
                   onChange={onChangeValue}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
             </form>{" "}
             <div className="flex justify-end">
-              <button onClick={()=>setinf(false)} className="px-3 py-2 focus:outline-none flex gap-1 items-center text-red-600">
+              <button onClick={()=>setinf(false)} className="px-3 dark:text-red-400 py-2 focus:outline-none flex gap-1 items-center text-red-600">
                 <h1>close</h1>
               </button>
-              <button onClick={submitForm} className="px-3 py-2 focus:outline-none flex gap-1 items-center text-blue-600">
+              <button onClick={submitForm} className="px-3 dark:text-blue-400 py-2 focus:outline-none flex gap-1 items-center text-blue-600">
                 <h1>save</h1>
               </button>
             </div>
@@ -189,18 +192,18 @@ const pass=()=>{
         </div>
       }
       {pd &&
-       <div className="fixed bg-white bg-opacity-20 grid place-items-center ovreflow-y-auto top-0 right-0 h-screen w-screen">
-          <div className="bg-white elevation-2 rounded max-w-xl w-full  p-2">
+       <div className="fixed bg-white dark:bg-gray-900 dark:text-gray-100 bg-opacity-20 grid place-items-center ovreflow-y-auto top-0 right-0 h-screen w-screen">
+          <div className="bg-white dark:bg-gray-900 dark:text-gray-100 elevation-2 rounded max-w-xl w-full  p-2">
           <div className="flex my-2 items-center justify-start gap-1 flex-wrap ">
-          <h1 className="text-center text-xs text-red-600">
-                {message}
+          <h1 className="text-center text-xs dark:to-red-400 text-red-600">
+              <h1>{message}</h1> 
               </h1>
                 <h1 className="text-xs italic "> password:</h1>
                 <input
                   type="password"
                   autoComplete="false"
                   onChange={(e)=>setpassword(e.target.value)}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
           <div className="flex my-2 items-center justify-start gap-1 flex-wrap ">
@@ -208,7 +211,7 @@ const pass=()=>{
                 <input
                   type="password"
                   onChange={(e)=>setnpassword(e.target.value)}
-                  className="rounded border-gray-300 w-full "
+                  className="bg-transparent dark:text-gray-100 rounded border-gray-300 w-full "
                 />
               </div>
               <div className="flex justify-end">
@@ -224,7 +227,7 @@ const pass=()=>{
       }
 
         <div className="pt-16 gird h-screen w-screen overscroll-y-auto">
-          <div className="max-w-2xl bg-white elevation-2 p-2 mx-auto rounded flex flex-col justify-between">
+          <div className="max-w-2xl bg-white dark:bg-gray-800 dark:text-gray-100 elevation-2 p-2 mx-auto rounded flex flex-col justify-between">
             <div className="">
               {/* showing informatons */}
               <div className="h-20 relative w-20 rounded-full overflow-hidden mx-auto bg-gray-100 elevation-2">
@@ -244,20 +247,20 @@ const pass=()=>{
               </div>
               {/* /////// */}
               {/*  settings */}
-              <div onClick={()=>setinf(true)} className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
+              <div onClick={()=>setinf(true)} className="p-2 cursor-pointer dark:bg-transparent text-gray-100 dark:hover:bg-gray-900 my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
                 <div>
                   <CogIcon width={16} strokeWidth={1} />
                 </div>
                 <h1 className="text-base italic">edit your informations</h1>
               </div>
-              <div onClick={()=>setpd(true)}  className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
+              <div onClick={()=>setpd(true)}  className="p-2 cursor-pointer dark:bg-transparent text-gray-100 dark:hover:bg-gray-900 my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
                 <div>
                   <KeyIcon width={16} strokeWidth={1} />
                 </div>
                 <h1 className="text-base italic">edit your password</h1>
               </div>
        
-              <div onClick={()=>{router.push("createChannel")}} className="p-2 cursor-pointer  my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
+              <div onClick={()=>{router.push("createChannel")}} className="p-2 cursor-pointer dark:bg-transparent text-gray-100 dark:hover:bg-gray-900 my-2 hover:bg-gray-100 items-center gap-2  bg-white rounded flex ">
                 <div>
                   <CollectionIcon width={16} strokeWidth={1} />
                 </div>
@@ -266,7 +269,7 @@ const pass=()=>{
 
             </div>
           </div>
-        </div>
+        </div></div>
       </>
     );
   else return gohome;

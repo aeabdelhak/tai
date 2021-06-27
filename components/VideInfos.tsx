@@ -117,8 +117,17 @@ checkLike()
 
 if(data)
   return (
-    <div className="p-1  ">
+    <div className="p-1 dark:text-gray-200 ">
               <ToastContainer />
+              <div className="flex gap-1 ">
+              {
+  data.hash && data.hash.map((e)=>
+  (
+<h1 className="text-xs text-blue-500 ">{e.label}</h1>
+    )
+  )
+}
+              </div>
 <div className="flex justify-between">
 <h1 className="text-xs text-gray-500">{data.when}</h1>
 <div className="flex">
@@ -145,10 +154,10 @@ if(data)
           </div> 
         <div className=" px-2 ">
           <h1 className="">{data.nameChannel}</h1>
-          <h1 className="text-xs">{data.subscribers} subscribers</h1>
+          <h1 className="text-xs">{data.subscribers} followers</h1>
         </div>
         </div>
-        <div onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto  text-red-700 focus:outline-none cursor-pointer ">
+        <div onClick={subscribe}  className="relative justify-self-end px-3 py-2 transition ease-in-out duration-1000 w-auto dark:text-red-500  text-red-700 focus:outline-none cursor-pointer ">
        
        
             { !isAuth? "follow":loading ? <NineCellLoading/> : Subs ? "unfollow":"follow"}

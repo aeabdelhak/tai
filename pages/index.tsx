@@ -6,7 +6,7 @@ import Sidebar from '../components/sidebar';
 export default function Home({data}) {
   
       return(
-        <div className="grid pt-16">   
+        <div className="grid pt-16 w-screen h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 dark:bg-gray-900 dark:text-gray-100">   
         <Sidebar/>  
        <Content data={data} />
              

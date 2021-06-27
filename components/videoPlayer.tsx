@@ -16,7 +16,7 @@ useEffect(()=>{
 },[])
  
     return (
-          <div className=" aspect-h-9 aspect-w-16  ">
+          <div className=" aspect-h-9 aspect-w-16 w-full ">
 
   <div>
  <Player autoPlay>

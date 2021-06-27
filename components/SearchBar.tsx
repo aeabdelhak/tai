@@ -13,7 +13,7 @@ const [search,setSearch]=useState<string>();
 
     return (
         <form className="max-w-xl w-full" action="" onSubmit={searching}>
-        <div className="max-w-xl w-full flex items-center bg-gray-50 px-1 rounded-full border-gray-300 border" >
+        <div className="dark max-w-xl w-full flex items-center dark:bg-gray-900 dark:text-gray-200 bg-gray-50 px-1 rounded-full border-gray-300 border" >
           
 
         <input

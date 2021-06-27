@@ -25,11 +25,10 @@ const Thumbnails = ({ data }) => {
           <h1 className="text-white mb-2">{data.title}</h1>
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center justify-between">
-              <div className="h-6 w-6 rounded-full overflow-hidden bg-white">
-            <img
+              <div className="h-6 w-6 relative rounded-full overflow-hidden bg-white">
+            <Image
                   src={"http://localhost/api/"+data.avatar}
-                  width={40}
-                  height={40}
+            layout="fill"
                 /> 
               </div>
               <h1 className="text-sm px-3 text-gray-300"> {data.nameChannel}</h1>

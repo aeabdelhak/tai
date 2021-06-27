@@ -1,78 +1,86 @@
 import { useContext } from "react";
-import Sidebar from "../components/sidebar"
+import Sidebar from "../components/sidebar";
 import { MyContext } from "../utils/JWTAuth";
 import Items from "../components/Items";
-
+import FadeIn from "react-fade-in";
+import WaitPage from "../components/wait";
 export default function subscriptions() {
-    const { rootState, logoutUser } = useContext(MyContext);
-    const { isAuth, theUser, showLogin } = rootState;
-    const [data,setdata]=useState<any>()
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState;
+  const [data, setdata] = useState<any>();
+  const [wait, setwait] = useState(true);
 
-const get = async()=>{
-    const datas = await axios.get("http://localhost/api/subscribtions.php?user="+theUser.username);
-    setdata(datas.data)
- 
+  const get = async () => {
+    const datas = await axios.get(
+      "http://localhost/api/subscribtions.php?user=" + theUser.username
+    );
+    setdata(datas.data);
+  };
+  useEffect(() => {
+    setwait(true);
+    setTimeout(() => {
+      setwait(false);
+    }, 2000);
+  }, [isAuth]);
+  useEffect(() => {
+    if (isAuth) get();
+  }, [isAuth]);
+  if (isAuth) {
+    return (
+      <>
+        <Sidebar />
+
+        <div className="dark:text-gray-100 dark:bg-gray-900  w-screen h-screen scrollbar-thumb-gray-500 scrollbar-thin md:ml-28 pt-16 pb-10 xl:ml-80 flex flex-wrap gap-2">
+          <FadeIn className="flex flex-wrap">
+            {data && data.map((dt) => <Items key={dt.id} data={dt} />)}
+          </FadeIn>
+        </div>
+      </>
+    );
+  } else
+    return (
+      <>
+        <Sidebar />
+        {wait && <WaitPage />}
+
+        <div className="md:ml-28 dark:text-gray-100 dark:bg-gray-900   pt-16 pb-10 xl:ml-80 grid place-items-center h-screen w-screen">
+          <div className="space-y-3">
+            <h1 className="text-4xl font-light">
+              in oeder to acces to this page
+            </h1>
+            <h1 className="text-2xl font-light">
+              you need to{" "}
+              <button
+                onClick={() => router.push("/Login")}
+                className="px-3 py-2 text-blue-600 focus:outline-none"
+              >
+                LOG IN
+              </button>
+            </h1>
+          </div>
+        </div>
+      </>
+    );
 }
-useEffect(()=>{
-    if(isAuth)
-    get()    
-   },[isAuth])
-console.log(data)
-    if (isAuth)
-    {
 
-       
-   
-        return (
-            <>
-                <Sidebar />
-                <div className="md:ml-28 pt-16 pb-10 xl:ml-80 flex flex-wrap gap-2">
-  {data && data.map((dt) => (
-  
-
-  <Items key={dt.id} data={dt} />
-))} 
-                </div>
-            </>
-        )
-     }
-    else
-        return (
-            <>
-
-                <Sidebar />
-                <div className="md:ml-28 pt-16 pb-10 xl:ml-80 grid place-items-center h-screen w-screen">
-               
-               <div className="space-y-3">
-                    <h1 className="text-4xl font-light"> 
-                        in oeder to acces to this page
-                    </h1>
-                    <h1 className="text-2xl font-light">
-                        you need to <button className="px-3 py-2 text-blue-600 focus:outline-none">LOG IN</button>
-                    </h1>
-                   </div>    
-
-                </div>
-            </>)
-}
-
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from "next";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import router from "next/router";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-    const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`)
-    const data = await res.json()
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
+  const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
+  const data = await res.json();
+  if (!data) {
     return {
-      props: { 
-       data }, // will be passed to the page component as props
-    }
-  
+      notFound: true,
+    };
   }
+
+  return {
+    props: {
+      data,
+    }, // will be passed to the page component as props
+  };
+};

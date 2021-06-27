@@ -8,7 +8,7 @@ import {
   UserAddIcon,
 } from "@heroicons/react/outline";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import router  from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../utils/JWTAuth";
 import { XIcon } from "@heroicons/react/outline";
@@ -18,7 +18,6 @@ const Profile = ({ active, setActive }) => {
   const [data, setdata] = useState<any>();
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
-  const router = useRouter();
   let channels: any = [];
 
   const get = () => {
@@ -51,14 +50,15 @@ let user=theUser.name.split(' ').map(i => i.charAt(0))
       setActive(true);
 
   }, [setActive]);
+  useEffect(() => hide(), [router]);
 
   return (
     <>
       <div
         className={
           active
-            ? "fixed z-40 h-screen w-80 flex flex-col justify-between bg-white  elevation-4 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
-            : "fixed z-40 h-screen w-80 flex flex-col bg-white  transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
+            ? "fixed z-40 h-screen dark:bg-gray-800 dark:text-gray-200 w-80 flex flex-col justify-between bg-white  elevation-4 transform translate-x-0 right-0 top-0 transition duration-700 ease-in-out  pt-16  text-center"
+            : "fixed z-40 h-screen  dark:bg-gray-800 dark:text-gray-200 w-80 flex flex-col justify-between  bg-white  transform translate-x-80 right-0 top-0 transition duration-700 ease-in-out pt-16  text-center"
         }
 
         onMouseLeave={hide}
