@@ -43,12 +43,12 @@ export default function Upload({categories}) {
  
 
   const[acces,accessing]=useState(false)
-  const [key, setKey] = useState();
-  const [thmb, setthumb] = useState();
+  const [key, setKey] = useState("");
+  const [thmb, setthumb] = useState("");
   const [progressen, setProgressn] = useState(0);
-  const [file, setFile] = useState();
-  const [title, setTitle] = useState();
-  const [desc, setdesc] = useState<string>();
+  const [file, setFile] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setdesc] = useState<string>("");
   const [state, setstate] = useState("0");
   const [filename, setFilename] = useState<string>();
   const [id, setid] = useState("");
