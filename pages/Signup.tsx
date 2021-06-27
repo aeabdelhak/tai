@@ -64,7 +64,7 @@ const Signup = () => {
   let errorMsg;
 
   return (
-    <div className="h-screen dark:bg-gray-900 scrollbar-thumb-gray-500 scrollbar-thin dark:text-gray-100  z-40 w-screen bg-white pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
+    <div className="h-screen dark:bg-gray-900 scrollbar-thumb-gray-500 scrollbar-thin dark:text-gray-100  z-40 w-screen bg-gray-200 pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
       {logLoad && (
         <div
           className="fixed h-screen w-screen grid place-items-center bg-white bg-opacity-60 z-20 
@@ -79,7 +79,7 @@ const Signup = () => {
           <img src="1.svg" alt="" className="mx-auto h-32" />
         </h1>
        
-        <form onSubmit={submitForm} noValidate className="p-3 rounded dark:bg-gray-800 ">
+        <form onSubmit={submitForm} noValidate className="p-3 rounded-lg bg-white shadow dark:bg-gray-800 ">
         <h1 className="my-2">LOG IN</h1>
         <h1 className="text-sm dark:text-red-400 text-red-500">{message}</h1>
 

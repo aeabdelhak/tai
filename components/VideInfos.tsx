@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {NineCellLoading} from "react-loadingg"
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 export default function VideoInfos({data}) {
   const router=useRouter()
@@ -150,7 +151,7 @@ if(data)
 
         <div onClick={()=>router.push("/channelvue?c="+data.idChannel)}  
         className="h-9 w-9 bg-gray-300 cursor-pointer relative overflow-hidden rounded-full">
-         <img src={data.avatar} alt="" />
+       {data.avatar && <Image src={data.avatar} layout="fill" />}  
           </div> 
         <div className=" px-2 ">
           <h1 className="">{data.nameChannel}</h1>

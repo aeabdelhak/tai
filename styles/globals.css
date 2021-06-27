@@ -44,7 +44,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
 body {
-  font-family: "Open0 Sans", sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
   overflow-x: hidden;
   background-color: #fcfcfc;
 }

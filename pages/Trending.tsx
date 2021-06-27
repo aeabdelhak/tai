@@ -9,7 +9,7 @@ import FadeIn from 'react-fade-in';
  function Trending({data}) {
 
   return (
-    <div className=" dark:bg-gray-900 dark:text-gray-100 grid pt-16">   
+    <div className=" dark:bg-gray-900 h-screen w-screen scrollbar-thumb-gray-500 scrollbar-thin dark:text-gray-100 grid pt-16">   
     <Sidebar/>  
     <div className="md:ml-28 pb-10 xl:ml-80">
     <div className="flex  flex-wrap">

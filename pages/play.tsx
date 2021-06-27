@@ -30,9 +30,9 @@ const Play = ({ data, videos }) => {
         <head>
           <title>{videos.title}</title>
         </head>
-        <div className=" grid w-full pb-10 lg:pb-0 dark:bg-gray-900 ">
+        <div className=" grid  lg:pb-0 dark:bg-gray-900  h-screen w-screen scrollbar-thumb-gray-500 scrollbar-thin">
           <Sidebar />
-          <div className="  w-full">
+          <div className=" ">
             <div
               onClick={activate}
               className="lg:hidden fixed bottom-20 right-5 h-16 w-16 items-center text-2xl text-white bg-blue-500 dark:bg-blue-900 rounded-full z-40 flex justify-center"
@@ -40,8 +40,8 @@ const Play = ({ data, videos }) => {
               <GoComment />
             </div>
 
-            <div className="flex  lg:flex-row flex-col px-2 pl-2  md:pl-32  w-screen h-scren     ">
-              <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300  ">
+            <div className="flex  lg:flex-row flex-col px-2   md:pl-32  w-screen     ">
+              <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500  ">
                 {loading && (
                   <VideoPlayer url={"http://localhost/api/" + videos.source} />
                 )}
@@ -54,7 +54,7 @@ const Play = ({ data, videos }) => {
                   isActive={isActive}
                 />
               </div>
-              <div className=" h-full gap-2 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-300 ">
+              <div className=" h-full gap-2 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500 ">
                 {videos.videos && videos.videos.map((dt) => (
                   <Thumbnails key={dt.idVideo} data={dt} />
                 ))}

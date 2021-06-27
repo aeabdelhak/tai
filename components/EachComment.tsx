@@ -6,7 +6,7 @@ const EachComment = ({comment}) => {
   return (
     <div className=" my-1 ">
       <div className="flex space-x-2 items-center w-full p-2 ">
-       <div className="w-8 h-8 relative grid place-items-center overflow-hidden rounded-full  bg-gray-200">
+       <div className="w-8 h-8 relative grid place-items-center overflow-hidden rounded-full dark:bg-gray-600   bg-gray-200">
 {comment.avatar ?
  <Image src={comment.avatar} layout="fill"/>   
 :

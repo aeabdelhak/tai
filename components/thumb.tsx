@@ -2,6 +2,7 @@ import Image from "next/image";
 import {useRouter} from "next/router"
 import {GrFormView} from "react-icons/gr"
 import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
+import { EyeIcon } from "@heroicons/react/outline";
 const Thumb = ({data }) => {
   const router=useRouter();
 
@@ -19,7 +20,7 @@ const Thumb = ({data }) => {
             <h1>{data.likes}</h1>
             <ChatAlt2Icon strokeWidth={1} className="w-5 mx-2" />
             <h1>{data.comments}</h1>
-            <GrFormView strokeWidth={1} fontSize={30} className="w-5 mx-2" />
+            <EyeIcon strokeWidth={1} fontSize={30} className="w-5 mx-2" />
             <h1>{data.views}</h1>
           </div>
         </div>

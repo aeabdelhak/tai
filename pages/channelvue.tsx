@@ -115,7 +115,7 @@ const channel = ({ data }) => {
         {avatar || cover ? (
           <div
             onClick={save}
-            className="fixed top-20  right-7 z-20 bg-white elevation-2 text-blue-700 cursor-pointer px-3 py-2 "
+            className="fixed top-20  dark:bg-gray-900 dark:text-gray-100 right-7 z-20 bg-black bg-opacity-40 elevation-2 text-white cursor-pointer px-3 py-2 "
           >
             save changes
           </div>
@@ -123,7 +123,7 @@ const channel = ({ data }) => {
           ""
         )}
 
-        <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen ">
+        <div className="pt-16 md:ml-28 pb-10 xl:ml-80  h-screen w-screen scrollbar-thin scrollbar-thumb-gray-500 dark:bg-gray-900 dark:text-gray-100 ">
         <ToastContainer />
 
           {isAuth && theUser.username === data.channel.username && (

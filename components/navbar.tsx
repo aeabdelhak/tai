@@ -4,20 +4,27 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { MyContext } from "../utils/JWTAuth";
 import React, { useCallback, useContext } from "react";
-import { Bell,Upload ,Search,LogIn,UserPlus } from 'react-feather';
 import SearchBar from "./SearchBar";
 import {AiOutlineLogin} from "@react-icons/all-files/ai/AiOutlineLogin"
 import {AiOutlineUserAdd} from "@react-icons/all-files/ai/AiOutlineUserAdd"
 import {AiOutlineCloudUpload} from "@react-icons/all-files/ai/AiOutlineCloudUpload"
-import {VscBell} from "@react-icons/all-files/vsc/VscBell"
+import { useCookies } from 'react-cookie';
+
 function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
    const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
+  const [cookies, setCookie] = useCookies(['mode']);
+  if(cookies.mode &&cookies.mode=="dark" ){
+    mode(true);
+
+  }
   
   const setMode = useCallback(() => {
     mode(true);
+    setCookie('mode', "dark");
   }, [mode]);
   const unsetMode = useCallback(() => {
+    setCookie('mode', "light");
     mode(false);
   }, [mode]);
 
@@ -45,7 +52,7 @@ function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
   <SearchBar/>        
   
   {isAuth ? (
-          <div className="flex justify-center space-x-3 items-center">
+          <div className="flex justify-center  items-center">
           <div  onClick={() => router.push("/upload")}
             className=" cursor-pointer p-2 "
           >
@@ -60,7 +67,7 @@ function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
          
 
           <div
-            className={active?"flex transition dark:bg-gray-900 duration-500 ease-out space-x-2 items-center  w-auto overflow-hidden rounded-full bg-gray-200 py-1 px-1":"flex transition duration-500 ease-out space-x-2 items-center  w-auto overflow-hidden rounded-full p-1 px-1"}
+            className={active?"flex transition dark:bg-gray-900 duration-500 ease-out gap-1 items-center  w-auto overflow-hidden rounded-full bg-gray-200 py-1 px-1":"flex transition duration-500 ease-out gap-1 items-center  w-auto overflow-hidden rounded-full p-1 px-1"}
             onClick={stateprofilechange}
           >
             <h1 className="cursor-pointer  hidden lg:block">
@@ -72,7 +79,7 @@ function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
   
   <Image src={theUser.avatar} layout="fill" className="h-full"   />
                  :
-                 <h1 className="text-xs absolute top-1/2 z-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                 <h1 className="text-xl">
                   {user.map((e)=>e)}
                   </h1> }
             </div>

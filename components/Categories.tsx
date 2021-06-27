@@ -24,7 +24,7 @@ const Categories = ({ data }) => {
  
     
     <>
-      <h1 className="uppercase z-0 font-semibold p-2 z-0">{data.category}</h1>
+      <h1 className="uppercase font-semibold p-2 z-0">{data.category}</h1>
       <Carousel className="z-0" responsive={responsive}>
 
 

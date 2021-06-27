@@ -1,9 +1,9 @@
 const NotFound = () => {
     return (
-        <div className="h-screen  w-screen grid place-items-center">
+        <div className="h-screen dark:bg-gray-900 w-screen grid place-items-center">
           <div>
-          <h1 className="text-7xl text-red-600 font-thin">ops!</h1>
-            <h1 className="text-4xl font-thin ">
+          <h1 className="text-7xl dark:text-red-400 text-red-600 font-light">ops!</h1>
+            <h1 className="text-4xl font-light ">
                 the page you are requisting is not available 
             </h1>
           </div>
