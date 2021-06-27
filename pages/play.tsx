@@ -30,10 +30,10 @@ const Play = ({ data, videos }) => {
         {" "}
         <head>
           <title>{videos.title}</title>
-        </head>
-        <div className=" grid  lg:pb-0 dark:bg-gray-900  h-screen w-screen scrollbar-thumb-gray-500 scrollbar-thin">
+        </head>     
           <Sidebar />
-          <div className=" ">
+        <div className="   pb-16  pt-16  lg:pb-0 dark:bg-gray-900  md:pl-32 h-screen w-screen overflow-y-auto scrollbar-thumb-gray-500 scrollbar-thin">
+   
             <div
               onClick={activate}
               className="lg:hidden fixed bottom-20 right-5 h-16 w-16 items-center text-2xl text-white bg-blue-500 dark:bg-blue-900 rounded-full z-40 flex justify-center"
@@ -41,8 +41,8 @@ const Play = ({ data, videos }) => {
               <GoComment />
             </div>
 
-            <div className="flex  lg:flex-row flex-col px-2   md:pl-32  w-screen     ">
-              <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500  ">
+            <div className="flex  lg:flex-row flex-col px-2   w-full     ">
+              <div className="h-full gap-2  w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500  ">
                 {loading && (
                   <VideoPlayer next={id} data={videos} />
                 )}
@@ -55,14 +55,13 @@ const Play = ({ data, videos }) => {
                   isActive={isActive}
                 />
               </div>
-              <div className=" h-full gap-2 pt-16 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500 ">
+              <div className=" h-full gap-2 w-full lg:max-w-sm max-w-full md:grid-cols-2 lg:grid-cols-1  lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin max-h-full px-3 scrollbar-thumb-gray-500 ">
                 {videos.videos && videos.videos.map((dt) => (
                   <Thumbnails key={dt.idVideo} data={dt} />
                 ))}
               </div>
             </div>
           </div>
-        </div>
       </>
     );
   } else return <NotFound />;
