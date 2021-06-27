@@ -24,6 +24,7 @@ const Play = ({ data, videos }) => {
   }, [router]);
   const activate = () => setActive(!isActive);
   if (videos) {
+    let id=videos.videos[0].idVideo
     return (
       <>
         {" "}
@@ -43,7 +44,7 @@ const Play = ({ data, videos }) => {
             <div className="flex  lg:flex-row flex-col px-2   md:pl-32  w-screen     ">
               <div className="h-full space-y-3 pt-16 w-full lg:overflow-y-auto grid lg:max-h-screen scrollbar-thin px-3 scrollbar-thumb-gray-500  ">
                 {loading && (
-                  <VideoPlayer url={"http://localhost/api/" + videos.source} />
+                  <VideoPlayer next={id} data={videos} />
                 )}
                 <VideoInfos data={videos} />
                 <hr />

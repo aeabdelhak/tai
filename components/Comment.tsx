@@ -25,11 +25,9 @@ if(data.data){
     setLimit(data.data.amount);    
 } }
 useEffect(()=>{
-  setTimeout(() => {
     cmnt();  
     
-  }, 500);
-    },[load,more])
+    },[load,more,router])
   useEffect(() => {
     setTimeout(() => {
      cmnt();   
