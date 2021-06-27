@@ -10,7 +10,7 @@
     @apply font-normal;
   }
   .active {
-    @apply    bg-gray-100;
+    @apply    bg-gray-100 dark:bg-gray-900;
   }
   .green {
     @apply border-green-500 text-green-600;
@@ -21,9 +21,11 @@
   .blue {
     @apply border-blue-500 text-blue-600;
   }
+  .fontp{
+    font-family: 'Markazi Text', serif!important  }
 
   .navlink {
-    @apply flex w-full items-center h-12 hover:bg-gray-200 justify-start px-10 cursor-pointer;
+    @apply dark:text-gray-200 dark:hover:bg-gray-900  flex w-full items-center h-12 hover:bg-gray-200 justify-start px-10 cursor-pointer;
   }
   .input {
     @apply p-2 focus:outline-none border-gray-200 border w-full rounded-lg;
@@ -37,11 +39,12 @@
   }
   
 }
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
 body {
-  font-family: "Work Sans", sans-serif !important;
+  font-family: "Open0 Sans", sans-serif !important;
   overflow-x: hidden;
   background-color: #fcfcfc;
 }
