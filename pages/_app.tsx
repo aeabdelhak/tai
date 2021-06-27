@@ -1,13 +1,13 @@
 import "../styles/globals.css";
 
 import Loading from "../components/loading";
-import MyContextProvider  from '../utils/JWTAuth';
+import MyContextProvider from "../utils/JWTAuth";
 import Router from "next/router";
 import { useState } from "react";
 import Layout from "./layout";
+import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }) {
-
   const [loading, setLoading] = useState(false);
   Router.events.on("routeChangeStart", (url) => {
     setLoading(true);
@@ -15,23 +15,22 @@ function MyApp({ Component, pageProps }) {
   Router.events.on("routeChangeComplete", (url) => {
     setLoading(false);
   });
-  const [mode,setMode]=useState<boolean>(false);
-  
+  const [mode, setMode] = useState<boolean>(false);
+
   return (
-    <MyContextProvider>
-      <div className={mode && "dark"}>
-      {loading && <Loading />}
-      
+    <CookiesProvider>
+      <MyContextProvider>
+        <div className={mode && "dark"}>
+          {loading && <Loading />}
 
-      <Layout ismode={mode} mode={setMode}/>
-      <div className="flex w-screen z-0">
-
-        <Component {...pageProps} />
-      </div>
-      </div>
+          <Layout ismode={mode} mode={setMode} />
+          <div className="flex w-screen z-0">
+            <Component {...pageProps} />
+          </div>
+        </div>
       </MyContextProvider>
+    </CookiesProvider>
   );
 }
-
 
 export default MyApp;
