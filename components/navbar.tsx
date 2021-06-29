@@ -3,13 +3,12 @@ import { LoginIcon, LogoutIcon, MoonIcon,SunIcon, UserAddIcon } from "@heroicons
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { MyContext } from "../utils/JWTAuth";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import {AiOutlineLogin} from "@react-icons/all-files/ai/AiOutlineLogin"
 import {AiOutlineUserAdd} from "@react-icons/all-files/ai/AiOutlineUserAdd"
 import {AiOutlineCloudUpload} from "@react-icons/all-files/ai/AiOutlineCloudUpload"
 import { useCookies } from 'react-cookie';
-
 function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
    const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState; 
@@ -36,6 +35,16 @@ function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
   }, [setnotshow]);
   const router = useRouter();
   let user:any=""
+
+  useEffect(()=>{
+    setTimeout(()=>{
+       if(!isAuth && router.pathname=="/dashboard" ||router.pathname=="/channel"||router.pathname=="/settings"||router.pathname=="/profile" )
+    router.push("/Login")
+    }
+   
+    ,1500)
+  },[isAuth])
+  
  if(isAuth){
 
     user= theUser.name.split(' ').map(i => i.charAt(0))
@@ -44,7 +53,7 @@ function Navbar({ismode,mode, active, setActive ,notshow ,setnotshow}) {
 
   return (
     <div className="w-full  z-50 fixed top-0  ">
-      <div className="w-full z-50 dark:bg-gray-800 dark:text-gray-200 bg-white flex justify-between items-center px-2 md:px-10 shadow h-12 ">
+      <div className="w-full z-50 dark:bg-gray-900 dark:text-gray-200 bg-white flex justify-between items-center px-2 md:px-10 shadow  h-12 ">
         <div className="relative flex space-x-3 items-center cursor-pointer p-2 " onClick={()=>router.push("/")}>
           <img src="1.svg" alt="" className="w-6 h-6 mr-4" />
           <h1 className="hidden lg:block">Vspace</h1>
