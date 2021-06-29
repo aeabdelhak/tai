@@ -1,12 +1,13 @@
-import { XIcon } from "@heroicons/react/solid";
 import React, { useState, useCallback, useEffect } from "react";
-import Cookie from "js-cookie";
 const axios = require("axios");
 import { useRouter } from "next/router";
 import { MyContext } from "../utils/JWTAuth";
 import { useContext } from "react";
+import { toast } from "react-toastify";
+import { faLaptopHouse } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
+
   const { rootState, logoutUser } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const { toggleNav, registerUser } = useContext(MyContext);
@@ -20,48 +21,36 @@ const Signup = () => {
   var [adresse, setAdresse] = useState("");
   const [user, setUser] = useState();
 
-  const initialState = {
-    userInfo: {
-      name: "",
-      email: "",
-      password: "",
-      username: "",
-      adresse: "",
-    },
-    errorMsg: "",
-    successMsg: "",
-  };
-  const [state, setState] = useState(initialState);
-
+  
   const [logLoad, setLogload] = useState(false);
 
   const submitForm = async (event) => {
+    let stg=0
     event.preventDefault();
-    const data = await registerUser(state.userInfo);
-
-    if (data.success) {
-      setState({
-        ...initialState,
-        successMsg: data.message,
-      });
-      router.push("Login");
-    } else {
-      setmessage(data);
+    if(username==""){
+      toast.error("please add username");
+stg++
     }
-  };
+    if(password=="")
+ {stg++
+      toast.error("please set a password");}
+    if(adresse=="")
+{    toast.error("please set an adresse");
+stg++}
+if(stg==0)
+    axios.post("http://localhost/api/signup.php",{
+      username:username,
+      password:password,
+      email:email,
+      adresse:adresse,
+      name:name
 
-  const onChangeValue = (e) => {
-    setState({
-      ...state,
-      userInfo: {
-        ...state.userInfo,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
-
-  let successMsg;
-  let errorMsg;
+    }).then(res => {
+      if(res.data.success)
+      router.push("/Login")
+      else setmessage(res.data)
+    })
+ }
 
   return (
     <div className="h-screen dark:bg-gray-900 scrollbar-thumb-gray-500 scrollbar-thin dark:text-gray-100  z-40 w-screen bg-gray-200 pt-16 transform translate-y-0  transition ease-in-out duration-1000  text-center top-0 p-2">
@@ -79,8 +68,8 @@ const Signup = () => {
           <img src="1.svg" alt="" className="mx-auto h-32" />
         </h1>
        
-        <form onSubmit={submitForm} noValidate className="p-3 rounded-lg bg-white shadow dark:bg-gray-800 ">
-        <h1 className="my-2">LOG IN</h1>
+        <form onSubmit={submitForm} className="p-3 rounded-lg bg-white shadow dark:bg-gray-800 ">
+        <h1 className="my-2">SIGN UP</h1>
         <h1 className="text-sm dark:text-red-400 text-red-500">{message}</h1>
 
         <hr />
@@ -88,22 +77,27 @@ const Signup = () => {
             <h1 className="text-xs">full name: </h1>
             <input
               required
+           
               type="text"
               name="name"
-              value={state.userInfo.name}
-              onChange={onChangeValue}
+              value={name}
+              onChange={(e)=>{setName(e.target.value)}}
               placeholder="Enter your name"
               className="w-full  bg-transparent  border-0 border-b focus:outline-none p-2"
             />
           </div>
           <div className=" py-3 text-left">
             <h1 className="text-xs">Username: </h1>
+            {/* {state.validate.username &&
+            <h1 className="text-xs text-red-400">this username is already taken <button className="focus:outline-none px-2 underline "> login here </button> 
+            </h1>
+            } */}
             <input
               required
               type="text"
               name="username"
-              value={state.userInfo.username}
-              onChange={onChangeValue}
+              value={username}
+              onChange={(e)=>{setUsername(e.target.value)}}
               placeholder="Enter your username"
               className="w-full  bg-transparent  border-0 border-b focus:outline-none p-2"
             />
@@ -112,22 +106,28 @@ const Signup = () => {
             <h1 className="text-xs">Password: </h1>
             <input
               required
+           
               type="password"
               name="password"
-              value={state.userInfo.password}
-              onChange={onChangeValue}
+              value={password}
+              onChange={(e)=>{setPassword(e.target.value)}}
               placeholder="Enter your password"
               className="w-full  bg-transparent  border-0 border-b focus:outline-none p-2"
             />
           </div>
           <div className=" py-3 text-left">
             <h1 className="text-xs">email: </h1>
+          {/*   {state.validate.username &&
+            <h1 className="text-xs text-red-400">this username is already taken <button className="focus:outline-none px-2 underline "> login here </button> 
+            </h1>
+            } */}
             <input
               required
+           
               type="email"
               name="email"
-              value={state.userInfo.email}
-              onChange={onChangeValue}
+              value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}
               placeholder="Enter your email"
               className="w-full  bg-transparent  border-0 border-b focus:outline-none p-2"
             />
@@ -136,10 +136,11 @@ const Signup = () => {
             <h1 className="text-xs">adresse: </h1>
             <input
               required
+           
               type="adresse"
               name="adresse"
-              value={state.userInfo.adresse}
-              onChange={onChangeValue}
+              value={adresse}
+              onChange={(e)=>{setAdresse(e.target.value)}}
               placeholder="Enter your adresse"
               className="w-full  bg-transparent  border-0 border-b focus:outline-none p-2"
             />

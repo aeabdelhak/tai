@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { MenuIcon } from "@heroicons/react/solid";
-import { ChatAlt2Icon, ThumbUpIcon } from "@heroicons/react/outline";
+import { ChatAlt2Icon,EyeIcon, ThumbUpIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import React, { useCallback, useContext } from "react";
 import axios from "axios";
@@ -195,7 +195,7 @@ axios.post("http://localhost/api/editv.php",formdata,{headers:{"Content-Type": "
           <h1>{data.likes}</h1>
           <ChatAlt2Icon className="w-5 mx-2" />
           <h1>{data.comments}</h1>
-          <GrFormView strokeWidth={1} fontSize={30} className="w-5 mx-2" />
+          <EyeIcon strokeWidth={1} fontSize={30} className="w-5 mx-2" />
             <h1>{data.views}</h1>
         </div>
       </div>

@@ -6,6 +6,9 @@
   .active .icon {
     @apply text-green-600;
   }
+  body{
+    @apply dark:bg-gray-900
+  }
   .active h1 {
     @apply font-normal;
   }
@@ -44,7 +47,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
 body {
-  font-family: "Open Sans", sans-serif !important;
+  font-family: "Work Sans", sans-serif !important;
   overflow-x: hidden;
   background-color: #fcfcfc;
 }

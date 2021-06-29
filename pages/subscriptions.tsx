@@ -69,18 +69,4 @@ import { useState } from "react";
 import { useEffect } from "react";
 import router from "next/router";
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const res = await fetch(`https://picsum.photos/v2/list?page=3&limit=20`);
-  const data = await res.json();
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
 
-  return {
-    props: {
-      data,
-    }, // will be passed to the page component as props
-  };
-};
